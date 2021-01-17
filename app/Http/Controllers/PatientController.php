@@ -1,0 +1,293 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use App\PatientProfile;
+use App\PatientReport;
+use App\UserProfile;
+use Auth;
+use DB;
+
+class PatientController extends Controller
+{
+     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function validateForm(array $data,bool $isUpdate,int $id)
+    {
+        
+        $validateRules = [
+            // patient profile validator
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'gender' => ['required'],
+            'age' => ['required'],
+            'cancer' => ['required'],
+
+            //guardian profile validator
+            'gfirst_name' => ['required', 'max:255','string'],
+            'glast_name' => ['required', 'string', 'max:255'],
+            'relations' => ['required'],
+            'contact' => ['required','string', 'min:10', 'max:11'],
+            'address_one' => ['required'],
+            'address_two' => ['required'],
+            'postcode' => ['required'],
+            'city' => ['required'],
+            'state' => ['required'],
+        ];
+
+        if($isUpdate){
+            $validateRules['ic_number'] = ['required', 'string', 'min:12','max:12',Rule::unique('patient_profiles')->ignore($id)];
+            $validateRules['gic_number'] = ['required', 'string', 'min:12','max:12','unique:patient_guardian_profiles,ic_number,'.$id];
+        }else{
+            $validateRules['ic_number'] = ['required', 'string', 'min:12','max:12','unique:patient_profiles'];
+            $validateRules['gic_number'] = ['required', 'string', 'min:12','max:12','unique:patient_guardian_profiles,ic_number'];
+            $validateRules['username'] = ['required', 'string', 'max:255', 'unique:patient_accounts'];
+            $validateRules['password'] = ['required', 'string', 'min:8', 'confirmed'];
+        }
+
+
+        return Validator::make($data, $validateRules);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+        $patients = UserProfile::where('email',Auth::user()->email)->first()->patients;
+        
+        return view('patients.index',[
+            'patients' => $patients
+        ]);
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+        return view('patients.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+        $user = UserProfile::where('email',Auth::user()->email)->first();
+
+        $validator = $this->validateForm($request->all(),false,0);
+
+        if ($validator->fails()) {
+            return redirect('patients/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        $user->patients()->create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'ic_number' => $request->ic_number,
+            'gender' => $request->gender,
+            'age' => $request->age,
+            'cancer' => $request->cancer,
+        ]);
+
+        $patient = PatientProfile::where('ic_number',$request->ic_number)->first();
+
+        $patient->guardian()->create([
+            'first_name' => $request->gfirst_name,
+            'last_name' => $request->glast_name,
+            'ic_number' => $request->gic_number,
+            'relations' => $request->relations,
+            'contact' => $request->contact,
+            'address_one' => $request->address_one,
+            'address_two' => $request->address_two,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            'state' => $request->state,
+        ]);
+
+        $patient->account()->create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('home')->with('status', 'New Patient Added!');
+        
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+        $patient = PatientProfile::findOrFail($id);
+        $guardian = $patient->guardian;
+        $account = $patient->account;
+
+        return view('patients.show',[
+            'patient' => $patient,
+            'guardian' => $guardian,
+            'account' => $account,
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+        $patient = PatientProfile::findOrFail($id);
+        $guardian = $patient->guardian;
+
+        return view('patients.edit',[
+            'patient' => $patient,
+            'guardian' => $guardian,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $patient = PatientProfile::findOrFail($id);
+
+        $validator = $this->validateForm($request->all(), true, $id);
+
+        if ($validator->fails()) {
+            return redirect('patients/'.$id.'/edit')->withErrors($validator);
+        }
+        
+        $patient->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'ic_number' => $request->ic_number,
+            'gender' => $request->gender,
+            'age' => $request->age,
+            'cancer' => $request->cancer,
+        ]);
+
+        $patient->guardian()->update([
+            'first_name' => $request->gfirst_name,
+            'last_name' => $request->glast_name,
+            'ic_number' => $request->gic_number,
+            'relations' => $request->relations,
+            'contact' => $request->contact,
+            'address_one' => $request->address_one,
+            'address_two' => $request->address_two,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            'state' => $request->state,
+        ]);
+
+        return redirect()->route('patients.show',[$id])->with('status', 'Patient Profile Updated!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+        PatientProfile::destroy($id);
+
+        return redirect()->route('patients.index')->with('status', 'Patient Deleted!');
+    }
+
+    public function search(Request $request)
+    {
+        if($request->ajax()){
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != ''){
+                $data = DB::table('patient_profiles')
+                    ->where('first_name', 'like', '%'.$query.'%')
+                    ->orWhere('last_name', 'like', '%'.$query.'%')
+                    ->orWhere('age', 'like', '%'.$query.'%')
+                    ->orWhere('cancer', 'like', '%'.$query.'%')
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }else{
+                $data = DB::table('patient_profiles')
+                ->orderBy('id', 'desc')
+                ->get();
+            }
+
+            $total_row = $data->count();
+
+            if($total_row > 0){
+                foreach($data as $row){
+                    $output .= '
+                    <tr>
+                        <td>'.$row->first_name.'</td>
+                        <td>'.$row->age.'</td>
+                        <td>'.$row->cancer.'</td>
+                        <td><a class="btn btn-primary" href="http://localhost:8086/patients/'.$row->id.'">view
+                        more</a></td>
+                    </tr>
+                    ';
+                }
+            }else{
+                $output = '
+                <tr>
+                <td align="center" colspan="5">No Data Found</td>
+                </tr>
+                ';
+            }
+            
+            $data = array(
+            'table_data'  => $output,
+            'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function analyse($id){
+        $reports = PatientProfile::findOrFail($id)->reports;
+
+        return view('patients.analyse',[
+            'reports' => $reports,
+        ]);
+    }
+}

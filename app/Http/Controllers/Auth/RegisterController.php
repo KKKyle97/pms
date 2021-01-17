@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -50,9 +50,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'ic_number' => ['required', 'string', 'min:12','max:12','unique:user_profiles',],
+            'contact' => ['required','string', 'min:10', 'max:11',],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'sq_one_q' => ['required'],
+            'sq_one_a' => ['required'],
+            'sq_two_q' => ['required'],
+            'sq_two_a' => ['required'],
         ]);
     }
 
@@ -64,10 +71,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $newUser = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'sq_one_q' => $data['sq_one_q'],
+            'sq_one_a' => $data['sq_one_a'],
+            'sq_two_q' => $data['sq_two_q'],
+            'sq_two_a' => $data['sq_two_a'],
         ]);
+
+        $user = User::where('email', $data['email'])->first();
+
+        $user->userProfile()->create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'ic_number' => $data['ic_number'],
+            'gender' => $data['gender'],
+            'contact' => $data['contact'],
+            'role' => $data['role'],
+        ]);
+
+        return $newUser;
     }
 }

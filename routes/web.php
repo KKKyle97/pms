@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controller\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/patients/search/', 'PatientController@search')->name('patients.search');
+Route::get('/patients/{id}/analyse','PatientController@analyse')->name('patients.analyse');
+Route::resource('patients', 'PatientController');
+
+
+
+Route::resource('notifications', 'NotificationController');
+
