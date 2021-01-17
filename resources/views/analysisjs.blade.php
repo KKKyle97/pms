@@ -31,3 +31,5 @@ var chart = new google.visualization.PieChart(document.getElementById('chart_div
 chart.draw(data, options);
 }
 </script>
+<p>hello</p>
+<p>{{$patient->first_name}}</p>

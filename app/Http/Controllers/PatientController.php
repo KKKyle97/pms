@@ -285,9 +285,11 @@ class PatientController extends Controller
 
     public function analyse($id){
         $reports = PatientProfile::findOrFail($id)->reports;
+        $patient = PatientProfile::findOrFail($id);
 
         return view('patients.analyse',[
             'reports' => $reports,
+            'patient' => $patient,
         ]);
     }
 }

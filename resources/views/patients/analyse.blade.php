@@ -24,5 +24,5 @@ use App\Common;
     </div>
 </div>
 
-@include('analysisjs')
+{{--  --}}
 @endsection

@@ -9,12 +9,13 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    <a class="btn btn-primary" href="{{route('patients.create')}}">Add Patient</a>
+                    <a class="btn btn-primary" href="{{route('patients.index')}}">View all patients </a>
+                    <a class="btn btn-primary" href="{{route('notifications.index')}}">Notifications</a>
                 </div>
             </div>
         </div>
