@@ -16,6 +16,7 @@
                     <a class="btn btn-primary" href="{{route('patients.create')}}">Add Patient</a>
                     <a class="btn btn-primary" href="{{route('patients.index')}}">View all patients </a>
                     <a class="btn btn-primary" href="{{route('notifications.index')}}">Notifications</a>
+                    <a class="btn btn-primary" href="{{route('users.show',[Auth::user()->id])}}">My Profile</a>
                 </div>
             </div>
         </div>

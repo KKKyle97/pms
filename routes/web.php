@@ -25,8 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/patients/search/', 'PatientController@search')->name('patients.search');
 Route::get('/patients/{id}/analyse','PatientController@analyse')->name('patients.analyse');
 Route::resource('patients', 'PatientController');
-
-
-
 Route::resource('notifications', 'NotificationController');
+Route::resource('users', 'UserController');
+
+
 
