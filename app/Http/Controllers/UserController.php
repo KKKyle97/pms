@@ -103,7 +103,8 @@ class UserController extends Controller
             'last_name' => $request->last_name,
             'ic_number' => $request->ic_number,
             'gender' => $request->gender,
-            'contect' => $request->contact,
+            'contact' => $request->contact,
+            'hospital_code' => $request->hospital_code,
             'role' => $request->role,
         ]);
 

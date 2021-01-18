@@ -14,6 +14,7 @@ class UserProfile extends Model
                             'contact',
                             'role',
                             'email',
+                            'hospital_code',
                             'profile_pic'    
 ];
 

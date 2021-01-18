@@ -111,6 +111,150 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="hospital"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Hospital') }}</label>
+
+                            <div class="col-md-6 dropdown">
+                                <select id="hospital" class="form-control js-example-basic-single" name="hospital"
+                                    required>
+                                    <optgroup label="Johor">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'J') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Kedah">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'K') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Kelantan">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'D') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Kuala Lumpur">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'W') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Labuan">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'L') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Melaka">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'M') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Negeri Sembilan">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'N') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Pahang">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'C') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Penang">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'P') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Perak">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'A') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Perlis">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'R') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Putrajaya">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'F') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Sabah">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'H') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Sarawak">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'V') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Selangor">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'S') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+
+                                    <optgroup label="Terengganu">
+                                        @foreach (Common::$hospitals as $key => $item)
+                                        @if (strpos($key,'T') !== false)
+                                        <option value="{{$key}}">{{$item}}</option>
+                                        @endif
+                                        @endforeach
+                                    </optgroup>
+                                </select>
+
+                                @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
@@ -143,4 +287,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
 @endsection
