@@ -284,10 +284,44 @@ class PatientController extends Controller
     }
 
     public function analyse($id){
-        $reports = PatientProfile::findOrFail($id)->reports;
+        $reports = PatientProfile::findOrFail($id)->reports()->orderBy('created_at')->get();
+        $patient = PatientProfile::findOrFail($id);
+
+        $bodyPartsCount =  DB::table('patient_reports')
+        ->select(DB::raw('count(*) as count'),'body_part')
+        ->where('patient_profiles_id',$id)
+        ->groupBy('body_part')
+        ->orderBy('count', 'desc')
+        ->get();
+
+        $descriptionCount =  DB::table('patient_reports')
+        ->select(DB::raw('count(*) as count'),'description','body_part')
+        ->where('patient_profiles_id',$id)
+        ->groupBy('description','body_part')
+        ->orderBy('count', 'desc')
+        ->get();
+
+        $highestPainLevel =  DB::table('patient_reports')
+        ->select(DB::raw('max(level) as level'),'description','body_part','created_at')
+        ->where('patient_profiles_id',$id)
+        ->groupBy('description','body_part')
+        ->orderBy('created_at')
+        ->get();
+
+        $durationPerBodyPart = DB::table('patient_reports')
+        ->select(DB::raw('max(duration) as duration,avg(duration) as average'),'body_part','created_at')
+        ->where('patient_profiles_id',$id)
+        ->groupBy('body_part')
+        ->orderBy('created_at')
+        ->get();
 
         return view('patients.analyse',[
             'reports' => $reports,
+            'patient' => $patient,
+            'bodyPartsCount' => $bodyPartsCount,
+            'descriptionCount' => $descriptionCount,
+            'highestPainLevel' => $highestPainLevel,
+            'durationPerBodyPart' => $durationPerBodyPart,
         ]);
     }
 }
