@@ -28,5 +28,6 @@ Route::resource('patients', 'PatientController');
 Route::resource('notifications', 'NotificationController');
 Route::resource('users', 'UserController');
 
-
+Route::get('change-password', 'ChangePasswordController@index')->name('passwords.index');
+Route::put('change-password', 'ChangePasswordController@update')->name('passwords.update');
 

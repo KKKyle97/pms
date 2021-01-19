@@ -17,6 +17,7 @@
                     <a class="btn btn-primary" href="{{route('patients.index')}}">View all patients </a>
                     <a class="btn btn-primary" href="{{route('notifications.index')}}">Notifications</a>
                     <a class="btn btn-primary" href="{{route('users.show',[Auth::user()->id])}}">My Profile</a>
+                    <a class="btn btn-primary" href="{{route('passwords.index')}}">Reset Password</a>
                 </div>
             </div>
         </div>
