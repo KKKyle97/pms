@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+    @if($errors->any())
+    <h4>{{$errors->first()}}</h4>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -18,6 +21,13 @@
                     <a class="btn btn-primary" href="{{route('notifications.index')}}">Notifications</a>
                     <a class="btn btn-primary" href="{{route('users.show',[Auth::user()->id])}}">My Profile</a>
                     <a class="btn btn-primary" href="{{route('passwords.index')}}">Reset Password</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>
