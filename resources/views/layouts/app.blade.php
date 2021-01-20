@@ -15,13 +15,15 @@
     {{-- google chart API --}}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    {{-- material icon --}}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -31,18 +33,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
+    {{-- material icon --}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
     <main class="background">
         <div class="container-fluid h-100 d-flex align-items-center justify-content-center p-5">
-            <div class="h-100 w-100 backbone-panel row">
-                <div class="p-0 nav-bar">
+            <div class="h-100 backbone-panel row d-flex justify-content-between ">
+                <div class="h-100 p-0 nav-bar col-3">
                     @include('layouts.navbar')
                 </div>
-                <div class="">
+                <div class="h-100 col-9 d-flex flex-column">
                     @yield('content')
                 </div>
             </div>

@@ -1,8 +1,8 @@
-<div class="h-25 w-100 row d-flex justify-content-center align-items-center py-5 m-0">
+<div class="col row d-flex justify-content-center align-items-center py-5 m-0">
     <img src="{{asset('/image/ribbon.png')}}" alt="ribbon" height="70vh" width="70vw" style="display: block">
     <p class="p-0 m-0 font-18 font-semi">Child Of Light</p>
 </div>
-<div class="h-75 w-100 d-flex flex-column py-5">
+<div class="col d-flex flex-column py-5">
     <a href="{{url('/')}}">
         <div class="font-semi p-3 row d-flex align-items-center m-0">
             <span class="material-icons px-3">

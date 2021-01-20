@@ -33,7 +33,6 @@ main {
 
 .nav-bar {
     background-image: linear-gradient(to right, #43c6ac, #f8ffae);
-    width: 300px;
 }
 
 .nav-bar a {
@@ -43,4 +42,14 @@ main {
 
 .nav-bar span {
     color: #1b5e20;
+}
+
+/* main menu */
+
+p.title {
+    word-break: keep-all;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
 }
