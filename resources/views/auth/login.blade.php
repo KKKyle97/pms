@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
-    <div class="h-75 w-50 login-panel p-5">
+    <div class="h-75 w-50 backbone-panel p-5">
         <div class="pb-3 col text-center">
             <p class="font-weight-bold font-32 p-0 m-0">Child Of Light Patient Management System</p>
         </div>
         <div class="row">
             <div class="col-md-6 d-flex justify-content-start">
-                <img src="{{asset('image/ribbon.png')}}" alt="ribbon" height="100%" width="100%">
+                <img src="{{asset('image/ribbon.png')}}" alt="ribbon" height="450px" width="450px">
             </div>
             <div class="col-md-6 d-flex justify-content-start">
                 <div class="col py-5">

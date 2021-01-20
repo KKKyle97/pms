@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid h-100 d-flex align-items-center justify-content-center ">
-    <div class="login-panel col-md-4 p-5">
+    <div class="panel col-md-4 p-5">
         <div class="pb-3 col text-center">
             <p class="font-weight-bold font-32 p-0 m-0">Reset Password</p>
         </div>

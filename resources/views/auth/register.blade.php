@@ -6,7 +6,7 @@ use App\Common;
 
 @section('content')
 <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
-    <div class="login-panel p-5">
+    <div class="panel p-5">
         <div class="text-center pb-3">
             <p class="font-weight-bold font-32 p-0 m-0">Registration Form</p>
         </div>
