@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use App\PatientProfile;
 use App\PatientReport;
 use App\UserProfile;
+use App\Common;
 use Auth;
 use DB;
 
@@ -260,8 +261,8 @@ class PatientController extends Controller
                     <tr>
                         <td>'.$row->first_name.'</td>
                         <td>'.$row->age.'</td>
-                        <td>'.$row->cancer.'</td>
-                        <td><a class="btn btn-primary" href="http://localhost:8086/patients/'.$row->id.'">view
+                        <td>'.Common::$cancer[$row->cancer].'</td>
+                        <td><a class="badge badge-pill badge-success" href="http://localhost:8086/patients/'.$row->id.'">view
                         more</a></td>
                     </tr>
                     ';

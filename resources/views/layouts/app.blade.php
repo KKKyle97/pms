@@ -40,7 +40,7 @@
 <body>
     <main class="background">
         <div class="container-fluid h-100 d-flex align-items-center justify-content-center p-5">
-            <div class="h-100 backbone-panel row d-flex justify-content-between ">
+            <div class="h-100 w-100 backbone-panel row d-flex justify-content-between ">
                 <div class="h-100 p-0 nav-bar col-3">
                     @include('layouts.navbar')
                 </div>

@@ -53,3 +53,17 @@ p.title {
 .material-icons.md-48 {
     font-size: 48px;
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 5px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: lightgrey; /* color of the scroll thumb */
+    border-radius: 100px; /* roundness of the scroll thumb */
+}
