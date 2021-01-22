@@ -23,7 +23,6 @@ class CreateUserProfilesTable extends Migration
             $table->string('role',255);
             $table->string('email');
             $table->string('hospital_code');
-            $table->string('profile_pic',255)->nullable();
             //foreign key bind
             $table->foreign('email')->references('email')->on('users');
             $table->timestamps();

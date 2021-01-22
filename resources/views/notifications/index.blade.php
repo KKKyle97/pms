@@ -35,19 +35,17 @@ use App\Common;
                     </tr>
 
                     @foreach ($patients as $patient)
-
-                    @foreach ($patient->messages as $message)
                     <tr>
                         <td>{{$patient->first_name}} {{$patient->last_name}}</td>
                         <td>{{$patient->age}}</td>
                         <td>{{Common::$cancer[$patient->cancer]}}</td>
-                        <td> <span>{{$message->score}}</span>
-                            @if ($message->is_solved)
+                        <td> <span>{{$patient->score}}</span>
+                            @if ($patient->is_solved)
                             <span class="badge badge-success">Solved</span>
                             @else
-                            @if($message->score > 7)
+                            @if($patient->score > 7)
                             <span class="badge badge-danger">Emergency!</span>
-                            @elseif($message->score > 3)
+                            @elseif($patient->score > 3)
                             <span class="badge badge-warning">Medium</span>
                             @else
                             <span class="badge badge-primary">Low</span>
@@ -55,12 +53,10 @@ use App\Common;
                             @endif
                         </td>
                         <td>
-                            <a class="badge badge-info " href="{{route('notifications.show',[$message->id])}}">view
+                            <a class="badge badge-info " href="{{route('notifications.show',[$patient->id])}}">view
                                 more</a>
                         </td>
                     </tr>
-                    @endforeach
-
                     @endforeach
                 </table>
                 <div>

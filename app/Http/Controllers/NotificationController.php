@@ -7,6 +7,7 @@ use App\PatientProfile;
 use App\UserProfile;
 use App\PatientMessage;
 use Auth;
+use DB;
 
 class NotificationController extends Controller
 {
@@ -18,11 +19,13 @@ class NotificationController extends Controller
     public function index()
     {
         //
-        $patients = PatientProfile::where('user_profiles_id',Auth::user()->userProfile->id)
-                                    ->orderBy('score','asc')
-                                    ->orderBy('is_solved','asc')
-                                    ->paginate(10);
-        
+        $patients = DB::table('patient_messages')
+                    ->join('patient_profiles','patient_messages.patient_profiles_id','=','patient_profiles.id')
+                    ->where('user_profiles_id',Auth::user()->userProfile->id)
+                    ->orderBy('patient_messages.is_solved','asc')
+                    ->orderBy('patient_messages.score','desc')
+                    ->paginate(10);
+
         return view('notifications.index',[
             'patients' => $patients,
         ]);
