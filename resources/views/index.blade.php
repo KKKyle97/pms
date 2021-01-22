@@ -82,7 +82,7 @@
             <div class="p-3 d-flex flex-column align-items-center backbone-panel">
                 <div>
                     <span class="material-icons px-3 md-48">
-                        add_circle_outline
+                        child_care
                     </span>
                 </div>
                 <div class="font-semi font-18">

@@ -18,10 +18,13 @@ class NotificationController extends Controller
     public function index()
     {
         //
-        $user = UserProfile::where('email',Auth::user()->email)->first();
+        $patients = PatientProfile::where('user_profiles_id',Auth::user()->userProfile->id)
+                                    ->orderBy('score','asc')
+                                    ->orderBy('is_solved','asc')
+                                    ->paginate(10);
         
         return view('notifications.index',[
-            'patients' => $user->patients,
+            'patients' => $patients,
         ]);
         
     }

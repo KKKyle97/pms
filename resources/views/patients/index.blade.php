@@ -42,7 +42,7 @@ use App\Common;
                             <td>{{$patient->age}}</td>
                             <td>{{$patient->ic_number}}</td>
                             <td>{{Common::$cancer[$patient->cancer]}}</td>
-                            <td><a href="{{route('patients.show',[$patient->id])}}" class="badge badge-success">View
+                            <td><a href="{{route('patients.show',[$patient->id])}}" class="badge badge-info">View
                                     more</a></td>
                         </tr>
                         @endforeach
