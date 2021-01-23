@@ -58,7 +58,7 @@ use App\Common;
             <div class="pb-3">
                 <p class="m-0 p-0 font-semi font-18">Address</p>
                 <p class="m-0 p-0">
-                    {{$guardian->address_one}},{{$guardian->address_two}},{{$guardian->postcode}},{{$guardian->state}}
+                    {{$guardian->address_one}},{{$guardian->address_two}},{{$guardian->postcode}},{{Common::$state[$guardian->state]}}
                     {{$guardian->city}}</p>
             </div>
         </div>

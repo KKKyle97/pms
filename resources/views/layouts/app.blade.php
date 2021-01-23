@@ -20,6 +20,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 
     {{-- select2 --}}
@@ -47,7 +48,6 @@
                     @include('layouts.navbar')
                 </div>
                 <div class="h-100 col-9 d-flex flex-column">
-
                     @yield('content')
                 </div>
             </div>

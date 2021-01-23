@@ -71,3 +71,16 @@ p.title {
     background-color: lightgrey; /* color of the scroll thumb */
     border-radius: 100px; /* roundness of the scroll thumb */
 }
+
+/* chart analysis */
+#body-parts-chart-div {
+    visibility: visible;
+}
+
+#dashboard_div,
+#dashboard2_div,
+#dashboard3_div,
+#dashboard4_div,
+#dashboard5_div {
+    visibility: hidden;
+}

@@ -1,8 +1,11 @@
 <script>
-    google.charts.load('current', {'packages':['corechart','controls']});
-
-// Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', {
+  callback: function () {
+    drawChart();
+    $(window).resize(drawChart);
+  },
+  packages:['corechart','controls']
+});
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
@@ -28,9 +31,11 @@ function drawBodyPartsCountChart(){
         ]);
 
     // Set chart options
-    var bodyPartsCountOptions = {'title':'sample',
-                    'width':600,
-                    'height':300};
+    var bodyPartsCountOptions = {
+            // leave room for y-axis labels
+            width: '50%',
+            height:'100%',
+        'title':'sample'};
 
     // Instantiate and draw our chart, passing in some options.
     var bodyPartsCountChart = new google.visualization.BarChart(document.getElementById('body-parts-chart-div'));
@@ -65,8 +70,9 @@ function drawDescriptionCountChart(){
         'containerId': 'chart_div',
         'dataTable':descriptionCountData,
         'options': {
-            'width': 300,
-            'height': 300,
+            // leave room for y-axis labels
+            'width': '100%',
+            'height':'100%',
             'title': 'Pain description count'
         },
         // The pie chart will use the columns 'Name' and 'Donuts eaten'
@@ -101,7 +107,7 @@ function drawPainLevelChart(){
             document.getElementById('dashboard2_div'));
 
     var dateRangeFilter = new google.visualization.ControlWrapper({
-        'controlType': 'ChartRangeFilter',
+        'controlType': 'DateRangeFilter',
         'containerId': 'filter2_div',
         'options': {
         'filterColumnLabel': 'date',
@@ -121,8 +127,6 @@ function drawPainLevelChart(){
         'containerId': 'chart2_div',
         'dataTable':levelData,
         'options': {
-            'width': 900,
-            'height': 500,
             'title': 'Level of pain'
         },
     });
@@ -174,8 +178,8 @@ function drawTopPainChart(){
         'containerId': 'highestPainDataChart_div',
         'dataTable':highestPainData,
         'options': {
-            'width': 500,
-            'height': 300,
+            'width': '100%',
+            'height': '100%',
             'title': 'Pain description count'
         },
         'view':{'columns':[0,1]}
@@ -218,8 +222,8 @@ function drawMoodChart(dashboard, filter){
         'containerId': 'chart4_div',
         'dataTable':data,
         'options': {
-            'width': 500,
-            'height': 300,
+            'width': '100%',
+            'height': '100%',
             'title': 'Pain description count'
         },
     });
@@ -260,8 +264,8 @@ function drawDurationChart(){
         'containerId': 'chart5_div',
         'dataTable':data,
         'options': {
-            'width': 500,
-            'height': 300,
+            'width': "100%",
+            'height': '100%',
             'title': 'Pain description count'
         },
         'view': {'columns': [0,1,2]}
@@ -274,6 +278,49 @@ function drawDurationChart(){
 
     dashboard.draw(data);
 }
+$('#chart-dropdown').on('change', function() {
+    if(this.value == 1){
+        $("#body-parts-chart-div").css("visibility", "visible");
+        $('#dashboard_div').css("visibility", "hidden");
+        $('#dashboard2_div').css("visibility", "hidden");
+        $('#dashboard3_div').css("visibility", "hidden");
+        $('#dashboard4_div').css("visibility", "hidden");
+        $('#dashboard5_div').css("visibility", "hidden");
+    }else if(this.value == 2){
+        $('#body-parts-chart-div').css("visibility", "hidden");
+        $('#dashboard_div').css("visibility", "visible");
+        $('#dashboard2_div').css("visibility", "hidden");
+        $('#dashboard3_div').css("visibility", "hidden");
+        $('#dashboard4_div').css("visibility", "hidden");
+        $('#dashboard5_div').css("visibility", "hidden");
+    }else if(this.value == 3){
+        $('#body-parts-chart-div').css("visibility", "hidden");
+        $('#dashboard_div').css("visibility", "hidden");
+        $('#dashboard2_div').css("visibility", "visible");
+        $('#dashboard3_div').css("visibility", "hidden");
+        $('#dashboard4_div').css("visibility", "hidden");
+        $('#dashboard5_div').css("visibility", "hidden");
+    }else if(this.value == 4){
+        $('#body-parts-chart-div').css("visibility", "hidden");
+        $('#dashboard_div').css("visibility", "hidden");
+        $('#dashboard2_div').css("visibility", "hidden");
+        $('#dashboard3_div').css("visibility", "visible");
+        $('#dashboard4_div').css("visibility", "hidden");
+        $('#dashboard5_div').css("visibility", "hidden");
+    }else if(this.value == 5){
+        $('#body-parts-chart-div').css("visibility", "hidden");
+        $('#dashboard_div').css("visibility", "hidden");
+        $('#dashboard2_div').css("visibility", "hidden");
+        $('#dashboard3_div').css("visibility", "hidden");
+        $('#dashboard4_div').css("visibility", "visible");
+        $('#dashboard5_div').css("visibility", "hidden");
+    }else{
+        $('#body-parts-chart-div').css("visibility", "hidden");
+        $('#dashboard_div').css("visibility", "hidden");
+        $('#dashboard2_div').css("visibility", "hidden");
+        $('#dashboard3_div').css("visibility", "hidden");
+        $('#dashboard4_div').css("visibility", "hidden");
+        $('#dashboard5_div').css("visibility", "visible");
+    }
+});
 </script>
-<p>hello</p>
-<p>{{$patient->first_name}}</p>
