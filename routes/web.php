@@ -47,6 +47,10 @@ Route::group(['middleware' => 'auth'],function(){
     Route::put('change-password', 'ChangePasswordController@update')->name('passwords.update');
 });
 
+
+
 Route::any('{query}', 
   function() { return redirect()->route('home')->withErrors(['Invalid URL entered!', 'Invalid URL']); })
   ->where('query', '.*');
+
+
