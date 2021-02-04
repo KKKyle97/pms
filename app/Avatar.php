@@ -17,4 +17,9 @@ class Avatar extends Model
         return $this->belongsToMany('App\PatientAccount');
     }
 
+    public function info()
+    {
+        return $this->belongsTo('App\GameUserInfo');
+    }
+
 }

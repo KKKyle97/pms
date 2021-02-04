@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PatientAccount;
 use App\Avatar;
 use App\badge;
+use Apo\GameUserInfo;
 use Illuminate\Support\Facades\Hash;
 use DB;
 
@@ -22,6 +23,16 @@ class GameController extends Controller
         else if(Hash::check($request->password,$patient->password))
         {
             echo "Logged In!";
+            $userInfo = GameUserInfo::where('patient_accounts_id',$patient->id)->first();
+            if($userInfo =! null){
+                return response()->json([
+                    'message' => 'logged in!'
+                ]);
+            }else{
+                return response()->json([
+                    'message' => 'first time login'
+                ]);
+            }
         }
         else
         {
@@ -73,7 +84,7 @@ class GameController extends Controller
 
             $user = PatientAccount::findOrFail($request->userId);
 
-            $user->avatars()->attach($request->avatarId,['is_selected' => false]);
+            $user->avatars()->attach($request->avatarId);
 
             return response()->json([
                 'message' => 'Purchased successfully',

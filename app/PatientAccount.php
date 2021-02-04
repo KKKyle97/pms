@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PatientAccount extends Model
 {
     //
-    protected $fillable = ['username','password','coin','highscore','patient_profiles_id'];
+    protected $fillable = ['username','password','patient_profiles_id'];
     protected $table = 'patient_accounts';
 
     public function patient()
@@ -18,6 +18,11 @@ class PatientAccount extends Model
     public function messages()
     {
         return $this->hasMany('App\PatientMessage', 'patient_accounts_username', 'patient_accounts_username');
+    }
+
+    public function info()
+    {
+        return $this->hasOne('App\GameUserInfo');
     }
 
     public function avatars()
