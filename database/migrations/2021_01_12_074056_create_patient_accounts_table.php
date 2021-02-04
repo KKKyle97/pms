@@ -17,6 +17,8 @@ class CreatePatientAccountsTable extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('password');
+            $table->BigInteger('coin');
+            $table->BigInteger('highscore');
             $table->unsignedBigInteger('patient_profiles_id');
             $table->foreign('patient_profiles_id')->references('id')->on('patient_profiles');
             $table->timestamps();
