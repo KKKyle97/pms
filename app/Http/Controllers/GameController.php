@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\PatientAccount;
 use App\Avatar;
 use App\badge;
-use Apo\GameUserInfo;
+use App\GameUserInfo;
 use Illuminate\Support\Facades\Hash;
 use DB;
 
 class GameController extends Controller
 {
     //
+    private $patient;
+    private $gameInfo;
+
     public function login(Request $request)
     {
         //
@@ -22,8 +25,8 @@ class GameController extends Controller
             echo "user not found";
         else if(Hash::check($request->password,$patient->password))
         {
-            echo "Logged In!";
             $userInfo = GameUserInfo::where('patient_accounts_id',$patient->id)->first();
+
             if($userInfo =! null){
                 return response()->json([
                     'message' => 'logged in!'
@@ -38,6 +41,20 @@ class GameController extends Controller
         {
             echo "Incorrect Password!";
         }
+    }
+
+    public function firstLogin(Request $request)
+    {
+        $patient->info()->create([
+            'name' => $request->name,
+            'coin' => 0,
+            'highscore' => 0,
+            'avatars_id' => $request->avatarId,
+        ]);
+
+        return response()->json([
+            'message' => 'new account created successfully'
+        ]);
     }
 
     public function updateScore(Request $request)
