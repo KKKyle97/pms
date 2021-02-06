@@ -13,9 +13,6 @@ use DB;
 class GameController extends Controller
 {
     //
-    private $patient;
-    private $gameInfo;
-
     public function login(Request $request)
     {
         //
@@ -27,14 +24,10 @@ class GameController extends Controller
         {
             $userInfo = GameUserInfo::where('patient_accounts_id',$patient->id)->first();
 
-            if($userInfo =! null){
-                return response()->json([
-                    'message' => 'logged in!'
-                ]);
+            if($userInfo != null){
+                echo "logged in";
             }else{
-                return response()->json([
-                    'message' => 'first time login'
-                ]);
+                echo "first time";
             }
         }
         else
@@ -45,6 +38,7 @@ class GameController extends Controller
 
     public function firstLogin(Request $request)
     {
+        $patient = PatientAccount::where('username',$request->username)->first();
         $patient->info()->create([
             'name' => $request->name,
             'coin' => 0,
@@ -52,9 +46,7 @@ class GameController extends Controller
             'avatars_id' => $request->avatarId,
         ]);
 
-        return response()->json([
-            'message' => 'new account created successfully'
-        ]);
+        return response()->json($patient->info, 200);
     }
 
     public function updateScore(Request $request)

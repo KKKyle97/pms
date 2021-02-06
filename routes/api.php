@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/ninjaspirits/login','GameController@login');
+Route::post('/ninjaspirits/firstLogin','GameController@firstLogin');
 Route::post('/ninjaspirits/buyAvatar','GameController@buyAvatar');
 Route::post('/ninjaspirits/updateScore','GameController@updateScore');
 Route::get('/ninjaspirits/getScore','GameController@getScore');

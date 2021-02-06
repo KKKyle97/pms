@@ -17,12 +17,16 @@ class PatientAccount extends Model
 
     public function messages()
     {
-        return $this->hasMany('App\PatientMessage', 'patient_accounts_username', 'patient_accounts_username');
+        return $this->hasMany('App\PatientMessage', 'patient_accounts_id', 'patient_accounts_id');
+    }
+
+    public function reports(){
+        return $this->hasMany('App\PatientReport', 'patient_accounts_id', 'patient_accounts_id');
     }
 
     public function info()
     {
-        return $this->hasOne('App\GameUserInfo');
+        return $this->hasOne('App\GameUserInfo','patient_accounts_id');
     }
 
     public function avatars()

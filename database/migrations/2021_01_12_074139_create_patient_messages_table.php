@@ -19,10 +19,10 @@ class CreatePatientMessagesTable extends Migration
             $table->string('message',255);
             $table->boolean('is_solved');
             $table->string('solution',255)->nullable();
-            $table->string('patient_accounts_username');
+            $table->unsignedBigInteger('patient_accounts_id');
             $table->unsignedBigInteger('patient_profiles_id');
             //foreign key bind
-            $table->foreign('patient_accounts_username')->references('username')->on('patient_accounts');
+            $table->foreign('patient_accounts_id')->references('id')->on('patient_accounts');
             $table->foreign('patient_profiles_id')->references('id')->on('patient_profiles');
             $table->timestamps();
         });

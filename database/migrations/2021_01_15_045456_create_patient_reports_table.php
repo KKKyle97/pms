@@ -20,10 +20,10 @@ class CreatePatientReportsTable extends Migration
             $table->string('description');
             $table->unsignedBigInteger('duration');
             $table->unsignedBigInteger('mood');
-            $table->string('patient_accounts_username');
+            $table->unsignedBigInteger('patient_accounts_id');
             $table->unsignedBigInteger('patient_profiles_id');
             //foreign key bind
-            $table->foreign('patient_accounts_username')->references('username')->on('patient_accounts');
+            $table->foreign('patient_accounts_id')->references('id')->on('patient_accounts');
             $table->foreign('patient_profiles_id')->references('id')->on('patient_profiles');
             $table->timestamps();
         });
