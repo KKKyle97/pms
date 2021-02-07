@@ -24,3 +24,4 @@ Route::post('/ninjaspirits/buyAvatar','GameController@buyAvatar');
 Route::post('/ninjaspirits/updateScore','GameController@updateScore');
 Route::get('/ninjaspirits/getScore','GameController@getScore');
 Route::get('/ninjaspirits/getAvatars','GameController@getAvatars');
+Route::post('/ninjaspirits/sendMessage','GameController@sendMessage');

@@ -25,7 +25,10 @@ class GameController extends Controller
             $userInfo = GameUserInfo::where('patient_accounts_id',$patient->id)->first();
 
             if($userInfo != null){
-                echo "logged in";
+                return response()->json([
+                    'message' => 'logged in',
+                    'data' => $userInfo
+                ], 200);
             }else{
                 echo "first time";
             }
@@ -110,5 +113,25 @@ class GameController extends Controller
     public function unlockBadge(Request $request)
     {
       //todo: unlock badges
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $patient = PatientAccount::findOrFail($request->patientAccountId);
+
+        $isCreated = $patient->messages()->create([
+            'score' => $request->score,
+            'message' => $request->message,
+            'patient_profiles_id' => $patient->patient_profiles_id
+        ]);
+
+        if($isCreated)
+        {
+            echo "messages added";
+        }
+        else
+        {
+            echo "error";
+        }
     }
 }
