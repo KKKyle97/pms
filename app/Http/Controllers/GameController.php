@@ -144,4 +144,24 @@ class GameController extends Controller
             echo "error";
         }
     }
+
+    public function loadProfile($id)
+    {
+        $userInfo = GameUserInfo::find($id);
+
+        if($userInfo != null)
+        {
+            return response()->json([
+                'message' => 'success',
+                'data' => json_encode($userInfo) 
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'message' => 'user not found',
+                'data' => ''
+            ], 200);
+        }
+    }
 }
