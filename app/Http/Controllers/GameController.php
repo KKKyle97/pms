@@ -19,7 +19,10 @@ class GameController extends Controller
         $patient = PatientAccount::where('username',$request->username)->first();
     
         if($patient == null)
-            echo "user not found";
+        return response()->json([
+            'message' => 'user not found',
+            'data' => ''
+        ], 200);
         else if(Hash::check($request->password,$patient->password))
         {
             $userInfo = GameUserInfo::where('patient_accounts_id',$patient->id)->first();
@@ -27,15 +30,22 @@ class GameController extends Controller
             if($userInfo != null){
                 return response()->json([
                     'message' => 'logged in',
-                    'data' => $userInfo
+                    'data' => json_encode($userInfo)
+                    // 'data' => $userInfo
                 ], 200);
             }else{
-                echo "first time";
+                return response()->json([
+                    'message' => 'first time',
+                    'data' => ''
+                ], 200);
             }
         }
         else
         {
-            echo "Incorrect Password!";
+            return response()->json([
+                'message' => 'incorrect password',
+                'data' => ''
+            ], 200);
         }
     }
 
