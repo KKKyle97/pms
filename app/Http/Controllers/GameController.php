@@ -147,7 +147,10 @@ class GameController extends Controller
 
     public function loadProfile($id)
     {
-        $userInfo = GameUserInfo::find($id);
+        $userInfo = DB::table('game_user_infos')
+                    ->leftJoin('badge_user','game_user_infos.id','=','badge_user.user_id')
+                    ->select('game_user_infos.*',DB::raw('count(badge_user.user_id) as badges_count'))
+                    ->first();
 
         if($userInfo != null)
         {
