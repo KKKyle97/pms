@@ -14,14 +14,76 @@ class BadgeSeeder extends Seeder
     public function run()
     {
         //
-        foreach (Common::$badges as $name => $target) {
             DB::table('badges')->insert([
-                'name' => $name,
-                'target' => $target,
+                'name' => 'C1',
+                'type' => 1, 
+                'target' => 500,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-
             ]);
-        }
+
+            DB::table('badges')->insert([
+                'name' => 'C2',
+                'type' => 1, 
+                'target' => 1000,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+
+            DB::table('badges')->insert([
+                'name' => 'C3',
+                'type' => 1, 
+                'target' => 1500,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+
+            DB::table('badges')->insert([
+                'name' => 'R1',
+                'type' => 2, 
+                'target' => 5,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+
+            DB::table('badges')->insert([
+                'name' => 'R2',
+                'type' => 2, 
+                'target' => 8,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+
+            DB::table('badges')->insert([
+                'name' => 'R3',
+                'type' => 2, 
+                'target' => 10,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+
+            DB::table('badges')->insert([
+                'name' => 'A1',
+                'type' => 3, 
+                'target' => 3,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+
+            DB::table('badges')->insert([
+                'name' => 'A2',
+                'type' => 3, 
+                'target' => 5,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+
+            DB::table('badges')->insert([
+                'name' => 'A3',
+                'type' => 3, 
+                'target' => 7,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
     }
 }

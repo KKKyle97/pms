@@ -120,9 +120,37 @@ class GameController extends Controller
         return json_encode($records);
     }
 
-    public function unlockBadge(Request $request)
+    public function unlockCoinBadge(Request $request)
     {
-      //todo: unlock badges
+      //todo: unlock coin badges
+      $userInfo = GameUserInfo::find($request->id);
+      $user = $userInfo->account;
+
+
+      $badges = Badge::whereNotIn('id',function($query) {
+        $query->select('badge_id')->from('badge_user');
+                })->where('target','<=',$userInfo->coin)
+                ->where('type',1)
+                ->get();
+      
+        // foreach ($badges as $badge) {
+        //     # code...
+        //     $user->badges()->attach($badge->id);
+        // }
+
+      return response()->json([
+          'data' => $badges
+        ], 200);
+    }
+
+    public function unlockReportBadge(Request $request)
+    {
+
+    }
+
+    public function unlockAvatarBadges(Request $request)
+    {
+
     }
 
     public function sendMessage(Request $request)
