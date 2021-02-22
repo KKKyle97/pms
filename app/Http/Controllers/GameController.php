@@ -59,6 +59,9 @@ class GameController extends Controller
             'avatars_id' => $request->avatarId,
         ]);
 
+        $patient->avatars()->attach(1);
+        $patient->avatars()->attach(2);
+
         return response()->json($patient->info, 200);
     }
 
@@ -89,7 +92,7 @@ class GameController extends Controller
     }
 
     public function buyAvatar(Request $request)
-    {
+    {   
         $avatar = Avatar::findOrFail($request->avatarId);
         $user = PatientAccount::findOrFail($request->userId);
         
@@ -114,43 +117,139 @@ class GameController extends Controller
         }
     }
 
-    public function getAvatars(Request $request)
+    public function changeAvatar(Request $request)
     {
-        $records = DB::table('avatar_user')->where('user_id',$request->userId)->get();
-        return json_encode($records);
+        $user = GameUserInfo::where('id',$request->userId)->update(['avatars_id' => $request->avatarId]);
+
+        return response()->json([
+            'message' => 'success'
+        ], 200);
+                
+    }
+
+    public function getAvatars($id)
+    {
+        $records = DB::table('avatar_user')->select('avatar_id')->where('user_id',$id)->get();
+        return response()->json([
+            'message' => 'success',
+            'data' => json_encode($records),
+        ], 200);
+    }
+
+    public function unlockAvatar(Request $request)
+    {
+        $user = GameUserInfo::find($request->userId);
+        $avatar = Avatar::find($request->avatarId);
+        if($user->coin >= $avatar->cost){
+            $account = PatientAccount::find($request->accId);
+            $account->avatars()->attach($request->avatarId);
+
+            $user->update(['coin' => $user->coin - $avatar->cost]);
+
+            return response()->json([
+                'message' => 'success'
+            ], 200);
+        }else{
+            return response()->json([
+                'message' => 'insufficient coin'
+            ], 200);
+        }
     }
 
     public function unlockCoinBadge(Request $request)
     {
-      //todo: unlock coin badges
-      $userInfo = GameUserInfo::find($request->id);
-      $user = $userInfo->account;
+        //todo: unlock coin badges
+        $userInfo = GameUserInfo::find($request->id);
+        $user = $userInfo->account;
 
 
-      $badges = Badge::whereNotIn('id',function($query) {
-        $query->select('badge_id')->from('badge_user');
-                })->where('target','<=',$userInfo->coin)
-                ->where('type',1)
-                ->get();
+        $badges = Badge::whereNotIn('id',function($query) {
+                $query->select('badge_id')->from('badge_user');
+            })->where('target','<=',$request->coin)
+            ->where('type',1)
+            ->get();
       
-        // foreach ($badges as $badge) {
-        //     # code...
-        //     $user->badges()->attach($badge->id);
-        // }
+        foreach ($badges as $badge) {
+            $user->badges()->attach($badge->id);
+        }
 
-      return response()->json([
+        return response()->json([
           'data' => $badges
         ], 200);
     }
 
     public function unlockReportBadge(Request $request)
     {
+        $acc = PatientAccount::find($request->accId);
+        $reportCount = $acc->reports()->count();
 
+        $badges = Badge::whereNotIn('id',function($query) {
+            $query->select('badge_id')->from('badge_user');
+                    })->where('target','<=',$reportCount)
+                    ->where('type',2)
+                    ->get();
+        
+        foreach ($badges as $badge) {
+            $user->badges()->attach($badge->id);
+        }
+
+        return response()->json([
+            'data' => $badges
+          ], 200);
     }
 
-    public function unlockAvatarBadges(Request $request)
+    public function unlockAvatarBadge(Request $request)
     {
+        $userInfo = GameUserInfo::find($request->id);
+        $user = $userInfo->account;
 
+        $avatarCount = $user->avatars()->count();
+  
+  
+        $badges = Badge::whereNotIn('id',function($query) {
+          $query->select('badge_id')->from('badge_user');
+                  })->where('target','<=',$avatarCount)
+                  ->where('type',3)
+                  ->get();
+        
+        foreach ($badges as $badge) {
+            $user->badges()->attach($badge->id);
+        }
+  
+        return response()->json([
+            'data' => $badges
+          ], 200);
+    }
+
+    public function getAllBadges($id)
+    {
+        $user = PatientAccount::find($id);
+        $badges = DB::table('badge_user')->select('badges.id','badges.type')
+                    ->rightJoin('badges','badge_user.badge_id','=','badges.id')
+                    ->where('badge_user.user_id',$id)
+                    ->get();
+        
+
+        return response()->json([
+            'message' => 'success',
+            "data" => json_encode($badges)
+        ], 200);
+    }
+
+    public function sendReport(Request $request)
+    {
+        $acc = PatientAccount::find($request->accId);
+        $acc->reports()->create([
+            'body_part' => $request->bodyPart,
+            'level' => $request->level,
+            'description' => $request->description,
+            'duration' => $request->duration,
+            'mood' => $request->mood
+        ]);
+
+        return response()->json([
+            'message' => 'success'
+        ], 200);
     }
 
     public function sendMessage(Request $request)
@@ -176,7 +275,7 @@ class GameController extends Controller
     public function loadProfile($id)
     {
         $userInfo = DB::table('game_user_infos')
-                    ->leftJoin('badge_user','game_user_infos.id','=','badge_user.user_id')
+                    ->leftJoin('badge_user','game_user_infos.patient_accounts_id','=','badge_user.user_id')
                     ->select('game_user_infos.*',DB::raw('count(badge_user.user_id) as badges_count'))
                     ->first();
 
