@@ -14,8 +14,9 @@ class CreateBadgesUsersTable extends Migration
     public function up()
     {
         Schema::create('badge_user', function (Blueprint $table) {
-            $table->integer('badge_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->engine = 'InnoDB';
+            $table->unsignedBigInteger('badge_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('badge_id')->references('id')->on('badges');
             $table->foreign('user_id')->references('id')->on('patient_accounts');
         });

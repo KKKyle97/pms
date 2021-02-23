@@ -14,6 +14,7 @@ class CreatePatientMessagesTable extends Migration
     public function up()
     {
         Schema::create('patient_messages', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedInteger('score');
             $table->string('message',255);

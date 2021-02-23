@@ -14,8 +14,9 @@ class CreateAvatarsUsersTable extends Migration
     public function up()
     {
         Schema::create('avatar_user', function (Blueprint $table) {
-            $table->integer('avatar_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->engine = 'InnoDB';
+            $table->unsignedBigInteger('avatar_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('avatar_id')->references('id')->on('avatars');
             $table->foreign('user_id')->references('id')->on('patient_accounts');
         });

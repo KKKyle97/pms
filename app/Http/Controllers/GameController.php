@@ -62,59 +62,37 @@ class GameController extends Controller
         $patient->avatars()->attach(1);
         $patient->avatars()->attach(2);
 
-        return response()->json($patient->info, 200);
+        return response()->json([
+            "message" => "success",
+            "data" => $patient->info
+        ], 200);
     }
 
     public function updateScore(Request $request)
     {
-        $user = PatientAccount::findOrFail($request->userid);
+        $user = GameUserInfo::find($request->userId);
 
         $user->coin += $request->coin;
 
-        if($user->highscore < $request->highscore)
-            $user->highscore = $request->highscore;
+        if($user->highscore < $request->highScore)
+            $user->highscore = $request->highScore;
 
         $user->save();
 
         return response()->json([
-            'message' => 'Updated successfully',
+            'message' => 'success',
         ]);
     }
 
-    public function getScore(Request $request)
+    public function getScore($id)
     {
-        $user = PatientAccount::findOrFail($request->userId);
+        $user = GameUserInfo::find($id);
 
         return response()->json([
-            'coin' => $user->coin,
-            'highScore' => $user->highscore,
+            "message" => "success",
+            "data" => ['coin' => $user->coin,
+                        'highScore' => $user->highscore]
         ]);
-    }
-
-    public function buyAvatar(Request $request)
-    {   
-        $avatar = Avatar::findOrFail($request->avatarId);
-        $user = PatientAccount::findOrFail($request->userId);
-        
-        if($avatar->cost > $user->coin)
-        {
-            return response()->json([
-                'message' => 'insufficient coin',
-            ]);
-        }
-        else
-        {
-            $user->coin -= $avatar->cost;
-            $user->save();
-
-            $user = PatientAccount::findOrFail($request->userId);
-
-            $user->avatars()->attach($request->avatarId);
-
-            return response()->json([
-                'message' => 'Purchased successfully',
-            ]);
-        }
     }
 
     public function changeAvatar(Request $request)
@@ -159,8 +137,7 @@ class GameController extends Controller
     public function unlockCoinBadge(Request $request)
     {
         //todo: unlock coin badges
-        $userInfo = GameUserInfo::find($request->id);
-        $user = $userInfo->account;
+        $user = PatientAccount::find($request->accId);
 
 
         $badges = Badge::whereNotIn('id',function($query) {
@@ -173,9 +150,19 @@ class GameController extends Controller
             $user->badges()->attach($badge->id);
         }
 
-        return response()->json([
-          'data' => $badges
-        ], 200);
+        if($badges->count() == 0)
+        {
+            return response()->json([
+                'message' => 'no badges',
+                'data' => $badges
+              ], 200);
+        }else
+        {
+            return response()->json([
+                'message' => 'sucess',
+                'data' => $badges
+              ], 200);
+        }
     }
 
     public function unlockReportBadge(Request $request)
@@ -193,15 +180,25 @@ class GameController extends Controller
             $user->badges()->attach($badge->id);
         }
 
-        return response()->json([
-            'data' => $badges
-          ], 200);
+        if($badges->count() == 0)
+        {
+            return response()->json([
+                'message' => 'no badges',
+                'data' => $badges
+              ], 200);
+        }else
+        {
+            return response()->json([
+                'message' => 'sucess',
+                'data' => $badges
+              ], 200);
+        }
+        
     }
 
     public function unlockAvatarBadge(Request $request)
     {
-        $userInfo = GameUserInfo::find($request->id);
-        $user = $userInfo->account;
+        $user = PatientAccount::find($request->accId);
 
         $avatarCount = $user->avatars()->count();
   
@@ -216,9 +213,19 @@ class GameController extends Controller
             $user->badges()->attach($badge->id);
         }
   
-        return response()->json([
-            'data' => $badges
-          ], 200);
+        if($badges->count() == 0)
+        {
+            return response()->json([
+                'message' => 'no badges',
+                'data' => $badges
+              ], 200);
+        }else
+        {
+            return response()->json([
+                'message' => 'sucess',
+                'data' => $badges
+              ], 200);
+        }
     }
 
     public function getAllBadges($id)
@@ -244,7 +251,8 @@ class GameController extends Controller
             'level' => $request->level,
             'description' => $request->description,
             'duration' => $request->duration,
-            'mood' => $request->mood
+            'mood' => $request->mood,
+            'patient_profiles_id' => $acc->patient_profiles_id,
         ]);
 
         return response()->json([
@@ -254,7 +262,7 @@ class GameController extends Controller
 
     public function sendMessage(Request $request)
     {
-        $patient = PatientAccount::findOrFail($request->patientAccountId);
+        $patient = PatientAccount::findOrFail($request->accId);
 
         $isCreated = $patient->messages()->create([
             'score' => $request->score,
@@ -264,11 +272,15 @@ class GameController extends Controller
 
         if($isCreated)
         {
-            echo "messages added";
+            return response()->json([
+                'message' => 'success'
+            ], 200);
         }
         else
         {
-            echo "error";
+            return response()->json([
+                'message' => 'failed'
+            ], 200);
         }
     }
 

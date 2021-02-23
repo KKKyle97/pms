@@ -14,12 +14,13 @@ class CreateUserInfoTable extends Migration
     public function up()
     {
         Schema::create('game_user_infos', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
             $table->BigInteger('coin');
             $table->BigInteger('highscore');
-            $table->BigInteger('avatars_id');
-            $table->BigInteger('patient_accounts_id');
+            $table->unsignedBigInteger('avatars_id');
+            $table->unsignedBigInteger('patient_accounts_id');
             $table->foreign('patient_accounts_id')->references('id')->on('patient_accounts');
             $table->foreign('avatars_id')->references('id')->on('avatars');
             $table->timestamps();

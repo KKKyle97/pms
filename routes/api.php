@@ -31,11 +31,12 @@ Route::get('/ninjaspirits/{id}/getAvatars','GameController@getAvatars');
 // badge API
 Route::post('/ninjaspirits/unlockCoinBadge','GameController@unlockCoinBadge');
 Route::post('/ninjaspirits/unlockAvatarBadge','GameController@unlockAvatarBadge');
+Route::post('/ninjaspirits/unlockReportBadge','GameController@unlockReportBadge');
 Route::get('/ninjaspirits/{id}/getAllBadges','GameController@getAllBadges');
 
 // Other API
 Route::post('/ninjaspirits/updateScore','GameController@updateScore');
-Route::get('/ninjaspirits/getScore','GameController@getScore');
+Route::get('/ninjaspirits/{id}/getScore','GameController@getScore');
 Route::post('/ninjaspirits/sendReport','GameController@sendReport');
 Route::post('/ninjaspirits/sendMessage','GameController@sendMessage');
 Route::get('/ninjaspirits/{id}/loadProfile','GameController@loadProfile');

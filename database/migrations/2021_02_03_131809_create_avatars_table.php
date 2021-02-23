@@ -14,7 +14,8 @@ class CreateAvatarsTable extends Migration
     public function up()
     {
         Schema::create('avatars', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
             $table->string('name');
             $table->bigInteger('cost');
             $table->timestamps();

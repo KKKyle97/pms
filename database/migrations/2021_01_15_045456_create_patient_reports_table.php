@@ -14,6 +14,7 @@ class CreatePatientReportsTable extends Migration
     public function up()
     {
         Schema::create('patient_reports', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('body_part');
             $table->unsignedBigInteger('level');
