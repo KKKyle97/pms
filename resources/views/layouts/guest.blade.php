@@ -37,7 +37,7 @@
 </head>
 
 <body>
-    <main class="py-4 background">
+    <main class="py-4 background main-content">
         @yield('content')
     </main>
 </body>
