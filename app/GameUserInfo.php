@@ -9,7 +9,7 @@ use App\PatientAccount;
 class GameUserInfo extends Model
 {
     //
-    protected $fillable = ['name','coin','highscore','avatars_id','patient_accounts_id'];
+    protected $fillable = ['name','coin','highscore','is_skipped','avatars_id','patient_accounts_id'];
 
     public function avatar()
     {

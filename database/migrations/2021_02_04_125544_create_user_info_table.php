@@ -19,6 +19,7 @@ class CreateUserInfoTable extends Migration
             $table->string('name');
             $table->BigInteger('coin');
             $table->BigInteger('highscore');
+            $table->boolean('is_skipped');
             $table->unsignedBigInteger('avatars_id');
             $table->unsignedBigInteger('patient_accounts_id');
             $table->foreign('patient_accounts_id')->references('id')->on('patient_accounts');

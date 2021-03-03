@@ -40,3 +40,4 @@ Route::get('/ninjaspirits/{id}/getScore','GameController@getScore');
 Route::post('/ninjaspirits/sendReport','GameController@sendReport');
 Route::post('/ninjaspirits/sendMessage','GameController@sendMessage');
 Route::get('/ninjaspirits/{id}/loadProfile','GameController@loadProfile');
+Route::put('/ninjaspirits/showTutorial','GameController@showTutorial');

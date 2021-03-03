@@ -56,6 +56,7 @@ class GameController extends Controller
             'name' => $request->name,
             'coin' => 0,
             'highscore' => 0,
+            'is_skipped' => false,
             'avatars_id' => $request->avatarId,
         ]);
 
@@ -159,7 +160,7 @@ class GameController extends Controller
         }else
         {
             return response()->json([
-                'message' => 'sucess',
+                'message' => 'success',
                 'data' => $badges
               ], 200);
         }
@@ -177,7 +178,7 @@ class GameController extends Controller
                     ->get();
         
         foreach ($badges as $badge) {
-            $user->badges()->attach($badge->id);
+            $acc->badges()->attach($badge->id);
         }
 
         if($badges->count() == 0)
@@ -189,7 +190,7 @@ class GameController extends Controller
         }else
         {
             return response()->json([
-                'message' => 'sucess',
+                'message' => 'success',
                 'data' => $badges
               ], 200);
         }
@@ -222,7 +223,7 @@ class GameController extends Controller
         }else
         {
             return response()->json([
-                'message' => 'sucess',
+                'message' => 'success',
                 'data' => $badges
               ], 200);
         }
@@ -305,5 +306,19 @@ class GameController extends Controller
                 'data' => ''
             ], 200);
         }
+    }
+
+    public function showTutorial(Request $request)
+    {
+        $user = GameUserInfo::find($request->userId);
+
+        $user->is_skipped = $request->isSkipped;
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'success',
+        ]);
+    
     }
 }
