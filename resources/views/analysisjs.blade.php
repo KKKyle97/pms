@@ -90,17 +90,29 @@ function drawDescriptionCountChart(){
 
 function drawPainLevelChart(){
      // third chart
+    var data = [
+        @php
+        foreach($reports as $item) {
+            echo "[new Date('".$item->created_at."'.substr(0,10)),parseInt('".$item->level."')],";
+            //echo "[date('Y-m-d',strtotime(".$item->created_at."),parseInt('".$item->level."')],";
+        }
+        @endphp
+    ];
+
+    console.log(data[0][0]);
+
 
     var levelData = google.visualization.arrayToDataTable([
         ['date','level'],
 
         @php
         foreach($reports as $item) {
-            // echo "[new Date('".$item->created_at."'.substr(0,10)),parseInt('".$item->level."')],";
-            echo "[new Date('".$item->created_at."'),parseInt('".$item->level."')],";
+                echo "[new Date('".$item->created_at."'.substr(0,10)),parseInt('".$item->level."')],";
+            //echo "[new Date('".$item->created_at."'),parseInt('".$item->level."')],";
         }
         @endphp
     ]);
+    
 
     // Create a dashboard.
     var dashboard2 = new google.visualization.Dashboard(
@@ -131,6 +143,9 @@ function drawPainLevelChart(){
         },
     });
 
+    console.log(lineChart);
+    console.log(levelData);
+
     // Establish dependencies, declaring that 'filter' drives 'pieChart',
     // so that the pie chart will only display entries that are let through
     // given the chosen slider range.
@@ -148,7 +163,7 @@ function drawTopPainChart(){
 
         @php
         foreach($highestPainLevel as $item) {
-            echo "['".$item->description."',parseInt('".$item->level."'),new Date('".$item->created_at."'),'".$item->body_part."'],";
+            echo "['".$item->description."',parseInt('".$item->level."'),new Date('".$item->created_at."'.substr(0,10)),'".$item->body_part."'],";
         }
         @endphp
     ]);
@@ -200,7 +215,7 @@ function drawMoodChart(dashboard, filter){
 
         @php
         foreach($reports as $item) {
-            echo "[new Date('".$item->created_at."'),parseInt('".$item->mood."')],";
+            echo "[new Date('".$item->created_at."'.substr(0,10)),parseInt('".$item->mood."')],";
         }
         @endphp
     ]);
@@ -242,7 +257,7 @@ function drawDurationChart(){
 
         @php
         foreach($durationPerBodyPart as $item) {
-            echo "['".$item->body_part."',parseInt('".$item->duration."'),parseFloat('".$item->average."'),new Date('".$item->created_at."')],";
+            echo "['".$item->body_part."',parseInt('".$item->duration."'),parseFloat('".$item->average."'),new Date('".$item->created_at."'.substr(0,10))],";
         }
         @endphp
     ]);

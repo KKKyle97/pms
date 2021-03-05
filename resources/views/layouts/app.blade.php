@@ -42,12 +42,15 @@
 <body>
     <main class="background">
         @include('sweetalert::alert')
-        <div class="container-fluid h-100 d-flex align-items-center justify-content-center p-5">
-            <div class="h-100 w-100 backbone-panel row d-flex justify-content-between ">
-                <div class="h-100 p-0 nav-bar col-3">
+        <div class="container-lg fullscreen">
+            <div class="backbone-panel content-wrapper row">
+                <div class="nav-bar nav-normal">
                     @include('layouts.navbar')
                 </div>
-                <div class="h-100 col-9 d-flex flex-column">
+                <div class="nav-bar nav-responsive">
+                    @include('layouts.navbar-res')
+                </div>
+                <div class="px-0 content-body">
                     @yield('content')
                 </div>
             </div>

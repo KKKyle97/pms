@@ -19,8 +19,8 @@ class NotificationController extends Controller
     public function index()
     {
         //
-        $patients = DB::table('patient_messages')
-                    ->join('patient_profiles','patient_messages.patient_profiles_id','=','patient_profiles.id')
+        $patients = PatientMessage::select('patient_messages.*','patient_profiles.cancer','patient_profiles.first_name','patient_profiles.last_name','patient_profiles.age')
+                    ->leftJoin('patient_profiles','patient_messages.patient_profiles_id','=','patient_profiles.id')
                     ->where('user_profiles_id',Auth::user()->userProfile->id)
                     ->orderBy('patient_messages.is_solved','asc')
                     ->orderBy('patient_messages.score','desc')

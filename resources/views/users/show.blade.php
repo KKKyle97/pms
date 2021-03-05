@@ -5,13 +5,13 @@ use App\Common;
 @extends('layouts.app')
 
 @section('content')
-<div class="px-5 py-3">
-    <div class="font-semi font-32 pb-3">
+<div class="patient-list py-3">
+    <div class="font-semi font-32" align="center">
         <p class="m-0 p-0">My Profile</p>
     </div>
     <div class="m-0 mb-3 py-3">
-        <div class="col backbone-panel px-5 py-3 row justify-content-between m-0">
-            <div class="col-4">
+        <div class="col backbone-panel px-3 py-3 row justify-content-between m-0">
+            <div class="col-md-4">
                 <div class="pb-3">
                     <p class="m-0 p-0 font-semi font-18">Name</p>
                     <p class="m-0 p-0">{{$userProfile->first_name}} {{$userProfile->last_name}}</p>
@@ -25,7 +25,7 @@ use App\Common;
                     <p class="m-0 p-0">{{Common::$gender[$userProfile->gender]}}</p>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4">
                 <div class="pb-3">
                     <p class="m-0 p-0 font-semi font-18">Contact Number</p>
                     <p class="m-0 p-0">{{$userProfile->contact}}</p>

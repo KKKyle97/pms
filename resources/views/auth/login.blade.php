@@ -4,7 +4,7 @@
 <div class="container-fluid d-flex justify-content-center">
     <div class="backbone-panel p-5">
         <div class="pb-3 text-center">
-            <p class="font-weight-bold font-32 p-0 m-0">Child Of Light Patient Management System</p>
+            <p class="font-weight-bold font-28 p-0 m-0">Child Of Light Patient Management System</p>
         </div>  
         <p class="font-22 font-weight-bold m-0 p-0">Sign In</p>
         <form method="POST" action="{{ route('login') }}">

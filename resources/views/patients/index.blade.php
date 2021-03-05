@@ -6,11 +6,11 @@ use App\Common;
 
 @section('content')
 <div id="patient-list">
-    <div class="px-5 py-3">
-        <div class="font-semi font-32 pb-3">
+    <div class="patient-list py-3" style="height: 85vh; overflow: auto">
+        <div class="font-semi font-32 pb-3" align="center">
             <p class="m-0 p-0">Patient List</p>
         </div>
-        <div class="backbone-panel px-5 py-3">
+        <div class="backbone-panel px-2 py-3">
             <form action="{{route('patients.search')}}" method="POST" role="search" class="pb-3">
                 {{ csrf_field() }}
                 <div class="input-group">
@@ -29,9 +29,9 @@ use App\Common;
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Age</th>
-                            <th>IC</th>
-                            <th>Cancer Type</th>
+                            <th class="t-responsive">Age</th>
+                            <th class="t-responsive">IC</th>
+                            <th class="t-responsive">Cancer Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -39,9 +39,9 @@ use App\Common;
                         @foreach($patients as $patient)
                         <tr>
                             <td>{{$patient->first_name}} {{$patient->last_name}}</td>
-                            <td>{{$patient->age}}</td>
-                            <td>{{$patient->ic_number}}</td>
-                            <td>{{Common::$cancer[$patient->cancer]}}</td>
+                            <td class="t-responsive">{{$patient->age}}</td>
+                            <td class="t-responsive">{{$patient->ic_number}}</td>
+                            <td class="t-responsive">{{Common::$cancer[$patient->cancer]}}</td>
                             <td><a href="{{route('patients.show',[$patient->id])}}" class="badge badge-info">View
                                     more</a></td>
                         </tr>

@@ -5,8 +5,8 @@ use App\Common;
 @extends('layouts.guest')
 
 @section('content')
-<div class="container-fluid h-100 d-flex align-items-center justify-content-center">
-    <div class="panel p-5">
+<div class="container-fluid d-flex justify-content-center">
+    <div class="backbone-panel p-5">
         <div class="text-center pb-3">
             <p class="font-weight-bold font-32 p-0 m-0">Registration Form</p>
         </div>

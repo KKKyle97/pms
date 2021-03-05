@@ -20,7 +20,9 @@ use App\Common;
                 <option value="6">Pain Duration</option>
             </select>
         </div>
-
+        @if ($reportsCount == 0)
+            <p>No data yet</p>
+        @else
         <div class="position-relative" style="height:80%">
             <div id="body-parts-chart-div" class="h-100 w-100 position-absolute"></div>
             <div id="dashboard_div" class=" w-100 position-absolute" style="height:90%">
@@ -54,6 +56,8 @@ use App\Common;
                 <div id="chart5_div" class="h-100"></div>
             </div>
         </div>
+        @endif
+        
 
     </div>
 </div>

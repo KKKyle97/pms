@@ -7,7 +7,8 @@ main {
 
 html,
 body,
-main {
+main,
+.fullscreen {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -15,6 +16,15 @@ main {
 
 .main-content {
     justify-content: center;
+}
+
+.content-wrapper {
+    display: flex;
+    flex: 1;
+}
+
+.content-body {
+    flex: 1;
 }
 
 /*panel */
@@ -34,6 +44,10 @@ main {
     font-weight: 600;
 }
 
+.font-14 {
+    font-size: 14px;
+}
+
 .font-18 {
     font-size: 18px;
 }
@@ -42,33 +56,118 @@ main {
     font-size: 22px;
 }
 
+.font-24 {
+    font-size: 24px;
+}
+
+.font-28 {
+    font-size: 28px;
+}
+
 .font-32 {
     font-size: 32px;
 }
 
+.font-red {
+    color: red;
+}
+
 /* nav bar */
+.nav-normal {
+    display: block;
+    width: 250px;
+}
+
+.nav-responsive {
+    display: none;
+    position: relative;
+}
 
 .nav-bar {
     background-image: linear-gradient(to right, #43c6ac, #f8ffae);
 }
 
+.nav-bar a:hover div span,
+.nav-bar a:hover {
+    color: white;
+}
+
 .nav-bar a {
     text-decoration: none;
+}
+
+.nav-bar span,
+.nav-bar a {
+    color: #1b5e20;
+    transition: 0.3s;
+}
+
+/* side nav responsive */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #43c6ac, #f8ffae);
+    overflow: hidden;
+    transition: 0.5s;
+    padding-top: 30px;
+}
+
+.sidenav a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #1b5e20;
+    display: block;
+}
+
+.sidenav a,
+.sidenav a span {
+    transition: 0.3s;
+}
+
+.sidenav a:hover span,
+.sidenav a:hover {
+    color: white;
+}
+
+.sidenav a span {
     color: #1b5e20;
 }
 
-.nav-bar span {
-    color: #1b5e20;
+.sidenav .title {
+    display: flex;
+    align-items: center;
 }
 
+.sidenav .title p {
+    flex: 3;
+}
+
+.sidenav .title .closebtn {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.closebtn a {
+    font-size: 30px;
+}
+
+.burger {
+    margin-left: 10px;
+}
 /* main menu */
 
 p.title {
     word-break: keep-all;
 }
 
-.material-icons.md-48 {
-    font-size: 48px;
+.material-icons.md-36 {
+    font-size: 36px;
 }
 
 /* scrollbar */
@@ -97,3 +196,150 @@ p.title {
 #dashboard5_div {
     visibility: hidden;
 }
+
+.main-menu {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.main-menu-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-content {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.header-content-a {
+    background-image: linear-gradient(to bottom, #f2fcfe, #1c92d2);
+}
+
+.header-content-b {
+    background-image: linear-gradient(to bottom, #ffffff, #ffefba);
+}
+
+.header-content-c {
+    background-image: linear-gradient(to bottom, #bdfff3, #4ac29a);
+}
+
+.header-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-menu-title {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-menu-profile-container {
+    display: flex;
+}
+
+.main-menu-profile {
+    height: 10vh;
+    width: 10vh;
+}
+
+.main-menu-profile img {
+    height: 100%;
+    width: 100%;
+}
+
+.main-menu-body {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-menu-quick-start {
+    display: flex;
+    flex: 1;
+}
+
+.p-div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.main-menu-img {
+    flex: 1;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
+.main-menu-quick-start img {
+    flex: 1;
+    height: auto;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.patient-list {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .main-menu-header {
+        display: block;
+        justify-content: flex-start;
+    }
+
+    .nav-normal {
+        display: none;
+    }
+
+    .nav-responsive {
+        display: block;
+    }
+
+    .main-menu-profile-container,
+    .main-menu-children,
+    .main-menu-noti {
+        flex: 1;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 911px) {
+    .main-menu-quick-start {
+        display: block !important;
+        padding-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 670px) {
+    .patient-list-overflow {
+        overflow-x: auto;
+    }
+
+    .patient-list {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* table responsive */
+    .t-responsive {
+        display: none;
+    }
+}
+
+.patient-list-overflow {
+    overflow-x: auto;
+}
+
+/* table responsive */

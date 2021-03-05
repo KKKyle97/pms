@@ -5,12 +5,12 @@ use App\Common;
 @extends('layouts.app')
 
 @section('content')
-<div class="px-5 py-3">
-    <div class="font-semi font-32 pb-3">
+<div class="patient-list py-3" style="height:100vh; overflow:auto">
+    <div class="font-semi font-32 pb-3" align="center">
         <p class="m-0 p-0">Patient Details</p>
     </div>
     <div class="row m-0 mb-3 pb-3 justify-content-between">
-        <div class="col-3 backbone-panel px-5 py-3">
+        <div class="col-lg-3 backbone-panel px-5 py-3 mb-3">
             <div class="font-semi font-22 pb-3">
                 <u class="m-0 p-0">Patients Info</u>
             </div>
@@ -35,7 +35,7 @@ use App\Common;
                 <p class="m-0 p-0">{{Common::$cancer[$patient->cancer]}}</p>
             </div>
         </div>
-        <div class="col-5 backbone-panel px-5 py-3">
+        <div class="col-lg-5 backbone-panel px-5 py-3 mb-3">
             <div class="font-semi font-22 pb-3">
                 <u class="m-0 p-0">Patients Guardian Info</u>
             </div>
@@ -63,7 +63,7 @@ use App\Common;
             </div>
         </div>
 
-        <div class="col-3 backbone-panel px-5 py-3">
+        <div class="col-lg-3 backbone-panel px-5 py-3 mb-3">
             <div class="font-semi font-22 pb-3">
                 <u class="m-0 p-0">Application Account</u>
             </div>
@@ -91,10 +91,5 @@ use App\Common;
                 Patients</button>
         </form>
     </div>
-
-
-
-
-
 </div>
 @endsection

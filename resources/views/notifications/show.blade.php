@@ -33,8 +33,8 @@ use App\Common;
             </div>
         </div>
     </div>
-<div class="px-5 py-3">
-    <div class="font-semi font-32 pb-3">
+<div class="patient-list py-3">
+    <div class="font-semi font-32 pb-3" align="center">
         <p class="m-0 p-0">Notification detail</p>
     </div>
     <div class="m-0 mb-3 py-3">
@@ -53,11 +53,11 @@ use App\Common;
                     <p class="m-0 p-0">{{Common::$cancer[$patient->cancer]}}</p>
                 </div>
                 <div class="pb-3">
-                    <p class="m-0 p-0 font-semi font-18">Score</p>
+                    <p class="m-0 p-0 font-semi font-18">Pain Level</p>
                     <p class="m-0 p-0">{{$message->score}}</p>
                 </div>
                 <div class="pb-3">
-                    <p class="m-0 p-0 font-semi font-18">Message</p>
+                    <p class="m-0 p-0 font-semi font-18">Pain Body Parts</p>
                     <p class="m-0 p-0">{{$message->message}}</p>
                 </div>
             </div>
@@ -71,11 +71,4 @@ use App\Common;
         @endif
     </div>
 </div>
-@endsection
-
-
-@extends('layouts.app')
-
-@section('content')
-
 @endsection

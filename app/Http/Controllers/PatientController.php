@@ -253,6 +253,7 @@ class PatientController extends Controller
     }
 
     public function analyse($id){
+        $reportsCount = PatientProfile::find($id)->reports()->count();
         $reports = PatientProfile::findOrFail($id)->reports()->orderBy('created_at')->get();
         $patient = PatientProfile::findOrFail($id);
 
@@ -277,6 +278,10 @@ class PatientController extends Controller
         ->orderBy('created_at')
         ->get();
 
+        // foreach ($highestPainLevel as $key) {
+        //     dd(date("Y-m-d",strtotime($key->created_at)));
+        // }
+
         $durationPerBodyPart = DB::table('patient_reports')
         ->select(DB::raw('max(duration) as duration,avg(duration) as average'),'body_part','created_at')
         ->where('patient_profiles_id',$id)
@@ -291,6 +296,7 @@ class PatientController extends Controller
             'descriptionCount' => $descriptionCount,
             'highestPainLevel' => $highestPainLevel,
             'durationPerBodyPart' => $durationPerBodyPart,
+            'reportsCount' => $reportsCount
         ]);
     }
 }
