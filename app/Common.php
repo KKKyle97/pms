@@ -408,4 +408,20 @@ class Common extends Model{
         'T007' => 'Kuala Terengganu Specialist Hospital',
         'T008' => 'SALAM Specialist Hospital Kuala Terengganu'
     ];
+
+    public static $avatars = [
+        'F1' => 0,
+        'F2' => 0,
+        'B1' => 100,
+        'B2' => 200,
+        'B3' => 300,
+        'B4' => 400
+    ];
+
+    public static $badges = [
+        'B1' => 10,
+        'B2' => 20,
+        'B3' => 30,
+        'B4' => 40,
+    ];
 }

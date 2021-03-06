@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\PatientProfile;
 use App\PatientReport;
 use App\UserProfile;
+use App\Common;
 use Auth;
 use DB;
 
@@ -66,8 +68,8 @@ class PatientController extends Controller
     public function index()
     {
         //
-        $patients = UserProfile::where('email',Auth::user()->email)->first()->patients;
-        
+        $patients = PatientProfile::where('user_profiles_id',Auth::user()->userProfile->id)->paginate(10);
+    
         return view('patients.index',[
             'patients' => $patients
         ]);
@@ -234,56 +236,24 @@ class PatientController extends Controller
 
     public function search(Request $request)
     {
-        if($request->ajax()){
-            $output = '';
-            $query = $request->get('query');
-
-            if($query != ''){
-                $data = DB::table('patient_profiles')
-                    ->where('first_name', 'like', '%'.$query.'%')
-                    ->orWhere('last_name', 'like', '%'.$query.'%')
-                    ->orWhere('age', 'like', '%'.$query.'%')
-                    ->orWhere('cancer', 'like', '%'.$query.'%')
-                    ->orderBy('id', 'desc')
-                    ->get();
-            }else{
-                $data = DB::table('patient_profiles')
-                ->orderBy('id', 'desc')
-                ->get();
+        if($request->q != ""){
+            $patients = PatientProfile::where('user_profiles_id',Auth::user()->userProfile->id)
+                                    ->where('first_name','LIKE','%'.$request->q.'%')
+                                    ->orWhere('last_name','LIKE','%'. $request->q .'%')
+                                    ->paginate(5);
+            if (count($patients)>0){
+                return view ('patients.index',[
+                    'patients' => $patients
+                ]);
             }
-
-            $total_row = $data->count();
-
-            if($total_row > 0){
-                foreach($data as $row){
-                    $output .= '
-                    <tr>
-                        <td>'.$row->first_name.'</td>
-                        <td>'.$row->age.'</td>
-                        <td>'.$row->cancer.'</td>
-                        <td><a class="btn btn-primary" href="http://localhost:8086/patients/'.$row->id.'">view
-                        more</a></td>
-                    </tr>
-                    ';
-                }
-            }else{
-                $output = '
-                <tr>
-                <td align="center" colspan="5">No Data Found</td>
-                </tr>
-                ';
-            }
-            
-            $data = array(
-            'table_data'  => $output,
-            'total_data'  => $total_row
-            );
-
-            echo json_encode($data);
         }
+
+        toast('Patient Not Found','error');
+        return redirect()->route('patients.index');
     }
 
     public function analyse($id){
+        $reportsCount = PatientProfile::find($id)->reports()->count();
         $reports = PatientProfile::findOrFail($id)->reports()->orderBy('created_at')->get();
         $patient = PatientProfile::findOrFail($id);
 
@@ -308,6 +278,10 @@ class PatientController extends Controller
         ->orderBy('created_at')
         ->get();
 
+        // foreach ($highestPainLevel as $key) {
+        //     dd(date("Y-m-d",strtotime($key->created_at)));
+        // }
+
         $durationPerBodyPart = DB::table('patient_reports')
         ->select(DB::raw('max(duration) as duration,avg(duration) as average'),'body_part','created_at')
         ->where('patient_profiles_id',$id)
@@ -322,6 +296,7 @@ class PatientController extends Controller
             'descriptionCount' => $descriptionCount,
             'highestPainLevel' => $highestPainLevel,
             'durationPerBodyPart' => $durationPerBodyPart,
+            'reportsCount' => $reportsCount
         ]);
     }
 }

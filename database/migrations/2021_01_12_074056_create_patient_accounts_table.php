@@ -14,7 +14,8 @@ class CreatePatientAccountsTable extends Migration
     public function up()
     {
         Schema::create('patient_accounts', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
             $table->string('username')->unique();
             $table->string('password');
             $table->unsignedBigInteger('patient_profiles_id');

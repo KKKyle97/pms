@@ -5,7 +5,6 @@ use App\Common;
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -31,50 +30,45 @@ use App\Common;
 
                     </form>
                 </div>
-                {{-- <div class="modal-footer">
-                    
-                </div> --}}
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('All Patients') }}</div>
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-                    {{-- message --}}
-                    <div class="col-6">
-                        <table class="table table-borderless">
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Cancer Type</th>
-                                <th>Score</th>
-                                <th>Message</th>
-                            </tr>
-                            <tr>
-                                <td>{{$patient->first_name}} {{$patient->last_name}}</td>
-                                <td>{{$patient->age}}</td>
-                                <td>{{Common::$cancer[$patient->cancer]}}</td>
-                                <td>{{$message->score}}</td>
-                                <td>{{$message->message}}</td>
-                            </tr>
-                        </table>
-
-                        @if (!$message->is_solved)
-                        <button class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModalCenter">Solve</button>
-                        @endif
-
-                    </div>
+<div class="patient-list py-3">
+    <div class="font-semi font-32 pb-3" align="center">
+        <p class="m-0 p-0">Notification detail</p>
+    </div>
+    <div class="m-0 mb-3 py-3">
+        <div class="col backbone-panel px-5 py-3">
+            <div class="col">
+                <div class="pb-3">
+                    <p class="m-0 p-0 font-semi font-18">Name</p>
+                    <p class="m-0 p-0">{{$patient->first_name}} {{$patient->last_name}}</p>
+                </div>
+                <div class="pb-3">
+                    <p class="m-0 p-0 font-semi font-18">Age</p>
+                    <p class="m-0 p-0">{{$patient->age}}</p>
+                </div>
+                <div class="pb-3">
+                    <p class="m-0 p-0 font-semi font-18">Cancer Type</p>
+                    <p class="m-0 p-0">{{Common::$cancer[$patient->cancer]}}</p>
+                </div>
+                <div class="pb-3">
+                    <p class="m-0 p-0 font-semi font-18">Pain Level</p>
+                    <p class="m-0 p-0">{{$message->score}}</p>
+                </div>
+                <div class="pb-3">
+                    <p class="m-0 p-0 font-semi font-18">Pain Body Parts</p>
+                    <p class="m-0 p-0">{{$message->message}}</p>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="pb-3 m-0">
+        @if (!$message->is_solved)
+        <button class="btn btn-primary w-100" data-toggle="modal"
+            data-target="#exampleModalCenter">Solve</button>
+        @endif
     </div>
 </div>
 @endsection

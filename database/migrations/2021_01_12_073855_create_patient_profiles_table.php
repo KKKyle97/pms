@@ -14,6 +14,7 @@ class CreatePatientProfilesTable extends Migration
     public function up()
     {
         Schema::create('patient_profiles', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('first_name', 255);
             $table->string('last_name',255);

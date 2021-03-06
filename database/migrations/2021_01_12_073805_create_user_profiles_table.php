@@ -14,6 +14,7 @@ class CreateUserProfilesTable extends Migration
     public function up()
     {
         Schema::create('user_profiles', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('first_name', 255);
             $table->string('last_name',255);
@@ -23,7 +24,6 @@ class CreateUserProfilesTable extends Migration
             $table->string('role',255);
             $table->string('email');
             $table->string('hospital_code');
-            $table->string('profile_pic',255)->nullable();
             //foreign key bind
             $table->foreign('email')->references('email')->on('users');
             $table->timestamps();
