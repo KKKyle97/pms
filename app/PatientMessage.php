@@ -12,7 +12,7 @@ class PatientMessage extends Model
 
     public function account()
     {
-        return $this->belongsTo('App\PatientAccount', 'patient_accounts_id', 'patient_accounts_id');
+        return $this->belongsTo('App\PatientAccount', 'patient_accounts_id');
     }
 
     public function patient()

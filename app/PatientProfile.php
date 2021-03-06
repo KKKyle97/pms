@@ -22,7 +22,7 @@ class PatientProfile extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\UserProfile', 'user_profiles_id','user_profiles_id');
+        return $this->belongsTo('App\UserProfile', 'user_profiles_id');
     }
 
     public function account()

@@ -9,7 +9,8 @@ class Badge extends Model
     //
     protected $fillable = [
         'name',
-        'cost'
+        'type',
+        'target'
     ];
 
     public function users()

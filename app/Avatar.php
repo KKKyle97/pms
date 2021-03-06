@@ -9,7 +9,7 @@ class Avatar extends Model
     //
     protected $fillable = [
         'name',
-        'target'
+        'cost'
     ];
 
     public function users()
@@ -19,7 +19,7 @@ class Avatar extends Model
 
     public function info()
     {
-        return $this->belongsTo('App\GameUserInfo');
+        return $this->HasOne('App\GameUserInfo');
     }
 
 }

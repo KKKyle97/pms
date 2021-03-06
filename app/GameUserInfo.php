@@ -13,7 +13,7 @@ class GameUserInfo extends Model
 
     public function avatar()
     {
-        return $this->hasOne('App\Avatar', 'avatars_id');
+        return $this->belongsTo('App\Avatar','avatars_id');
     }
 
     public function account()
