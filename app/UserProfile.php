@@ -15,7 +15,6 @@ class UserProfile extends Model
                             'role',
                             'email',
                             'hospital_code',
-                            'profile_pic'    
 ];
 
     protected $table = 'user_profiles';
