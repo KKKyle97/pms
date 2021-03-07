@@ -62,13 +62,19 @@ class NotificationController extends Controller
     public function show($id)
     {
         //
-        $message = PatientMessage::findOrFail($id);
-        $patient = PatientProfile::find($message->patient->id);
+        $message = PatientMessage::find($id);
+        
+        if($message != null){
+            $patient = PatientProfile::find($message->patient->id);
 
-        return view('notifications.show',[
-            'message' => $message,
-            'patient' => $patient,
-        ]);
+            return view('notifications.show',[
+                'message' => $message,
+                'patient' => $patient,
+            ]);
+        }
+
+        return redirect()->route('notifications.index');
+        
     }
 
     /**
@@ -92,12 +98,18 @@ class NotificationController extends Controller
     public function update(Request $request, $id)
     {
         //
-        PatientMessage::findOrFail($id)->update([
-            'is_solved' => 1,
-            'solution' => $request->solution,
-        ]);
+        $message = PatientMessage::find($id);
 
-        return redirect()->back()->with('status', 'Thanks for your help!');
+        if($message != null){
+            $message->update([
+                'is_solved' => 1,
+                'solution' => $request->solution,
+            ]);
+            return redirect()->route('notifications.show',[$id])->with('status', 'Thanks for your help!');
+        }
+        return redirect()->route('notifications.show',[$id]);
+        
+        
     }
 
     /**

@@ -28,20 +28,20 @@ class RegistrationTest extends TestCase
         $this->withoutExceptionHandling();
 
         $response = $this->post('/register',[
-            'first_name' => $faker->firstName($gender = null),
-            'last_name' => $faker->lastName(),
+            'first_name' => $this->faker->firstName($gender = null),
+            'last_name' => $this->faker->lastName(),
             'ic_number' => '990292023390',
             'gender' => 'F',
             'contact' => '0123456789',
             'role' => '01',
-            'email' => $faker->email(),
+            'email' => $this->faker->email(),
             'hospital' => 'J002',
             'password' => 'ilovelaravelasdsad',
             'password_confirmation' => 'ilovelaravelasdsad',
             'sq_one_q' => '01',
-            'sq_one_a' => $faker->sentence(),
+            'sq_one_a' => $this->faker->sentence(),
             'sq_two_q' => '01',
-            'sq_two_a' => $faker->sentence(),
+            'sq_two_a' => $this->faker->sentence(),
         ]);
 
         $response->assertStatus(302);
