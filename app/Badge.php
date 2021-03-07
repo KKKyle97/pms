@@ -15,7 +15,7 @@ class Badge extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\PatientAccount');
+        return $this->belongsToMany('App\PatientAccount', 'badge_user', 'user_id', 'badge_id');
     }
 
     

@@ -14,12 +14,12 @@ class Avatar extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\PatientAccount');
+        return $this->belongsToMany('App\PatientAccount', 'avatar_user', 'user_id', 'avatar_id');
     }
 
     public function info()
     {
-        return $this->HasOne('App\GameUserInfo');
+        return $this->HasOne('App\GameUserInfo','avatars_id');
     }
 
 }
