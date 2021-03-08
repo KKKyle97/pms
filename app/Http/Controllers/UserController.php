@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\UserProfile;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\Rule;
 use App\User;
 use Auth;
@@ -67,6 +68,7 @@ class UserController extends Controller
                 'userProfile' => $user->userProfile,
             ]);
         }else{
+            Alert::error('Error', 'Patient Not Found!');
             return redirect()->route('home');
         }
         
@@ -119,7 +121,8 @@ class UserController extends Controller
                 'hospital_code' => $request->hospital_code,
                 'role' => $request->role,
             ]);
-
+            
+            Alert::success('Success', 'Profile Updated Successfully!');
             return redirect()->route('users.show',[$id])->with('status', 'User Profile Updated!');
         }else{
             return redirect()->route('users.show',[$id]);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\PatientProfile;
 use App\UserProfile;
 use App\PatientMessage;
@@ -73,6 +74,7 @@ class NotificationController extends Controller
             ]);
         }
 
+        Alert::error('Error', 'Patient Not Found!');
         return redirect()->route('notifications.index');
         
     }
@@ -105,6 +107,8 @@ class NotificationController extends Controller
                 'is_solved' => 1,
                 'solution' => $request->solution,
             ]);
+
+            Alert::success('Success', 'Thanks For Your Help!');
             return redirect()->route('notifications.show',[$id])->with('status', 'Thanks for your help!');
         }
         return redirect()->route('notifications.show',[$id]);

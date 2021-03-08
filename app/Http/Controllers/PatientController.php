@@ -69,7 +69,7 @@ class PatientController extends Controller
     {
         //
         $patients = PatientProfile::where('user_profiles_id',Auth::user()->userProfile->id)->paginate(10);
-    
+        
         return view('patients.index',[
             'patients' => $patients
         ]);
@@ -134,8 +134,9 @@ class PatientController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->password),
         ]);
-
-        return redirect()->route('home')->with('status', 'New Patient Added!');
+        
+        Alert::success('Success', 'Patient Added Successfully!');
+        return redirect()->route('home');
         
     }
 
@@ -160,7 +161,7 @@ class PatientController extends Controller
                 'account' => $account,
             ]);
         }
-
+        Alert::error('Error', 'Patient Not Found!');
         return redirect()->route('patients.index');
         
     }
@@ -229,8 +230,9 @@ class PatientController extends Controller
                 'city' => $request->city,
                 'state' => $request->state,
             ]);
-
-            return redirect()->route('patients.show',[$id])->with('status', 'Patient Profile Updated!');
+            
+            Alert::success('Success', 'Patient Info Updated Successfully!');
+            return redirect()->route('patients.show',[$id]);
         } 
         return redirect()->route('patients.show',[$id]);
     }
@@ -263,7 +265,7 @@ class PatientController extends Controller
             }
         }
 
-        toast('Patient Not Found','error');
+        Alert::error('Error', 'Patient Not Found!');
         return redirect()->route('patients.index');
     }
 
@@ -318,6 +320,7 @@ class PatientController extends Controller
             ]);
         }
 
+        Alert::error('Error', 'Patient Not Found!');
         return redirect()->route('home');
         
     }
