@@ -66,7 +66,7 @@ class GameController extends Controller
         return response()->json([
             "message" => "success",
             "data" => $patient->info
-        ], 200);
+        ], 201);
     }
 
     public function updateScore(Request $request)
@@ -81,8 +81,9 @@ class GameController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'success',
-        ]);
+            "message" => "success",
+            "data" => ""
+        ], 200);
     }
 
     public function getScore($id)
@@ -93,7 +94,7 @@ class GameController extends Controller
             "message" => "success",
             "data" => ['coin' => $user->coin,
                         'highScore' => $user->highscore]
-        ]);
+        ],200);
     }
 
     public function changeAvatar(Request $request)
@@ -162,7 +163,7 @@ class GameController extends Controller
             return response()->json([
                 'message' => 'success',
                 'data' => $badges
-              ], 200);
+              ], 201);
         }
     }
 
@@ -192,7 +193,7 @@ class GameController extends Controller
             return response()->json([
                 'message' => 'success',
                 'data' => $badges
-              ], 200);
+              ], 201);
         }
         
     }
@@ -225,19 +226,19 @@ class GameController extends Controller
             return response()->json([
                 'message' => 'success',
                 'data' => $badges
-              ], 200);
+              ], 201);
         }
     }
 
     public function getAllBadges($id)
     {
-        $user = PatientAccount::find($id);
-        $badges = DB::table('badge_user')->select('badges.id','badges.type')
-                    ->rightJoin('badges','badge_user.badge_id','=','badges.id')
+        $badges = DB::table('badges')
+                    ->leftJoin('badge_user','badge_user.badge_id','=','badges.id')
+                    ->select('badges.id','badges.type')
                     ->where('badge_user.user_id',$id)
                     ->get();
         
-
+        
         return response()->json([
             'message' => 'success',
             "data" => json_encode($badges)
@@ -258,31 +259,23 @@ class GameController extends Controller
 
         return response()->json([
             'message' => 'success'
-        ], 200);
+        ], 201);
     }
 
     public function sendMessage(Request $request)
     {
-        $patient = PatientAccount::findOrFail($request->accId);
+        $patient = PatientAccount::find($request->accId);
 
-        $isCreated = $patient->messages()->create([
+        $patient->messages()->create([
             'score' => $request->score,
             'message' => $request->message,
+            'is_solved' => 0,
             'patient_profiles_id' => $patient->patient_profiles_id
         ]);
 
-        if($isCreated)
-        {
-            return response()->json([
-                'message' => 'success'
-            ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'message' => 'failed'
-            ], 200);
-        }
+        return response()->json([
+            'message' => 'success'
+        ], 201);
     }
 
     public function loadProfile($id)
@@ -318,7 +311,7 @@ class GameController extends Controller
 
         return response()->json([
             'message' => 'success',
-        ]);
+        ],200);
     
     }
 }
