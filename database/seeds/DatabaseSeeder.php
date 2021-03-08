@@ -15,6 +15,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AvatarSeeder::class,
             BadgeSeeder::class,
+            UserSeeder::class,
+            UserProfileSeeder::class,
+            PatientProfileSeeder::class,
+            PatientAccountSeeder::class,
+            GameUserInfoSeeder::class,
+            PatientGuardianProfileSeeder::class,
+            PatientReportSeeder::class,
+            PatientMessageSeeder::class,
         ]);
     }
 }

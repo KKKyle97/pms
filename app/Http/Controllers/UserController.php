@@ -123,7 +123,7 @@ class UserController extends Controller
             ]);
             
             Alert::success('Success', 'Profile Updated Successfully!');
-            return redirect()->route('users.show',[$id])->with('status', 'User Profile Updated!');
+            return redirect()->route('users.show',[$id]);
         }else{
             return redirect()->route('users.show',[$id]);
         }

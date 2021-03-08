@@ -424,4 +424,13 @@ class Common extends Model{
         'B3' => 30,
         'B4' => 40,
     ];
+
+    public static $mood = [
+        0 => 'Great',
+        1 => 'Good',
+        2 => 'Ok',
+        3 => 'Not Good',
+        4 => 'Bad',
+        5 => 'Awful',
+    ];
 }

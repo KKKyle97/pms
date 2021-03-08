@@ -186,7 +186,19 @@ p.title {
 
 /* chart analysis */
 #body-parts-chart-div {
-    visibility: visible;
+    display: block;
+}
+
+#body_part_chart {
+    display: block;
+}
+
+#description_chart,
+#pain_level_chart,
+#top_pain_chart,
+#mood_chart,
+#duration_chart {
+    display: none;
 }
 
 #dashboard_div,
@@ -194,7 +206,7 @@ p.title {
 #dashboard3_div,
 #dashboard4_div,
 #dashboard5_div {
-    visibility: hidden;
+    display: none;
 }
 
 .main-menu {

@@ -103,13 +103,18 @@ class NotificationController extends Controller
         $message = PatientMessage::find($id);
 
         if($message != null){
+            if($request->solution == null){
+                Alert::error('Error', 'Solution Cannot Be Empty!');
+                return redirect()->route('notifications.show',[$id]);
+            }
+
             $message->update([
                 'is_solved' => 1,
                 'solution' => $request->solution,
             ]);
 
             Alert::success('Success', 'Thanks For Your Help!');
-            return redirect()->route('notifications.show',[$id])->with('status', 'Thanks for your help!');
+            return redirect()->route('notifications.show',[$id]);
         }
         return redirect()->route('notifications.show',[$id]);
         

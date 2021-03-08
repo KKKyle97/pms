@@ -1,8 +1,21 @@
+<?php
+use App\Common;
+?>
+
 <script>
+    //create trigger to resizeEnd event     
+    $(window).resize(function() {
+        drawChart($("#chart-dropdown").val());
+    });
+
+    //redraw graph when window resize is completed 
+    
     google.charts.load('current', {
-  callback: function () {
-    drawChart();
-    $(window).resize(drawChart);
+        callback: function () {
+        drawChart("1");
+        $('#chart-dropdown').on('change', function() {
+            drawChart(this.value);
+        });
   },
   packages:['corechart','controls']
 });
@@ -10,13 +23,36 @@
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
 // draws it.
-function drawChart() {
-    drawBodyPartsCountChart();
-    drawDescriptionCountChart();
-    drawPainLevelChart();
-    drawTopPainChart();
-    drawMoodChart();
-    drawDurationChart();
+function drawChart(val) {
+    switch (val) {
+        case "1":
+            drawBodyPartsCountChart();
+            break;
+
+        case "2":
+            drawDescriptionCountChart();
+            break;
+
+        case "3":
+            drawPainLevelChart();
+            break;
+        
+        case "4":
+            drawTopPainChart();
+            break;
+
+        case "5":
+            drawMoodChart();
+            break;
+
+        case "6":
+            drawDurationChart();
+            break;
+
+        default:
+            drawBodyPartsCountChart();
+            break;
+    }
 }
 
 function drawBodyPartsCountChart(){
@@ -33,8 +69,6 @@ function drawBodyPartsCountChart(){
     // Set chart options
     var bodyPartsCountOptions = {
             // leave room for y-axis labels
-            width: '50%',
-            height:'100%',
         'title':'sample'};
 
     // Instantiate and draw our chart, passing in some options.
@@ -71,8 +105,6 @@ function drawDescriptionCountChart(){
         'dataTable':descriptionCountData,
         'options': {
             // leave room for y-axis labels
-            'width': '100%',
-            'height':'100%',
             'title': 'Pain description count'
         },
         // The pie chart will use the columns 'Name' and 'Donuts eaten'
@@ -98,8 +130,6 @@ function drawPainLevelChart(){
         }
         @endphp
     ];
-
-    console.log(data[0][0]);
 
 
     var levelData = google.visualization.arrayToDataTable([
@@ -142,9 +172,6 @@ function drawPainLevelChart(){
             'title': 'Level of pain'
         },
     });
-
-    console.log(lineChart);
-    console.log(levelData);
 
     // Establish dependencies, declaring that 'filter' drives 'pieChart',
     // so that the pie chart will only display entries that are let through
@@ -193,8 +220,6 @@ function drawTopPainChart(){
         'containerId': 'highestPainDataChart_div',
         'dataTable':highestPainData,
         'options': {
-            'width': '100%',
-            'height': '100%',
             'title': 'Pain description count'
         },
         'view':{'columns':[0,1]}
@@ -237,8 +262,6 @@ function drawMoodChart(dashboard, filter){
         'containerId': 'chart4_div',
         'dataTable':data,
         'options': {
-            'width': '100%',
-            'height': '100%',
             'title': 'Pain description count'
         },
     });
@@ -279,8 +302,6 @@ function drawDurationChart(){
         'containerId': 'chart5_div',
         'dataTable':data,
         'options': {
-            'width': "100%",
-            'height': '100%',
             'title': 'Pain description count'
         },
         'view': {'columns': [0,1,2]}
@@ -295,47 +316,83 @@ function drawDurationChart(){
 }
 $('#chart-dropdown').on('change', function() {
     if(this.value == 1){
-        $("#body-parts-chart-div").css("visibility", "visible");
-        $('#dashboard_div').css("visibility", "hidden");
-        $('#dashboard2_div').css("visibility", "hidden");
-        $('#dashboard3_div').css("visibility", "hidden");
-        $('#dashboard4_div').css("visibility", "hidden");
-        $('#dashboard5_div').css("visibility", "hidden");
+        $("#body_part_chart").css("display", "block");
+        $('#description_chart').css("display", "none");
+        $('#pain_level_chart').css("display", "none");
+        $('#top_pain_chart').css("display", "none");
+        $('#mood_chart').css("display", "none");
+        $('#duration_chart').css("display", "none");
+        $("#body-parts-chart-div").css("display", "block");
+        $('#dashboard_div').css("display", "none");
+        $('#dashboard2_div').css("display", "none");
+        $('#dashboard3_div').css("display", "none");
+        $('#dashboard4_div').css("display", "none");
+        $('#dashboard5_div').css("display", "none");
     }else if(this.value == 2){
-        $('#body-parts-chart-div').css("visibility", "hidden");
-        $('#dashboard_div').css("visibility", "visible");
-        $('#dashboard2_div').css("visibility", "hidden");
-        $('#dashboard3_div').css("visibility", "hidden");
-        $('#dashboard4_div').css("visibility", "hidden");
-        $('#dashboard5_div').css("visibility", "hidden");
+        $('#body-parts-chart-div').css("display", "none");
+        $('#dashboard_div').css("display", "block");
+        $('#dashboard2_div').css("display", "none");
+        $('#dashboard3_div').css("display", "none");
+        $('#dashboard4_div').css("display", "none");
+        $('#dashboard5_div').css("display", "none");
+        $("#body_part_chart").css("display", "none");
+        $('#description_chart').css("display", "block");
+        $('#pain_level_chart').css("display", "none");
+        $('#top_pain_chart').css("display", "none");
+        $('#mood_chart').css("display", "none");
+        $('#duration_chart').css("display", "none");
     }else if(this.value == 3){
-        $('#body-parts-chart-div').css("visibility", "hidden");
-        $('#dashboard_div').css("visibility", "hidden");
-        $('#dashboard2_div').css("visibility", "visible");
-        $('#dashboard3_div').css("visibility", "hidden");
-        $('#dashboard4_div').css("visibility", "hidden");
-        $('#dashboard5_div').css("visibility", "hidden");
+        $('#body-parts-chart-div').css("display", "none");
+        $('#dashboard_div').css("display", "none");
+        $('#dashboard2_div').css("display", "block");
+        $('#dashboard3_div').css("display", "none");
+        $('#dashboard4_div').css("display", "none");
+        $('#dashboard5_div').css("display", "none");
+        $("#body_part_chart").css("display", "none");
+        $('#description_chart').css("display", "none");
+        $('#pain_level_chart').css("display", "block");
+        $('#top_pain_chart').css("display", "none");
+        $('#mood_chart').css("display", "none");
+        $('#duration_chart').css("display", "none");
     }else if(this.value == 4){
-        $('#body-parts-chart-div').css("visibility", "hidden");
-        $('#dashboard_div').css("visibility", "hidden");
-        $('#dashboard2_div').css("visibility", "hidden");
-        $('#dashboard3_div').css("visibility", "visible");
-        $('#dashboard4_div').css("visibility", "hidden");
-        $('#dashboard5_div').css("visibility", "hidden");
+        $('#body-parts-chart-div').css("display", "none");
+        $('#dashboard_div').css("display", "none");
+        $('#dashboard2_div').css("display", "none");
+        $('#dashboard3_div').css("display", "block");
+        $('#dashboard4_div').css("display", "none");
+        $('#dashboard5_div').css("display", "none");
+        $("#body_part_chart").css("display", "none");
+        $('#description_chart').css("display", "none");
+        $('#pain_level_chart').css("display", "none");
+        $('#top_pain_chart').css("display", "block");
+        $('#mood_chart').css("display", "none");
+        $('#duration_chart').css("display", "none");
     }else if(this.value == 5){
-        $('#body-parts-chart-div').css("visibility", "hidden");
-        $('#dashboard_div').css("visibility", "hidden");
-        $('#dashboard2_div').css("visibility", "hidden");
-        $('#dashboard3_div').css("visibility", "hidden");
-        $('#dashboard4_div').css("visibility", "visible");
-        $('#dashboard5_div').css("visibility", "hidden");
+        $('#body-parts-chart-div').css("display", "none");
+        $('#dashboard_div').css("display", "none");
+        $('#dashboard2_div').css("display", "none");
+        $('#dashboard3_div').css("display", "none");
+        $('#dashboard4_div').css("display", "block");
+        $('#dashboard5_div').css("display", "none");
+        $("#body_part_chart").css("display", "none");
+        $('#description_chart').css("display", "none");
+        $('#pain_level_chart').css("display", "none");
+        $('#top_pain_chart').css("display", "none");
+        $('#mood_chart').css("display", "block");
+        $('#duration_chart').css("display", "none");
     }else{
-        $('#body-parts-chart-div').css("visibility", "hidden");
-        $('#dashboard_div').css("visibility", "hidden");
-        $('#dashboard2_div').css("visibility", "hidden");
-        $('#dashboard3_div').css("visibility", "hidden");
-        $('#dashboard4_div').css("visibility", "hidden");
-        $('#dashboard5_div').css("visibility", "visible");
+        $('#body-parts-chart-div').css("display", "none");
+        $('#dashboard_div').css("display", "none");
+        $('#dashboard2_div').css("display", "none");
+        $('#dashboard3_div').css("display", "none");
+        $('#dashboard4_div').css("display", "none");
+        $('#dashboard5_div').css("display", "block");
+        $("#body_part_chart").css("display", "none");
+        $('#description_chart').css("display", "none");
+        $('#pain_level_chart').css("display", "none");
+        $('#top_pain_chart').css("display", "none");
+        $('#mood_chart').css("display", "none");
+        $('#duration_chart').css("display", "block");
     }
 });
 </script>
