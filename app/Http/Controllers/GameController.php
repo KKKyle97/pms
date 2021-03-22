@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PatientAccount;
 use App\Avatar;
-use App\badge;
+use App\Badge;
 use App\GameUserInfo;
 use Illuminate\Support\Facades\Hash;
 use DB;
