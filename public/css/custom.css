@@ -14,8 +14,31 @@ main,
     min-height: 100vh;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .main-content {
     justify-content: center;
+}
+
+.header {
+    /* flex: 0.1; */
+    height: 8vh;
+    border-bottom: 1px solid oldlace;
+    box-shadow: 0 8px 5px 0px lightgrey;
+}
+
+.middle {
+    /* flex: 1; */
+    height: 89vh;
+    overflow-y: auto;
+}
+
+.footer {
+    /* flex: 0.05; */
+    height: 3vh;
+    border-top: 1px solid lightgrey;
 }
 
 .content-wrapper {
@@ -25,6 +48,25 @@ main,
 
 .content-body {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-normal {
+    border: 2px solid #2962ff;
+    color: #2962ff;
+    transition: 0.5s;
+}
+
+.btn-normal:hover {
+    border: 2px solid white;
+    background-color: #2962ff;
+    color: white;
+    transition: 0.5s;
+}
+
+.btn-custom-width {
+    width: 200px;
 }
 
 /*panel */
@@ -34,14 +76,27 @@ main,
     background-color: rgba(255, 255, 255);
 }
 
+.content-panel {
+    border-radius: 5px;
+    border: 2px solid grey;
+}
+
 /* background color */
 .background {
-    background-image: linear-gradient(to right, #43c6ac, #f8ffae);
+    background-color: #2962ff;
 }
 
 /* font settings */
 .font-semi {
     font-weight: 600;
+}
+
+.font-10 {
+    font-size: 10px;
+}
+
+.font-12 {
+    font-size: 12px;
 }
 
 .font-14 {
@@ -68,14 +123,30 @@ main,
     font-size: 32px;
 }
 
+.font-36 {
+    font-size: 36px;
+}
+
+.font-grey {
+    color: grey;
+}
+
 .font-red {
     color: red;
+}
+
+.font-white {
+    color: white;
+}
+
+.font-green {
+    color: #26a69a;
 }
 
 /* nav bar */
 .nav-normal {
     display: block;
-    width: 250px;
+    width: 300px;
 }
 
 .nav-responsive {
@@ -84,12 +155,12 @@ main,
 }
 
 .nav-bar {
-    background-image: linear-gradient(to right, #43c6ac, #f8ffae);
+    background-color: #2962ff;
 }
 
 .nav-bar a:hover div span,
 .nav-bar a:hover {
-    color: white;
+    color: black;
 }
 
 .nav-bar a {
@@ -98,7 +169,7 @@ main,
 
 .nav-bar span,
 .nav-bar a {
-    color: #1b5e20;
+    color: white;
     transition: 0.3s;
 }
 
@@ -111,7 +182,7 @@ main,
     z-index: 1;
     top: 0;
     left: 0;
-    background-image: linear-gradient(to right, #43c6ac, #f8ffae);
+    background-color: #2962ff;
     overflow: hidden;
     transition: 0.5s;
     padding-top: 30px;
@@ -120,7 +191,7 @@ main,
 .sidenav a {
     text-decoration: none;
     font-size: 16px;
-    color: #1b5e20;
+    color: white;
     display: block;
 }
 
@@ -131,11 +202,11 @@ main,
 
 .sidenav a:hover span,
 .sidenav a:hover {
-    color: white;
+    color: black;
 }
 
 .sidenav a span {
-    color: #1b5e20;
+    color: white;
 }
 
 .sidenav .title {
@@ -143,18 +214,8 @@ main,
     align-items: center;
 }
 
-.sidenav .title p {
-    flex: 3;
-}
-
-.sidenav .title .closebtn {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
 .closebtn a {
-    font-size: 30px;
+    font-size: 50px;
 }
 
 .burger {
@@ -186,7 +247,19 @@ p.title {
 
 /* chart analysis */
 #body-parts-chart-div {
-    visibility: visible;
+    display: block;
+}
+
+#body_part_chart {
+    display: block;
+}
+
+#description_chart,
+#pain_level_chart,
+#top_pain_chart,
+#mood_chart,
+#duration_chart {
+    display: none;
 }
 
 #dashboard_div,
@@ -194,13 +267,12 @@ p.title {
 #dashboard3_div,
 #dashboard4_div,
 #dashboard5_div {
-    visibility: hidden;
+    display: none;
 }
 
 .main-menu {
     display: flex;
     flex-flow: column;
-    height: 100%;
 }
 
 .main-menu-header {
@@ -210,19 +282,38 @@ p.title {
 
 .header-content {
     border-radius: 10px;
-    padding: 10px;
 }
 
 .header-content-a {
-    background-image: linear-gradient(to bottom, #f2fcfe, #1c92d2);
-}
-
-.header-content-b {
-    background-image: linear-gradient(to bottom, #ffffff, #ffefba);
+    background-image: linear-gradient(
+        to bottom,
+        #2962ff,
+        #1a57ff,
+        #094bff,
+        #003dff,
+        #002cff
+    );
 }
 
 .header-content-c {
-    background-image: linear-gradient(to bottom, #bdfff3, #4ac29a);
+    border: 2px solid #2962ff;
+    color: #2962ff;
+    transition: 0.5s;
+}
+
+.header-content-c:hover {
+    border: 2px solid white;
+    color: white;
+    background-image: linear-gradient(
+        to bottom,
+        #2962ff,
+        #1a57ff,
+        #094bff,
+        #003dff,
+        #002cff
+    );
+
+    transition: 0.5s;
 }
 
 .header-number {
@@ -240,6 +331,7 @@ p.title {
 
 .main-menu-profile-container {
     display: flex;
+    color: white;
 }
 
 .main-menu-profile {
@@ -275,7 +367,7 @@ p.title {
 
 .main-menu-img {
     flex: 1;
-    height: 50vh;
+    height: 40vh;
     display: flex;
     align-items: center;
 }
@@ -291,6 +383,20 @@ p.title {
 .patient-list {
     padding-left: 50px;
     padding-right: 50px;
+    overflow: auto;
+}
+
+.main-menu-children,
+.main-menu-noti {
+    flex: 1;
+}
+
+.main-menu-children {
+    margin-right: 10px;
+}
+
+.main-menu-noti {
+    margin-left: 10px;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -311,7 +417,9 @@ p.title {
     .main-menu-children,
     .main-menu-noti {
         flex: 1;
-        margin-top: 10px;
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
@@ -342,4 +450,95 @@ p.title {
     overflow-x: auto;
 }
 
-/* table responsive */
+/* create patients form */
+#patient-profile-form {
+    display: block;
+    transition: 0.5s;
+}
+
+#guardian-profile-form,
+#patient-acc-form {
+    display: none;
+    transition: 0.5s;
+}
+
+/* validation error msg */
+#p1,
+#p2,
+#p3,
+#p3e2,
+#p4,
+#p5,
+#g1,
+#g2,
+#g3,
+#g3e2,
+#g4,
+#g4e2,
+#g5,
+#g6,
+#g7,
+#g7e2,
+#g8,
+#a1,
+#a2,
+#a3,
+#e1 {
+    display: none;
+}
+
+#a2e2 {
+    display: block;
+}
+
+/* user profile */
+.user-profile-card {
+    width: 400px;
+    height: 200px;
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 5px 2px gainsboro;
+}
+
+/* front page */
+
+.card-front {
+    background-color: #26a69a;
+    color: white;
+}
+
+.card-front-center {
+    flex: 4;
+}
+
+.card-front-bottom {
+    flex: 1;
+    background-color: #424242;
+    color: white;
+    width: fit-content;
+}
+
+.card-left {
+    flex: 0.75;
+}
+
+.card-right {
+    flex: 0.25;
+}
+
+.card-back-font {
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 478px) {
+    .user-profile-card {
+        width: 338px;
+    }
+
+    .card-back-font {
+        font-size: 9px;
+    }
+}
+
+.test {
+    height: 100px;
+}

@@ -18,7 +18,7 @@ class CreateBadgesUsersTable extends Migration
             $table->unsignedBigInteger('badge_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('badge_id')->references('id')->on('badges');
-            $table->foreign('user_id')->references('id')->on('patient_accounts');
+            $table->foreign('user_id')->references('id')->on('patient_accounts')->onDelete('cascade');
         });
     }
 

@@ -31,7 +31,7 @@ class PatientAccount extends Model
 
     public function avatars()
     {
-        return $this->belongsToMany('App\Avatar', 'avatar_user', 'user_id', 'avatar_id')->withPivot('is_selected');
+        return $this->belongsToMany('App\Avatar', 'avatar_user', 'user_id', 'avatar_id');
     }
 
     public function badges()

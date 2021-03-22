@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PatientProfile extends Model
 {
-    //
-    use SoftDeletes;
 
     protected $fillable = ['first_name',
                             'last_name',
@@ -22,7 +20,7 @@ class PatientProfile extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\UserProfile', 'user_profiles_id','user_profiles_id');
+        return $this->belongsTo('App\UserProfile', 'user_profiles_id');
     }
 
     public function account()

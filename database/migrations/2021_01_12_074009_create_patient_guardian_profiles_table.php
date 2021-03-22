@@ -28,7 +28,7 @@ class CreatePatientGuardianProfilesTable extends Migration
             $table->string('city',255);
             $table->unsignedBigInteger('patient_profiles_id');
             //foreign key bind
-            $table->foreign('patient_profiles_id')->references('id')->on('patient_profiles');
+            $table->foreign('patient_profiles_id')->references('id')->on('patient_profiles')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -9,12 +9,13 @@ class Badge extends Model
     //
     protected $fillable = [
         'name',
-        'cost'
+        'type',
+        'target'
     ];
 
     public function users()
     {
-        return $this->belongsToMany('App\PatientAccount');
+        return $this->belongsToMany('App\PatientAccount', 'badge_user', 'user_id', 'badge_id');
     }
 
     

@@ -5,45 +5,53 @@ use App\Common;
 @extends('layouts.app')
 
 @section('content')
-<div class="patient-list py-3">
-    <div class="font-semi font-32" align="center">
-        <p class="m-0 p-0">My Profile</p>
+<div class="header d-flex justify-content-center align-items-center">
+    <p class="font-22 font-semi m-0 p-0">User Profile</p>
+</div>
+<div class="patient-list py-5 middle" align="center">
+    <div class="user-profile-card card-front d-flex flex-column" align="center">
+        <div class="pb-3 d-flex flex-column align-items-center justify-content-end card-front-center">
+            <img src="{{asset('/image/ribbon.png')}}" alt="" width="70px" height="60px">
+            <p class="m-0 p-0 font-18 font-weight-bold">Child Of Light</p>
+            <p class="m-0 p-0 font-10">Patient Management System</p>
+        </div>
+        
+        <div class="d-flex px-5 flex-column align-items-center justify-content-end card-front-bottom">
+            <p class="m-0 p-0 font-14 font-weight-bold">{{$userProfile->first_name}} {{$userProfile->last_name}}</p>
+            <p class="m-0 p-0 font-10">{{Common::$hospitals[$userProfile->hospital_code]}}</p>
+        </div>
     </div>
-    <div class="m-0 mb-3 py-3">
-        <div class="col backbone-panel px-3 py-3 row justify-content-between m-0">
-            <div class="col-md-4">
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi font-18">Name</p>
-                    <p class="m-0 p-0">{{$userProfile->first_name}} {{$userProfile->last_name}}</p>
-                </div>
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi font-18">IC</p>
-                    <p class="m-0 p-0">{{$userProfile->ic_number}}</p>
-                </div>
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi font-18">Gender</p>
-                    <p class="m-0 p-0">{{Common::$gender[$userProfile->gender]}}</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi font-18">Contact Number</p>
-                    <p class="m-0 p-0">{{$userProfile->contact}}</p>
-                </div>
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi font-18">Role</p>
-                    <p class="m-0 p-0">{{Common::$role[$userProfile->role]}}</p>
-                </div>
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi font-18">Hospital</p>
-                    <p class="m-0 p-0">{{Common::$hospitals[$userProfile->hospital_code]}}</p>
-                </div>
-            </div>
+    <div class="user-profile-card d-flex align-items-center justify-content-between px-4 card-back-font" align="left">
+        <div class="col-5">
+            <p class="m-0 pb-4 d-flex align-items-center"><span class="material-icons pr-2">
+                account_circle
+                </span>{{$userProfile->first_name}} {{$userProfile->last_name}}</p>
+            <p class="m-0 pb-4 d-flex align-items-center"><span class="material-icons pr-2">
+                privacy_tip
+                </span>{{$userProfile->ic_number}}</p>
+            <p class="m-0 p-0 d-flex align-items-center"><span class="material-icons pr-2">
+                face
+                </span>{{Common::$gender[$userProfile->gender]}}</p>
+        </div>
+        <div class="pl-4" style="border-left: 1px solid #26a69a;">
+            <p class="m-0 pb-4 d-flex align-items-center"><span class="material-icons pr-2">
+                call
+                </span>{{$userProfile->contact}}</p>
+            <p class="m-0 pb-4 d-flex align-items-center"><span class="material-icons pr-2">
+                medication
+                </span>{{Common::$role[$userProfile->role]}} </p>
+            <p class="m-0 p-0 d-flex align-items-center"><span class="material-icons pr-2">
+                business
+                </span>{{Common::$hospitals[$userProfile->hospital_code]}}</p>
         </div>
     </div>
 
-    <div class="pb-3 m-0">
-        <a class="btn btn-primary col font-semi" href="{{route('users.edit',[$userProfile->id])}}">Update Details</a>
+    <div class="pt-3 m-0 d-flex justify-content-center">
+        <a class="btn btn-normal btn-custom-width mr-2" href="{{route('users.edit',[$userProfile->id])}}">Update Details</a>
+        <a class="btn btn-normal btn-custom-width" href="{{route('passwords.index')}}">Change Password</a>
     </div>
+</div>
+<div class="footer d-flex justify-content-center align-items-center">
+    <p class="font-14 m-0 p-0">Copyright 2021</p>
 </div>
 @endsection

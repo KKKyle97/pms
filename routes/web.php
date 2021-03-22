@@ -41,8 +41,13 @@ Route::group(['middleware' => 'auth'],function(){
     Route::any('/patients/search', 'PatientController@search')->name('patients.search');
     Route::get('/patients/{id}/analyse','PatientController@analyse')->name('patients.analyse');
     Route::resource('patients', 'PatientController');
-    Route::resource('notifications', 'NotificationController');
-    Route::resource('users', 'UserController');
+    Route::any('/notifications/search', 'NotificationController@search')->name('notifications.search');
+    Route::resource('notifications', 'NotificationController')->only([
+        'index', 'update'
+    ]);
+    Route::resource('users', 'UserController')->only([
+        'show', 'edit', 'update'
+    ]);;
     Route::get('change-password', 'ChangePasswordController@index')->name('passwords.index');
     Route::put('change-password', 'ChangePasswordController@update')->name('passwords.update');
 });
