@@ -283,6 +283,8 @@ class GameController extends Controller
         $userInfo = DB::table('game_user_infos')
                     ->leftJoin('badge_user','game_user_infos.patient_accounts_id','=','badge_user.user_id')
                     ->select('game_user_infos.*',DB::raw('count(badge_user.user_id) as badges_count'))
+                    ->where('game_user_infos.id',$id)
+                    ->groupBy('game_user_infos.id')
                     ->first();
 
         if($userInfo != null)
