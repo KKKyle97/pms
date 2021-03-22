@@ -22,7 +22,7 @@ class CreateUserInfoTable extends Migration
             $table->boolean('is_skipped');
             $table->unsignedBigInteger('avatars_id');
             $table->unsignedBigInteger('patient_accounts_id');
-            $table->foreign('patient_accounts_id')->references('id')->on('patient_accounts');
+            $table->foreign('patient_accounts_id')->references('id')->on('patient_accounts')->onDelete('cascade');
             $table->foreign('avatars_id')->references('id')->on('avatars');
             $table->timestamps();
         });

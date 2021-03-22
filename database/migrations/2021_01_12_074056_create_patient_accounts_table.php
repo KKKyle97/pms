@@ -19,7 +19,7 @@ class CreatePatientAccountsTable extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->unsignedBigInteger('patient_profiles_id');
-            $table->foreign('patient_profiles_id')->references('id')->on('patient_profiles');
+            $table->foreign('patient_profiles_id')->references('id')->on('patient_profiles')->onDelete('cascade');
             $table->timestamps();
         });
     }

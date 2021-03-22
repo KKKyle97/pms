@@ -7,6 +7,7 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use Auth;
   
 class ChangePasswordController extends Controller
 {
@@ -48,7 +49,7 @@ class ChangePasswordController extends Controller
         }
 
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-
-        return redirect()->back()->with('status', 'Password updated!');
+        Auth::logout();
+        return redirect('/login')->withSuccess('Password Updated! Please Login Again');
     }
 }

@@ -23,9 +23,6 @@ class CreatePatientProfilesTable extends Migration
             $table->unsignedInteger('age');
             $table->string('cancer',255);
             $table->unsignedBigInteger('user_profiles_id');
-            //soft deletes
-            $table->softDeletes();
-            //foreign key bind
             $table->foreign('user_profiles_id')->references('id')->on('user_profiles');
             $table->timestamps();
         });

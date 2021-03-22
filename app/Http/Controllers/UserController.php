@@ -48,7 +48,7 @@ class UserController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'ic_number' => ['required', 'string', 'min:12','max:12',Rule::unique('patient_profiles')->ignore($id)],
+            'ic_number' => ['required', 'string', 'min:12','max:12',Rule::unique('user_profiles')->ignore($id)],
             'contact' => ['required','string', 'min:10', 'max:11',],
         ]);
     }

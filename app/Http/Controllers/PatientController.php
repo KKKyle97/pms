@@ -248,7 +248,8 @@ class PatientController extends Controller
         //
         PatientProfile::destroy($id);
 
-        return redirect()->route('patients.index')->with('status', 'Patient Deleted!');
+        
+        return redirect()->route('patients.index')->withSuccess('Paitent Deleted Successfully!');
     }
 
     public function search(Request $request)
@@ -257,7 +258,9 @@ class PatientController extends Controller
             $patients = PatientProfile::where('user_profiles_id',Auth::user()->userProfile->id)
                                     ->where('first_name','LIKE','%'.$request->q.'%')
                                     ->orWhere('last_name','LIKE','%'. $request->q .'%')
-                                    ->paginate(5);
+                                    ->orWhere('ic_number','LIKE','%'. $request->q .'%')
+                                    ->paginate(10);
+                                    
             if (count($patients)>0){
                 return view ('patients.index',[
                     'patients' => $patients

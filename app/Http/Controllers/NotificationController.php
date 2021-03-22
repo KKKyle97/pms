@@ -20,7 +20,8 @@ class NotificationController extends Controller
     public function index()
     {
         //
-        $patients = PatientMessage::select('patient_messages.*','patient_profiles.cancer','patient_profiles.first_name','patient_profiles.last_name','patient_profiles.age')
+        $patients = PatientMessage::select('patient_messages.*','patient_profiles.cancer','patient_profiles.first_name',
+                    'patient_profiles.last_name','patient_profiles.age','patient_profiles.ic_number')
                     ->leftJoin('patient_profiles','patient_messages.patient_profiles_id','=','patient_profiles.id')
                     ->where('user_profiles_id',Auth::user()->userProfile->id)
                     ->orderBy('patient_messages.is_solved','asc')
@@ -62,20 +63,20 @@ class NotificationController extends Controller
      */
     public function show($id)
     {
-        //
-        $message = PatientMessage::find($id);
+        // //
+        // $message = PatientMessage::find($id);
         
-        if($message != null){
-            $patient = PatientProfile::find($message->patient->id);
+        // if($message != null){
+        //     $patient = PatientProfile::find($message->patient->id);
 
-            return view('notifications.show',[
-                'message' => $message,
-                'patient' => $patient,
-            ]);
-        }
+        //     return view('notifications.show',[
+        //         'message' => $message,
+        //         'patient' => $patient,
+        //     ]);
+        // }
 
-        Alert::error('Error', 'Patient Not Found!');
-        return redirect()->route('notifications.index');
+        // Alert::error('Error', 'Patient Not Found!');
+        // return redirect()->route('notifications.index');
         
     }
 
@@ -103,20 +104,17 @@ class NotificationController extends Controller
         $message = PatientMessage::find($id);
 
         if($message != null){
-            if($request->solution == null){
-                Alert::error('Error', 'Solution Cannot Be Empty!');
-                return redirect()->route('notifications.show',[$id]);
-            }
-
             $message->update([
                 'is_solved' => 1,
                 'solution' => $request->solution,
             ]);
 
-            Alert::success('Success', 'Thanks For Your Help!');
-            return redirect()->route('notifications.show',[$id]);
+            return response()->json([
+                'message' => 'success',
+            ], 200);
         }
-        return redirect()->route('notifications.show',[$id]);
+        Alert::error('Error', 'Patients Not Found');
+        return redirect()->route('notifications.index');
         
         
     }
@@ -130,5 +128,29 @@ class NotificationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        if($request->q != ""){
+
+            $patients = PatientMessage::select('patient_messages.*','patient_profiles.cancer','patient_profiles.first_name','patient_profiles.last_name','patient_profiles.age')
+            ->leftJoin('patient_profiles','patient_messages.patient_profiles_id','=','patient_profiles.id')
+            ->where('user_profiles_id',Auth::user()->userProfile->id)
+            ->where('first_name','LIKE','%'.$request->q.'%')
+            ->orWhere('last_name','LIKE','%'. $request->q .'%')
+            ->orderBy('patient_messages.is_solved','asc')
+            ->orderBy('patient_messages.score','desc')
+            ->paginate(10);
+                                    
+            if (count($patients)>0){
+                return view ('notifications.index',[
+                    'patients' => $patients
+                ]);
+            }
+        }
+
+        Alert::error('Error', 'Patient Not Found!');
+        return redirect()->route('notifications.index');
     }
 }

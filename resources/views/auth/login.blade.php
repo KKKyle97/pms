@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container-fluid d-flex justify-content-center">
-    <div class="backbone-panel p-5">
-        <div class="pb-3 text-center">
-            <p class="font-weight-bold font-28 p-0 m-0">Child Of Light Patient Management System</p>
+    <div class="backbone-panel px-5 pt-5 pb-2">
+        <div class="pb-3 text-center d-flex align-items-center">
+            <img src="{{asset('/image/ribbon.png')}}" alt="ribbon" height="40vh" width="50vw" style="display: block">
+            <p class="font-weight-bold font-28 p-0 m-0">Child Of Light</p>
         </div>  
         <p class="font-22 font-weight-bold m-0 p-0">Sign In</p>
         <form method="POST" action="{{ route('login') }}">
@@ -71,6 +72,7 @@
 
 
         </form>
+        <p class="font-14 m-0 p-0" align="center">copyright 2021</p>
     </div>
 </div>
 @endsection

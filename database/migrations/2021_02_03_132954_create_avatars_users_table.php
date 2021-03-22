@@ -18,7 +18,7 @@ class CreateAvatarsUsersTable extends Migration
             $table->unsignedBigInteger('avatar_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('avatar_id')->references('id')->on('avatars');
-            $table->foreign('user_id')->references('id')->on('patient_accounts');
+            $table->foreign('user_id')->references('id')->on('patient_accounts')->onDelete('cascade');
         });
     }
 

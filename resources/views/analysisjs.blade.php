@@ -57,7 +57,7 @@ function drawChart(val) {
 
 function drawBodyPartsCountChart(){
     var bodyPartsCountData = google.visualization.arrayToDataTable([
-        ['body parts','count'],
+        ['body parts','Number of Pain'],
 
         @php
         foreach($bodyPartsCount as $item) {
@@ -69,7 +69,15 @@ function drawBodyPartsCountChart(){
     // Set chart options
     var bodyPartsCountOptions = {
             // leave room for y-axis labels
-        'title':'sample'};
+        'title':'The Number Of Pain According To The Body Parts',
+        'hAxis': { 
+            format: '0',
+            title: 'Number of Pains'
+            },
+        'vAxis':{
+            title: 'Body Parts'
+        }
+        };
 
     // Instantiate and draw our chart, passing in some options.
     var bodyPartsCountChart = new google.visualization.BarChart(document.getElementById('body-parts-chart-div'));
@@ -87,6 +95,14 @@ function drawDescriptionCountChart(){
         @endphp
     ]);
 
+    var filterArray = [@php
+
+            echo "'".$descriptionCount[0]->body_part."',";
+        
+        @endphp];
+
+    console.log(filterArray);
+
     // Create a dashboard.
     var dashboard = new google.visualization.Dashboard(
             document.getElementById('dashboard_div'));
@@ -95,8 +111,16 @@ function drawDescriptionCountChart(){
         'controlType': 'CategoryFilter',
         'containerId': 'filter_div',
         'options': {
-        'filterColumnLabel': 'body parts'
-        }
+        'filterColumnLabel': 'body parts',
+        'ui':{
+            label: 'Body Part Selection:',
+            allowMultiple:false,
+            allowTyping:false,
+            }
+        },
+        state: {
+            selectedValues: filterArray,
+        },
     });
 
     var pieChart = new google.visualization.ChartWrapper({
@@ -169,7 +193,8 @@ function drawPainLevelChart(){
         'containerId': 'chart2_div',
         'dataTable':levelData,
         'options': {
-            'title': 'Level of pain'
+            'title': 'Level of pain',
+            'pointSize': 5,
         },
     });
 
@@ -220,7 +245,8 @@ function drawTopPainChart(){
         'containerId': 'highestPainDataChart_div',
         'dataTable':highestPainData,
         'options': {
-            'title': 'Pain description count'
+            'title': 'Pain description count',
+            'pointSize': 5,
         },
         'view':{'columns':[0,1]}
     });
@@ -262,7 +288,8 @@ function drawMoodChart(dashboard, filter){
         'containerId': 'chart4_div',
         'dataTable':data,
         'options': {
-            'title': 'Pain description count'
+            'title': 'Pain description count',
+            'pointSize': 5,
         },
     });
 
@@ -302,7 +329,8 @@ function drawDurationChart(){
         'containerId': 'chart5_div',
         'dataTable':data,
         'options': {
-            'title': 'Pain description count'
+            'title': 'Pain description count',
+            'pointSize': 5,
         },
         'view': {'columns': [0,1,2]}
     });
