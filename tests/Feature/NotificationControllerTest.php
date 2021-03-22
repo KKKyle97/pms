@@ -62,30 +62,6 @@ class NotificationControllerTest extends TestCase
     //     $response->assertRedirect('/login');
     // }
     
-    public function testShowNotificationDetail()
-    {
-        $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
-        ]);
-
-        $userProfile = factory(UserProfile::class)->create([
-            'email' => $user->email,
-        ]);
-
-        $profile = factory(PatientProfile::class)->create([
-            'user_profiles_id' => $userProfile->id,
-        ]);
-        $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
-
-        $messages = factory(PatientMessage::class)->create(['patient_profiles_id' => $profile->id,
-         'patient_accounts_id' => $account->id,
-        ]);
-
-        $response = $this->get('/notifications/'.$messages->id);
-
-        $response->assertStatus(200);
-        $response->assertViewIs('notifications.show');
-    }
 
     public function testShowNotificationDetailInvalidId()
     {
@@ -110,7 +86,7 @@ class NotificationControllerTest extends TestCase
 
         $response->assertStatus(302);
 
-        $response->assertRedirect('/notifications');
+        $response->assertRedirect('/');
     }
 
     public function testUpdateNotificationDetailValidId()
@@ -137,9 +113,7 @@ class NotificationControllerTest extends TestCase
             'solution' => $this->faker->sentence(),
         ]);
 
-        $response->assertStatus(302);
-
-        $response->assertRedirect('/notifications/'.$messages->id);
+        $response->assertStatus(200);
     }
 
     public function testUpdateNotificationDetailInvalidId()
@@ -169,6 +143,6 @@ class NotificationControllerTest extends TestCase
 
         $response->assertStatus(302);
 
-        $response->assertRedirect('/notifications/'.$fakeId);
+        $response->assertRedirect('/notifications/');
     }
 }

@@ -727,7 +727,7 @@ class GameControllerTest extends TestCase
         $response = $this->getJson('/api/ninjaspirits/'.$this->faker->randomNumber(5,true).'/loadProfile');
 
         $response->assertStatus(200)->assertJson([
-            'message' => 'success'
+            'message' => 'user not found'
         ]);
     }
 
