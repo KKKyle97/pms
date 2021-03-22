@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PatientGuardianProfileSeeder::class,
             PatientReportSeeder::class,
             PatientMessageSeeder::class,
+            AvatarUserSeeder::class
         ]);
     }
 }
