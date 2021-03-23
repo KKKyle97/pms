@@ -17,7 +17,7 @@ class BadgeSeeder extends Seeder
             DB::table('badges')->insert([
                 'name' => 'C1',
                 'type' => 1, 
-                'target' => 500,
+                'target' => 50,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
@@ -25,7 +25,7 @@ class BadgeSeeder extends Seeder
             DB::table('badges')->insert([
                 'name' => 'C2',
                 'type' => 1, 
-                'target' => 1000,
+                'target' => 100,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
@@ -33,7 +33,7 @@ class BadgeSeeder extends Seeder
             DB::table('badges')->insert([
                 'name' => 'C3',
                 'type' => 1, 
-                'target' => 1500,
+                'target' => 150,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
