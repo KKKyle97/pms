@@ -52,17 +52,7 @@ class NotificationControllerTest extends TestCase
 
         $response->assertViewIs('notifications.index');
     }
-
-    // public function testRedirectWithoutLogin()
-    // {
-    //     $response = $this->get('notifications');
-
-    //     $response->assertStatus(302);
-
-    //     $response->assertRedirect('/login');
-    // }
     
-
     public function testShowNotificationDetailInvalidId()
     {
         $user = factory(User::class)->create([
