@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
+          GITHUB_TOKEN: c91fccbbd026f05bbe24f7fa8078d787c5b68038
           SONAR_TOKEN: 726feabb27aa2523dc8b63ead57098db7536f2a0
