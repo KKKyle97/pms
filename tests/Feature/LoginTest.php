@@ -15,13 +15,6 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-
-    // protected function SetUp(): void
-    // {
-    //     parent::setUp();
-    //     $user = factory(User::class)->create();
-    //     $this->be($user);
-    // }
     
     public function testToLoginPage()
     {
@@ -57,7 +50,7 @@ class LoginTest extends TestCase
     public function testLoginWithIncorrectCredential()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $response = $this->post('/login', [

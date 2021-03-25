@@ -23,7 +23,7 @@ class CreatePatientMessagesTable extends Migration
             $table->unsignedBigInteger('patient_accounts_id');
             $table->unsignedBigInteger('patient_profiles_id');
             //foreign key bind
-            $table->foreign('patient_accounts_id')->references('id')->on('patient_accounts')->onDelete('cascade');;
+            $table->foreign('patient_accounts_id')->references('id')->on('patient_accounts')->onDelete('cascade');
             $table->foreign('patient_profiles_id')->references('id')->on('patient_profiles')->onDelete('cascade');
             $table->timestamps();
         });

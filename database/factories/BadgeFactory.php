@@ -12,9 +12,3 @@ $factory->define(Badge::class, function (Faker $faker) {
         'target' => $faker->numberBetween(1, 100),
     ];
 });
-
-// protected $fillable = [
-//     'name',
-//     'type',
-//     'target'
-// ];

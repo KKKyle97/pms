@@ -15,5 +15,3 @@ $factory->define(PatientMessage::class, function (Faker $faker) {
         'patient_profiles_id' =>$faker->numberBetween(1,9)
     ];
 });
-
-// protected $fillable = ['score','message','is_solved','solution','patient_accounts_id','patient_profiles_id'];

@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'],function(){
     ]);
     Route::resource('users', 'UserController')->only([
         'show', 'edit', 'update'
-    ]);;
+    ]);
     Route::get('change-password', 'ChangePasswordController@index')->name('passwords.index');
     Route::put('change-password', 'ChangePasswordController@update')->name('passwords.update');
 });

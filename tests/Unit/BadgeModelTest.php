@@ -34,7 +34,7 @@ class BadgeModelTest extends TestCase
         $profile = factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id,
         ]);
-        $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
+        factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
 
         $badge = factory(Badge::class)->create();
 

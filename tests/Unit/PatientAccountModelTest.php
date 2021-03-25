@@ -92,7 +92,7 @@ class PatientAccountModelTest extends TestCase
 
         $avatar = factory(Avatar::class)->create();
 
-        $gameInfo = factory(GameUserInfo::class)->create(['avatars_id' => $avatar->id, 'patient_accounts_id' => $account->id]);
+        factory(GameUserInfo::class)->create(['avatars_id' => $avatar->id, 'patient_accounts_id' => $account->id]);
 
         $this->assertInstanceOf(GameUserInfo::class, $account->info); 
         $this->assertEquals(1, $account->info->count());
@@ -109,7 +109,7 @@ class PatientAccountModelTest extends TestCase
         ]);
         $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
 
-        $avatar = factory(Avatar::class)->create();
+        factory(Avatar::class)->create();
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $account->avatars);
     }
@@ -125,7 +125,7 @@ class PatientAccountModelTest extends TestCase
         ]);
         $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
 
-        $badge = factory(Badge::class)->create();
+        factory(Badge::class)->create();
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $account->badges);
     }

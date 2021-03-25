@@ -20,7 +20,7 @@ class UserTest extends TestCase
      public function testHasOneUserProfile()
      {
         $user = factory(User::class)->create();
-        $userProfile = factory(UserProfile::class)->create([
+        factory(UserProfile::class)->create([
             'email' => $user->email,
         ]);
 

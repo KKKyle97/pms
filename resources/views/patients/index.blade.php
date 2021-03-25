@@ -26,11 +26,11 @@ use App\Common;
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th class="t-responsive">Age</th>
-                    <th class="t-responsive">IC</th>
-                    <th class="t-responsive">Cancer Type</th>
-                    <th>Action</th>
+                    <th id="tName">Name</th>
+                    <th id="tAge" class="t-responsive">Age</th>
+                    <th id="tIC" class="t-responsive">IC</th>
+                    <th id="tCancerType" class="t-responsive">Cancer Type</th>
+                    <th id="Action">Action</th>
                 </tr>
             </thead>
             <tbody>

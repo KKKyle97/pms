@@ -28,7 +28,7 @@ class NotificationControllerTest extends TestCase
     public function testToNotificationListIndex()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $userProfile = factory(UserProfile::class)->create([
@@ -40,7 +40,7 @@ class NotificationControllerTest extends TestCase
         ]);
         $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
 
-        $messages = factory(PatientMessage::class)->create(['patient_profiles_id' => $profile->id,
+        factory(PatientMessage::class)->create(['patient_profiles_id' => $profile->id,
          'patient_accounts_id' => $account->id,
         ]);
 
@@ -56,7 +56,7 @@ class NotificationControllerTest extends TestCase
     public function testShowNotificationDetailInvalidId()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $userProfile = factory(UserProfile::class)->create([
@@ -82,7 +82,7 @@ class NotificationControllerTest extends TestCase
     public function testUpdateNotificationDetailValidId()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $userProfile = factory(UserProfile::class)->create([
@@ -109,7 +109,7 @@ class NotificationControllerTest extends TestCase
     public function testUpdateNotificationDetailInvalidId()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $userProfile = factory(UserProfile::class)->create([
@@ -121,7 +121,7 @@ class NotificationControllerTest extends TestCase
         ]);
         $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
 
-        $messages = factory(PatientMessage::class)->create(['patient_profiles_id' => $profile->id,
+        factory(PatientMessage::class)->create(['patient_profiles_id' => $profile->id,
          'patient_accounts_id' => $account->id,
         ]);
 

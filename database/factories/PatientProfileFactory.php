@@ -16,12 +16,3 @@ $factory->define(PatientProfile::class, function (Faker $faker) {
         'user_profiles_id' => 1,
     ];
 });
-
-// protected $fillable = ['first_name',
-//                             'last_name',
-//                             'ic_number',
-//                             'gender',
-//                             'age',
-//                             'cancer',
-//                             'user_profiles_id'
-// ];

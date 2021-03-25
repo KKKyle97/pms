@@ -301,10 +301,6 @@ class PatientController extends Controller
             ->orderBy('created_at')
             ->get();
 
-            // foreach ($highestPainLevel as $key) {
-            //     dd(date("Y-m-d",strtotime($key->created_at)));
-            // }
-
             $durationPerBodyPart = DB::table('patient_reports')
             ->select(DB::raw('max(duration) as duration,avg(duration) as average'),'body_part','created_at')
             ->where('patient_profiles_id',$id)

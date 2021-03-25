@@ -12,17 +12,19 @@ use DB;
 
 class GameController extends Controller
 {
+    const NOBADGE = 'no badges';
     //
     public function login(Request $request)
     {
         //
         $patient = PatientAccount::where('username',$request->username)->first();
     
-        if($patient == null)
-        return response()->json([
-            'message' => 'user not found',
-            'data' => ''
-        ], 200);
+        if($patient == null){
+            return response()->json([
+                'message' => 'user not found',
+                'data' => ''
+            ], 200);
+        }
         else if(Hash::check($request->password,$patient->password))
         {
             $userInfo = GameUserInfo::where('patient_accounts_id',$patient->id)->first();
@@ -75,9 +77,10 @@ class GameController extends Controller
 
         $user->coin += $request->coin;
 
-        if($user->highscore < $request->highScore)
+        if($user->highscore < $request->highScore){
             $user->highscore = $request->highScore;
-
+        }
+        
         $user->save();
 
         return response()->json([
@@ -99,7 +102,7 @@ class GameController extends Controller
 
     public function changeAvatar(Request $request)
     {
-        $user = GameUserInfo::where('id',$request->userId)->update(['avatars_id' => $request->avatarId]);
+        GameUserInfo::where('id',$request->userId)->update(['avatars_id' => $request->avatarId]);
 
         return response()->json([
             'message' => 'success'
@@ -138,7 +141,6 @@ class GameController extends Controller
 
     public function unlockCoinBadge(Request $request)
     {
-        //todo: unlock coin badges
         $user = PatientAccount::find($request->accId);
 
 
@@ -155,7 +157,7 @@ class GameController extends Controller
         if($badges->count() == 0)
         {
             return response()->json([
-                'message' => 'no badges',
+                'message' => NOBADGE,
                 'data' => $badges
               ], 200);
         }else
@@ -185,7 +187,7 @@ class GameController extends Controller
         if($badges->count() == 0)
         {
             return response()->json([
-                'message' => 'no badges',
+                'message' => NOBADGE,
                 'data' => $badges
               ], 200);
         }else
@@ -218,7 +220,7 @@ class GameController extends Controller
         if($badges->count() == 0)
         {
             return response()->json([
-                'message' => 'no badges',
+                'message' => NOBADGE,
                 'data' => $badges
               ], 200);
         }else

@@ -11,9 +11,3 @@ $factory->define(Avatar::class, function (Faker $faker) {
         'cost' => $faker->numberBetween(1, 100),
     ];
 });
-
-
-// protected $fillable = [
-//     'name',
-//     'cost'
-// ];

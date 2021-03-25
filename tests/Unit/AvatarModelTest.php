@@ -38,7 +38,7 @@ class AvatarModelTest extends TestCase
 
         $avatar = factory(Avatar::class)->create();
 
-        $gameInfo = factory(GameUserInfo::class)->create(['avatars_id' => $avatar->id, 'patient_accounts_id' => $account->id]);
+        factory(GameUserInfo::class)->create(['avatars_id' => $avatar->id, 'patient_accounts_id' => $account->id]);
 
         $this->assertInstanceOf(GameUserInfo::class, $avatar->info);
     }
@@ -52,7 +52,7 @@ class AvatarModelTest extends TestCase
         $profile = factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id,
         ]);
-        $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
+        factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
 
         $avatar = factory(Avatar::class)->create();
 

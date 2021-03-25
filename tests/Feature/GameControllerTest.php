@@ -38,7 +38,7 @@ class GameControllerTest extends TestCase
             'patient_profiles_id' => $patient->id,
             'password' => bcrypt($password = 'i-love-laravel')
         ]);
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
         ]);
@@ -68,7 +68,7 @@ class GameControllerTest extends TestCase
             'patient_profiles_id' => $patient->id,
             'password' => bcrypt($password = 'i-love-laravel')
         ]);
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
         ]);
@@ -96,9 +96,9 @@ class GameControllerTest extends TestCase
         $avatar = factory(Avatar::class)->create();
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
         ]);
@@ -123,7 +123,7 @@ class GameControllerTest extends TestCase
         $patient = factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id
         ]);
-        $avatar = factory(Avatar::class)->create();
+        factory(Avatar::class)->create();
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
             'password' => bcrypt($password = 'i-love-laravel')
@@ -150,11 +150,11 @@ class GameControllerTest extends TestCase
             'user_profiles_id' => $userProfile->id
         ]);
         $avatar1 = factory(Avatar::class)->create();
-        $avatar2 = factory(Avatar::class)->create();
+        factory(Avatar::class)->create();
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
         $response = $this->postJson('/api/ninjaspirits/firstLogin',[
@@ -181,7 +181,7 @@ class GameControllerTest extends TestCase
         $avatar = factory(Avatar::class)->create();
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
         $userInfo = factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
@@ -211,7 +211,7 @@ class GameControllerTest extends TestCase
         $avatar = factory(Avatar::class)->create();
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
         $userInfo = factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
@@ -238,7 +238,7 @@ class GameControllerTest extends TestCase
         $avatar2 = factory(Avatar::class)->create();
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
         $userInfo = factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
@@ -265,12 +265,12 @@ class GameControllerTest extends TestCase
             'user_profiles_id' => $userProfile->id
         ]);
         $avatar = factory(Avatar::class)->create();
-        $avatar2 = factory(Avatar::class)->create();
+        factory(Avatar::class)->create();
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
         ]);
@@ -292,7 +292,7 @@ class GameControllerTest extends TestCase
             'user_profiles_id' => $userProfile->id
         ]);
         $avatar = factory(Avatar::class)->create();
-        $avatar2 = factory(Avatar::class)->create();
+        factory(Avatar::class)->create();
         $avatar3 = factory(Avatar::class)->create([
             'cost' => 200
         ]);
@@ -300,7 +300,7 @@ class GameControllerTest extends TestCase
             'patient_profiles_id' => $patient->id,
             'password' => bcrypt($password = 'i-love-laravel')
         ]);
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
             'coin' => 300,
@@ -327,13 +327,13 @@ class GameControllerTest extends TestCase
             'user_profiles_id' => $userProfile->id
         ]);
         $avatar = factory(Avatar::class)->create();
-        $avatar2 = factory(Avatar::class)->create();
+        factory(Avatar::class)->create();
         $avatar3 = factory(Avatar::class)->create([
             'cost' => 200
         ]);
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
         $userInfo = factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
@@ -365,20 +365,20 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
             'coin' => 20000,
         ]);
 
-        $badge = factory(Badge::class)->create([
+        factory(Badge::class)->create([
             'type' => 1,
             'target' => 1
         ]);
 
-        $badge2 = factory(Badge::class)->create([
+        factory(Badge::class)->create([
             'type' => 1,
             'target' => 10
         ]);
@@ -406,20 +406,20 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
             'coin' => 20000,
         ]);
 
-        $badge = factory(Badge::class)->create([
+        factory(Badge::class)->create([
             'type' => 1,
             'target' => 1
         ]);
 
-        $badge2 = factory(Badge::class)->create([
+        factory(Badge::class)->create([
             'type' => 1,
             'target' => 10
         ]);
@@ -447,21 +447,21 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
             'coin' => 20000,
         ]);
 
-        $patientReport = factory(PatientReport::class)->create([
+        factory(PatientReport::class)->create([
             'patient_accounts_id' => $account->id,
             'patient_profiles_id' => $patient->id,
         ]);
 
-        $report = factory(Badge::class)->create([
+        factory(Badge::class)->create([
             'type' => 2,
             'target' => 1
         ]);
@@ -488,21 +488,21 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
             'coin' => 20000,
         ]);
 
-        $patientReport = factory(PatientReport::class)->create([
+        factory(PatientReport::class)->create([
             'patient_accounts_id' => $account->id,
             'patient_profiles_id' => $patient->id,
         ]);
 
-        $report = factory(Badge::class)->create([
+        factory(Badge::class)->create([
             'type' => 2,
             'target' => 3
         ]);
@@ -526,14 +526,14 @@ class GameControllerTest extends TestCase
             'user_profiles_id' => $userProfile->id
         ]);
         $avatar1 = factory(Avatar::class)->create();
-        $avatar2 = factory(Avatar::class)->create();
+        factory(Avatar::class)->create();
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
-        $report = factory(Badge::class)->create([
+        factory(Badge::class)->create([
             'type' => 3,
             'target' => 1
         ]);
@@ -566,15 +566,15 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar1->id,
         ]);
 
-        $avatarBadge = factory(Badge::class)->create([
+        factory(Badge::class)->create([
             'type' => 3,
             'target' => 3
         ]);
@@ -600,7 +600,7 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
         $badge = factory(Badge::class)->create();
@@ -627,10 +627,10 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
             'coin' => 20000,
@@ -661,7 +661,7 @@ class GameControllerTest extends TestCase
         ]);
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
         $response = $this->postJson('/api/ninjaspirits/sendMessage',[
@@ -688,7 +688,7 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
         $userInfo = factory(GameUserInfo::class)->create([
@@ -716,10 +716,10 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
-        $userInfo = factory(GameUserInfo::class)->create([
+        factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar1->id,
         ]);
@@ -744,7 +744,7 @@ class GameControllerTest extends TestCase
 
         $account = factory(PatientAccount::class)->create([
             'patient_profiles_id' => $patient->id,
-            'password' => bcrypt($password = 'i-love-laravel')
+            'password' => bcrypt('i-love-laravel')
         ]);
 
         $userInfo = factory(GameUserInfo::class)->create([

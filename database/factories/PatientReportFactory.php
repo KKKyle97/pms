@@ -16,5 +16,3 @@ $factory->define(PatientReport::class, function (Faker $faker) {
         'patient_profiles_id' =>$faker->numberBetween(1,9)
     ];
 });
-
-// protected $fillable = ['body_part','level','description','duration','mood','patient_accounts_id','patient_profiles_id'];

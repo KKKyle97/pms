@@ -25,16 +25,16 @@ use App\Common;
     <div class="table-responsive">
         <table class="table table-hover">
             <tr>
-                <th>Name</th>
-                <th class="t-responsive">Age</th>
-                <th class="t-responsive">Cancer Type</th>
-                <th class="t-responsive">Pain Score</th>
-                <th class="t-responsive">Sent At</th>
-                <th>Action</th>
+                <th id="tName">Name</th>
+                <th id="tAge" class="t-responsive">Age</th>
+                <th id="tCancerType" class="t-responsive">Cancer Type</th>
+                <th id="tPainScore" class="t-responsive">Pain Score</th>
+                <th id="tTime" class="t-responsive">Sent At</th>
+                <th id="tAction">Action</th>
             </tr>
 
             @foreach($patients as $patient)
-            <tr id>
+            <tr>
                 <td>{{$patient->first_name}} {{$patient->last_name}}</td>
                 <td class="t-responsive">{{$patient->age}}</td>
                 <td class="t-responsive">{{Common::$cancer[$patient->cancer]}}</td>

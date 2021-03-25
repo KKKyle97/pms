@@ -82,7 +82,6 @@ function moveToPreviousForm(val) {
 }
 
 function validateRequiredField(errorId, inputId, formType, index) {
-    //console.log(document.getElementById(errorId).style);
     var input = document.getElementById(inputId).value;
     if (input == "") {
         document.getElementById(errorId).style.display = "block";

@@ -20,16 +20,3 @@ $factory->define(PatientGuardianProfile::class, function (Faker $faker) {
         'patient_profiles_id' => $faker->numberBetween(1, 9),
     ];
 });
-
-// protected $fillable = ['first_name',
-//                             'last_name',
-//                             'ic_number',
-//                             'relations',
-//                             'contact',
-//                             'address_one',
-//                             'address_two',
-//                             'postcode',
-//                             'state',
-//                             'city',
-//                             'patient_profiles_id',
-// ];

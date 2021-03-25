@@ -18,13 +18,3 @@ $factory->define(UserProfile::class, function (Faker $faker) {
         'hospital_code' => 'J002',
     ];
 });
-
-// protected $fillable = ['first_name',
-// 'last_name',
-// 'ic_number',
-// 'gender',
-// 'contact',
-// 'role',
-// 'email',
-// 'hospital_code',
-// ];

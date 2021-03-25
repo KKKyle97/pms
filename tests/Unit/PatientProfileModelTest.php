@@ -68,7 +68,7 @@ class PatientProfileModelTest extends TestCase
         $profile = factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id,
         ]);
-        $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
+        factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
 
         $this->assertInstanceOf(PatientAccount::class, $profile->account); 
         $this->assertEquals(1, $profile->account->count());
@@ -84,7 +84,7 @@ class PatientProfileModelTest extends TestCase
             'user_profiles_id' => $userProfile->id,
         ]);
 
-        $guardian = factory(PatientGuardianProfile::class)->create([
+        factory(PatientGuardianProfile::class)->create([
             'patient_profiles_id' => $profile->id,
         ]);
 

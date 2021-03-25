@@ -26,7 +26,7 @@ class UserControllerTest extends TestCase
     public function testToShowUserProfile()
     {
         $user = factory(User::class)->create();
-        $profile = factory(UserProfile::class)->create([
+        factory(UserProfile::class)->create([
             'email' => $user->email
         ]);
 
@@ -39,7 +39,7 @@ class UserControllerTest extends TestCase
     public function testToShowUserProfileInvalidId()
     {
         
-        $user = factory(User::class)->create();
+        factory(User::class)->create();
 
         $response = $this->get('/users/'.$this->faker->randomNumber(5,true));
 
@@ -50,7 +50,7 @@ class UserControllerTest extends TestCase
     public function testToEditUserProfile()
     {
         $user = factory(User::class)->create();
-        $profile = factory(UserProfile::class)->create([
+        factory(UserProfile::class)->create([
             'email' => $user->email
         ]);
 
@@ -64,7 +64,7 @@ class UserControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $profile = factory(UserProfile::class)->create([
+        factory(UserProfile::class)->create([
             'email' => $user->email
         ]);
 
@@ -100,7 +100,7 @@ class UserControllerTest extends TestCase
     public function testUpdateUserProfileInvalidId()
     {
         $user = factory(User::class)->create();
-        $profile = factory(UserProfile::class)->create([
+        factory(UserProfile::class)->create([
             'email' => $user->email
         ]);
 

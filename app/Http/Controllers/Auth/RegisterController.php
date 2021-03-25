@@ -52,12 +52,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        define("MAX255", "max:255");
+
         return Validator::make($data, [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', MAX255],
+            'last_name' => ['required', 'string', MAX255],
             'ic_number' => ['required', 'string', 'min:12','max:12','unique:user_profiles',],
             'contact' => ['required','string', 'min:10', 'max:11',],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', MAX255, 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'sq_one_q' => ['required'],
             'sq_one_a' => ['required'],
@@ -102,8 +104,7 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         
-        event(new Registered($user = $this->create($request->all())));
-        // $this->guard()->login($user);
+        event(new Registered($this->create($request->all())));
         return redirect('/login')->withSuccess('Account Created Successfully!');
     }
 }

@@ -29,7 +29,3 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
-
-// protected $fillable = [
-//     'email', 'password','sq_one_q','sq_one_a','sq_two_q','sq_two_a'
-// ];

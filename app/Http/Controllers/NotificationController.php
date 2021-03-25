@@ -17,6 +17,8 @@ class NotificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     const NOTIFICATION = 'notifications.index';
     public function index()
     {
         //
@@ -28,7 +30,7 @@ class NotificationController extends Controller
                     ->orderBy('patient_messages.score','desc')
                     ->paginate(10);
 
-        return view('notifications.index',[
+        return view(NOTIFICATION,[
             'patients' => $patients,
         ]);
         
@@ -63,20 +65,6 @@ class NotificationController extends Controller
      */
     public function show($id)
     {
-        // //
-        // $message = PatientMessage::find($id);
-        
-        // if($message != null){
-        //     $patient = PatientProfile::find($message->patient->id);
-
-        //     return view('notifications.show',[
-        //         'message' => $message,
-        //         'patient' => $patient,
-        //     ]);
-        // }
-
-        // Alert::error('Error', 'Patient Not Found!');
-        // return redirect()->route('notifications.index');
         
     }
 
@@ -114,7 +102,7 @@ class NotificationController extends Controller
             ], 200);
         }
         Alert::error('Error', 'Patients Not Found');
-        return redirect()->route('notifications.index');
+        return redirect()->route(NOTIFICATION);
         
         
     }
@@ -144,7 +132,7 @@ class NotificationController extends Controller
             ->paginate(10);
                                     
             if (count($patients)>0){
-                return view ('notifications.index',[
+                return view (NOTIFICATION,[
                     'patients' => $patients
                 ]);
             }

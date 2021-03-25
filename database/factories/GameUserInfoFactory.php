@@ -15,5 +15,3 @@ $factory->define(GameUserInfo::class, function (Faker $faker) {
         'patient_accounts_id' => $faker->numberBetween(1, 9)
     ];
 });
-
-//protected $fillable = ['name','coin','highscore','is_skipped','avatars_id','patient_accounts_id'];

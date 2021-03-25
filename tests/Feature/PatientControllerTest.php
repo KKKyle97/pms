@@ -30,10 +30,10 @@ class PatientControllerTest extends TestCase
     public function testToPatientList()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
-        $userProfile = factory(UserProfile::class)->create([
+        factory(UserProfile::class)->create([
             'email' => $user->email,
         ]);
 
@@ -49,10 +49,10 @@ class PatientControllerTest extends TestCase
     public function testToCreateNewPatientPage()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
-        $userProfile = factory(UserProfile::class)->create([
+        factory(UserProfile::class)->create([
             'email' => $user->email,
         ]);
 
@@ -66,7 +66,7 @@ class PatientControllerTest extends TestCase
     public function testToShowPatientPageValidId()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $userProfile = factory(UserProfile::class)->create([
@@ -77,11 +77,11 @@ class PatientControllerTest extends TestCase
             'user_profiles_id' => $userProfile->id
         ]);
 
-        $guardian = factory(PatientGuardianProfile::class)->create([
+        factory(PatientGuardianProfile::class)->create([
             'patient_profiles_id' => $patientProfile->id,
         ]);
 
-        $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $patientProfile->id]);
+        factory(PatientAccount::class)->create(['patient_profiles_id' => $patientProfile->id]);
 
         $response = $this->get('/patients/'.$patientProfile->id);
 
@@ -93,14 +93,14 @@ class PatientControllerTest extends TestCase
     public function testToShowPatientPageInvalidId()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $userProfile = factory(UserProfile::class)->create([
             'email' => $user->email,
         ]);
 
-        $patientProfile = factory(PatientProfile::class)->create([
+        factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id
         ]);
 
@@ -116,7 +116,7 @@ class PatientControllerTest extends TestCase
     public function testToEditPatientPageValidId()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $userProfile = factory(UserProfile::class)->create([
@@ -127,7 +127,7 @@ class PatientControllerTest extends TestCase
             'user_profiles_id' => $userProfile->id
         ]);
 
-        $guardian = factory(PatientGuardianProfile::class)->create([
+        factory(PatientGuardianProfile::class)->create([
             'patient_profiles_id' => $patientProfile->id,
         ]);
 
@@ -141,14 +141,14 @@ class PatientControllerTest extends TestCase
     public function testToEditPatientPageInvalidId()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt('i-love-laravel'),
         ]);
 
         $userProfile = factory(UserProfile::class)->create([
             'email' => $user->email,
         ]);
 
-        $patientProfile = factory(PatientProfile::class)->create([
+        factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id
         ]);
 
@@ -165,7 +165,7 @@ class PatientControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $userProfile = factory(UserProfile::class)->create([
+        factory(UserProfile::class)->create([
             'email' => $user->email,
         ]);
 
@@ -209,7 +209,7 @@ class PatientControllerTest extends TestCase
             'user_profiles_id' => $userProfile->id
         ]);
 
-        $guardian = factory(PatientGuardianProfile::class)->create([
+        factory(PatientGuardianProfile::class)->create([
             'patient_profiles_id' => $patientProfile->id,
         ]);
         
@@ -245,7 +245,7 @@ class PatientControllerTest extends TestCase
             'email' => $user->email,
         ]);
 
-        $patientProfile = factory(PatientProfile::class)->create([
+        factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id
         ]);
 
@@ -283,7 +283,7 @@ class PatientControllerTest extends TestCase
             'email' => $user->email,
         ]);
 
-        $patientProfile = factory(PatientProfile::class)->create([
+        factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id,
             'first_name' => 'John'
         ]);
@@ -307,7 +307,7 @@ class PatientControllerTest extends TestCase
             'email' => $user->email,
         ]);
 
-        $patientProfile = factory(PatientProfile::class)->create([
+        factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id,
             'first_name' => 'John',
             'last_name' => 'jams'
@@ -335,7 +335,7 @@ class PatientControllerTest extends TestCase
         ]);
         $account = factory(PatientAccount::class)->create(['patient_profiles_id' => $profile->id]);
 
-        $reports = factory(PatientReport::class)->create(['patient_profiles_id' => $profile->id,
+        factory(PatientReport::class)->create(['patient_profiles_id' => $profile->id,
          'patient_accounts_id' => $account->id,
         ]);
         
@@ -352,7 +352,7 @@ class PatientControllerTest extends TestCase
         $userProfile = factory(UserProfile::class)->create([
             'email' => $user->email,
         ]);
-        $profile = factory(PatientProfile::class)->create([
+        factory(PatientProfile::class)->create([
             'user_profiles_id' => $userProfile->id,
         ]);
 
