@@ -30,7 +30,7 @@ class NotificationController extends Controller
                     ->orderBy('patient_messages.score','desc')
                     ->paginate(10);
 
-        return view(NOTIFICATION,[
+        return view(self::NOTIFICATION,[
             'patients' => $patients,
         ]);
         
@@ -102,7 +102,7 @@ class NotificationController extends Controller
             ], 200);
         }
         Alert::error('Error', 'Patients Not Found');
-        return redirect()->route(NOTIFICATION);
+        return redirect()->route(self::NOTIFICATION);
         
         
     }
@@ -132,7 +132,7 @@ class NotificationController extends Controller
             ->paginate(10);
                                     
             if (count($patients)>0){
-                return view (NOTIFICATION,[
+                return view (self::NOTIFICATION,[
                     'patients' => $patients
                 ]);
             }

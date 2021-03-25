@@ -300,7 +300,7 @@ class GameControllerTest extends TestCase
             'patient_profiles_id' => $patient->id,
             'password' => bcrypt($password = 'i-love-laravel')
         ]);
-        factory(GameUserInfo::class)->create([
+        $userInfo = factory(GameUserInfo::class)->create([
             'patient_accounts_id' => $account->id,
             'avatars_id' => $avatar->id,
             'coin' => 300,
@@ -395,6 +395,42 @@ class GameControllerTest extends TestCase
 
     public function testNoCoinBadgeToUnlock()
     {
+        // $user = factory(User::class)->create();
+
+        // $userProfile = factory(UserProfile::class)->create([
+        //     'email' => $user->email
+        // ]);
+        // $patient = factory(PatientProfile::class)->create([
+        //     'user_profiles_id' => $userProfile->id
+        // ]);
+
+        // $avatar = factory(Avatar::class)->create();
+
+        // $account = factory(PatientAccount::class)->create([
+        //     'patient_profiles_id' => $patient->id,
+        //     'password' => bcrypt('i-love-laravel')
+        // ]);
+        // factory(GameUserInfo::class)->create([
+        //     'patient_accounts_id' => $account->id,
+        //     'avatars_id' => $avatar->id,
+        //     'coin' => 20000,
+        // ]);
+
+        // factory(Badge::class)->create([
+        //     'type' => 1,
+        //     'target' => 1
+        // ]);
+
+        // factory(Badge::class)->create([
+        //     'type' => 1,
+        //     'target' => 10
+        // ]);
+
+        // $response = $this->postJson('/api/ninjaspirits/unlockCoinBadge',[
+        //     'accId' => $account->id,
+        //     'coin' => 0,
+        // ]);
+
         $user = factory(User::class)->create();
         $userProfile = factory(UserProfile::class)->create([
             'email' => $user->email

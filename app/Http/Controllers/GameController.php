@@ -149,7 +149,7 @@ class GameController extends Controller
             })->where('target','<=',$request->coin)
             ->where('type',1)
             ->get();
-      
+
         foreach ($badges as $badge) {
             $user->badges()->attach($badge->id);
         }
@@ -157,7 +157,7 @@ class GameController extends Controller
         if($badges->count() == 0)
         {
             return response()->json([
-                'message' => NOBADGE,
+                'message' => self::NOBADGE,
                 'data' => $badges
               ], 200);
         }else
@@ -187,7 +187,7 @@ class GameController extends Controller
         if($badges->count() == 0)
         {
             return response()->json([
-                'message' => NOBADGE,
+                'message' => self::NOBADGE,
                 'data' => $badges
               ], 200);
         }else
@@ -220,7 +220,7 @@ class GameController extends Controller
         if($badges->count() == 0)
         {
             return response()->json([
-                'message' => NOBADGE,
+                'message' => self::NOBADGE,
                 'data' => $badges
               ], 200);
         }else
