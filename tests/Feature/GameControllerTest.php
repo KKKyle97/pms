@@ -22,8 +22,8 @@ class GameControllerTest extends TestCase
      * A basic feature test example.
      *
      * @return void
+     * @group mobile
      */
-
      public function testLogin()
      {
         $user = factory(User::class)->create();
@@ -53,6 +53,11 @@ class GameControllerTest extends TestCase
                     'message' => 'logged in'
                  ]);
      }
+
+     /**
+     * @group mobile
+     *
+     */
 
      public function testLoginUserNotFound()
      {
@@ -84,6 +89,11 @@ class GameControllerTest extends TestCase
                  ]);
      }
 
+     /**
+     * @group mobile
+     *
+     */
+
      public function testLoginInvalidPassword()
      {
         $user = factory(User::class)->create();
@@ -114,6 +124,11 @@ class GameControllerTest extends TestCase
                  ]);
      }
 
+     /**
+     * @group mobile
+     *
+     */
+
      public function testFirstTimeLogin()
      {
         $user = factory(User::class)->create();
@@ -139,6 +154,11 @@ class GameControllerTest extends TestCase
                     'message' => 'first time'
                  ]);
      }
+
+     /**
+     * @group mobile
+     *
+     */
 
      public function testRegisterNewAccount()
      {
@@ -168,6 +188,11 @@ class GameControllerTest extends TestCase
                     'message' => 'success'
                 ]);
      }
+
+     /**
+     * @group mobile
+     *
+     */
 
      public function testUpdateScore()
      {
@@ -199,6 +224,11 @@ class GameControllerTest extends TestCase
         ]);
      }
 
+     /**
+     * @group mobile
+     *
+     */
+
      public function testGetScore()
      {
         $user = factory(User::class)->create();
@@ -224,6 +254,11 @@ class GameControllerTest extends TestCase
             'message' => 'success'
         ]);
      }
+
+     /**
+     * @group mobile
+     *
+     */
 
      public function testChangeAvatar()
      {
@@ -255,6 +290,11 @@ class GameControllerTest extends TestCase
         ]);
      }
 
+     /**
+     * @group mobile
+     *
+     */
+
      public function testGetAvatars()
      {
         $user = factory(User::class)->create();
@@ -281,6 +321,11 @@ class GameControllerTest extends TestCase
             'message' => 'success'
         ]);
      }
+
+     /**
+     * @group mobile
+     *
+     */
 
      public function testUnlockAvatar()
      {
@@ -317,6 +362,11 @@ class GameControllerTest extends TestCase
         ]);
      }
 
+     /**
+     * @group mobile
+     *
+     */
+
      public function testUnlockAvatarInsufficientCoin()
      {
         $user = factory(User::class)->create();
@@ -351,6 +401,11 @@ class GameControllerTest extends TestCase
             'message' => 'insufficient coin'
         ]);
      }
+
+     /**
+     * @group mobile
+     *
+     */
 
     public function testUnlockCoinBadgeSuccess()
     {
@@ -393,44 +448,13 @@ class GameControllerTest extends TestCase
         ]);
     }
 
+    /**
+     * @group mobile
+     *
+     */
+
     public function testNoCoinBadgeToUnlock()
     {
-        // $user = factory(User::class)->create();
-
-        // $userProfile = factory(UserProfile::class)->create([
-        //     'email' => $user->email
-        // ]);
-        // $patient = factory(PatientProfile::class)->create([
-        //     'user_profiles_id' => $userProfile->id
-        // ]);
-
-        // $avatar = factory(Avatar::class)->create();
-
-        // $account = factory(PatientAccount::class)->create([
-        //     'patient_profiles_id' => $patient->id,
-        //     'password' => bcrypt('i-love-laravel')
-        // ]);
-        // factory(GameUserInfo::class)->create([
-        //     'patient_accounts_id' => $account->id,
-        //     'avatars_id' => $avatar->id,
-        //     'coin' => 20000,
-        // ]);
-
-        // factory(Badge::class)->create([
-        //     'type' => 1,
-        //     'target' => 1
-        // ]);
-
-        // factory(Badge::class)->create([
-        //     'type' => 1,
-        //     'target' => 10
-        // ]);
-
-        // $response = $this->postJson('/api/ninjaspirits/unlockCoinBadge',[
-        //     'accId' => $account->id,
-        //     'coin' => 0,
-        // ]);
-
         $user = factory(User::class)->create();
         $userProfile = factory(UserProfile::class)->create([
             'email' => $user->email
@@ -469,6 +493,11 @@ class GameControllerTest extends TestCase
             'message' => 'no badges'
         ]);
     }
+
+    /**
+     * @group mobile
+     *
+     */
 
     public function testUnlockReportBadgeSuccess()
     {
@@ -511,6 +540,11 @@ class GameControllerTest extends TestCase
         ]);
     }
 
+    /**
+     * @group mobile
+     *
+     */
+
     public function testNoReportBadgeToUnlock()
     {
         $user = factory(User::class)->create();
@@ -552,6 +586,11 @@ class GameControllerTest extends TestCase
         ]);
     }
 
+    /**
+     * @group mobile
+     *
+     */
+
     public function testUnlockAvatarBadgeSuccess()
     {
         $user = factory(User::class)->create();
@@ -589,6 +628,11 @@ class GameControllerTest extends TestCase
         ]);
     }
 
+    /**
+     * @group mobile
+     *
+     */
+
     public function testNoAvatarBadgeToUnlock()
     {
         $user = factory(User::class)->create();
@@ -624,6 +668,11 @@ class GameControllerTest extends TestCase
         ]);
     }
 
+    /**
+     * @group mobile
+     *
+     */
+
     public function testGetAllBadges()
     {
         $user = factory(User::class)->create();
@@ -649,6 +698,11 @@ class GameControllerTest extends TestCase
             'message' => 'success'
         ]);
     }
+
+    /**
+     * @group mobile
+     *
+     */
 
     public function testSendReport()
     {
@@ -686,6 +740,11 @@ class GameControllerTest extends TestCase
         ]);
     }
 
+    /**
+     * @group mobile
+     *
+     */
+
     public function testSendMessage()
     {
         $user = factory(User::class)->create();
@@ -710,6 +769,11 @@ class GameControllerTest extends TestCase
             'message' => 'success'
         ]);
     }
+
+    /**
+     * @group mobile
+     *
+     */
 
     public function testLoadProfileValidId()
     {
@@ -739,6 +803,11 @@ class GameControllerTest extends TestCase
         ]);
     }
 
+    /**
+     * @group mobile
+     *
+     */
+
     public function testLoadProfileInvalidId()
     {
         $user = factory(User::class)->create();
@@ -766,6 +835,11 @@ class GameControllerTest extends TestCase
             'message' => 'user not found'
         ]);
     }
+
+    /**
+     * @group mobile
+     *
+     */
 
     public function testShowTutorial()
     {

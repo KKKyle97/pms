@@ -26,6 +26,11 @@ class PatientAccountModelTest extends TestCase
      * @return void
      */
 
+     /**
+     * @group unit
+     *
+     */
+
     public function testHasManyMessages()
     {
         $user = factory(User::class)->create();
@@ -44,6 +49,11 @@ class PatientAccountModelTest extends TestCase
         $this->assertTrue($profile->messages->contains($messages));
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $profile->messages);
     }
+
+     /**
+     * @group unit
+     *
+     */
 
     public function testHasManyReport()
     {
@@ -64,6 +74,11 @@ class PatientAccountModelTest extends TestCase
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $profile->reports);
     }
 
+     /**
+     * @group unit
+     *
+     */
+
     public function testBelongsToPatient()
     {
         $user = factory(User::class)->create();
@@ -78,6 +93,11 @@ class PatientAccountModelTest extends TestCase
         $this->assertInstanceOf(PatientProfile::class, $account->patient); 
         $this->assertEquals(1, $account->patient->count());
     }
+
+     /**
+     * @group unit
+     *
+     */
 
     public function testHasOneGameUserInfo()
     {
@@ -98,6 +118,11 @@ class PatientAccountModelTest extends TestCase
         $this->assertEquals(1, $account->info->count());
     }
 
+     /**
+     * @group unit
+     *
+     */
+
     public function testBelongsToManyAvatars()
     {
         $user = factory(User::class)->create();
@@ -113,6 +138,11 @@ class PatientAccountModelTest extends TestCase
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $account->avatars);
     }
+
+     /**
+     * @group unit
+     *
+     */
 
     public function testBelongsToManyBadges()
     {

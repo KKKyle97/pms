@@ -15,6 +15,11 @@ class LoginTest extends TestCase
      *
      * @return void
      */
+
+     /**
+     * @group web
+     *
+     */
     
     public function testToLoginPage()
     {
@@ -22,6 +27,11 @@ class LoginTest extends TestCase
         $response->assertSuccessful();
         $response->assertViewIs('auth.login');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testCannotGoBackToLoginPageIfAuthenticated()
     {
@@ -31,6 +41,11 @@ class LoginTest extends TestCase
 
         $response->assertRedirect('/');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testLoginWithCorrectCredential()
     {
@@ -46,6 +61,11 @@ class LoginTest extends TestCase
         $response->assertRedirect('/home');
         $this->assertAuthenticatedAs($user);
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testLoginWithIncorrectCredential()
     {

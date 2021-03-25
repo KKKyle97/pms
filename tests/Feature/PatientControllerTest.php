@@ -20,6 +20,12 @@ class PatientControllerTest extends TestCase
      *
      * @return void
      */
+
+     /**
+     * @group web
+     *
+     */
+
     protected function SetUp(): void
     {
         parent::setUp();
@@ -27,6 +33,10 @@ class PatientControllerTest extends TestCase
         $this->be($user);
     }
 
+    /**
+     * @group web
+     *
+     */
     public function testToPatientList()
     {
         $user = factory(User::class)->create([
@@ -45,6 +55,11 @@ class PatientControllerTest extends TestCase
 
         $response->assertViewIs('patients.index');
     }
+    
+    /**
+     * @group web
+     *
+     */
 
     public function testToCreateNewPatientPage()
     {
@@ -62,6 +77,11 @@ class PatientControllerTest extends TestCase
 
         $response->assertViewIs('patients.create');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testToShowPatientPageValidId()
     {
@@ -90,6 +110,11 @@ class PatientControllerTest extends TestCase
         $response->assertViewIs('patients.show');
     }
 
+    /**
+     * @group web
+     *
+     */
+
     public function testToShowPatientPageInvalidId()
     {
         $user = factory(User::class)->create([
@@ -112,6 +137,11 @@ class PatientControllerTest extends TestCase
 
         $response->assertRedirect('/patients');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testToEditPatientPageValidId()
     {
@@ -138,6 +168,11 @@ class PatientControllerTest extends TestCase
         $response->assertViewIs('patients.edit');
     }
 
+    /**
+     * @group web
+     *
+     */
+
     public function testToEditPatientPageInvalidId()
     {
         $user = factory(User::class)->create([
@@ -160,6 +195,11 @@ class PatientControllerTest extends TestCase
 
         $response->assertRedirect('/patients/'.$fakeId);
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testCreateNewPatient()
     {
@@ -196,6 +236,11 @@ class PatientControllerTest extends TestCase
 
         $response->assertRedirect('/');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testUpdatePatientValidId()
     {
@@ -237,6 +282,11 @@ class PatientControllerTest extends TestCase
         $response->assertRedirect('/patients/'.$patientProfile->id);
     }
 
+    /**
+     * @group web
+     *
+     */
+
     public function testUpdatePatientInvalidId()
     {
         $user = factory(User::class)->create();
@@ -275,6 +325,11 @@ class PatientControllerTest extends TestCase
         $response->assertRedirect('/patients/'.$fakeId);
     }
 
+    /**
+     * @group web
+     *
+     */
+
     public function testPatientSearchValidSearch()
     {
         $user = factory(User::class)->create();
@@ -298,6 +353,11 @@ class PatientControllerTest extends TestCase
 
         $response->assertViewIs('patients.index');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testPatientSearchInvalidSearch()
     {
@@ -324,6 +384,11 @@ class PatientControllerTest extends TestCase
         $response->assertRedirect('/patients');
     }
 
+    /**
+     * @group web
+     *
+     */
+
     public function testAnalyseValidId()
     {
         $user = factory(User::class)->create();
@@ -345,6 +410,11 @@ class PatientControllerTest extends TestCase
 
         $response->assertViewIs('patients.analyse');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testAnalyseInvalidId()
     {

@@ -21,6 +21,12 @@ class PatientProfileModelTest extends TestCase
      *
      * @return void
      */
+
+      /**
+     * @group unit
+     *
+     */
+
     public function testHasManyMessages()
     {
         $user = factory(User::class)->create();
@@ -39,6 +45,11 @@ class PatientProfileModelTest extends TestCase
         $this->assertTrue($profile->messages->contains($messages));
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $profile->messages);
     }
+
+     /**
+     * @group unit
+     *
+     */
 
     public function testHasManyReport()
     {
@@ -59,6 +70,11 @@ class PatientProfileModelTest extends TestCase
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $profile->reports);
     }
 
+     /**
+     * @group unit
+     *
+     */
+
     public function testHasOneAccount()
     {
         $user = factory(User::class)->create();
@@ -73,6 +89,11 @@ class PatientProfileModelTest extends TestCase
         $this->assertInstanceOf(PatientAccount::class, $profile->account); 
         $this->assertEquals(1, $profile->account->count());
     }
+
+     /**
+     * @group unit
+     *
+     */
 
     public function testHasOneGuardian()
     {
@@ -92,6 +113,11 @@ class PatientProfileModelTest extends TestCase
         $this->assertEquals(1, $profile->guardian->count());
     }
 
+     /**
+     * @group unit
+     *
+     */
+
     public function testBelongsToUser()
     {
         $user = factory(User::class)->create();
@@ -105,6 +131,4 @@ class PatientProfileModelTest extends TestCase
 
         $this->assertInstanceOf(UserProfile::class, $profile->user);
     }
-
-
 }

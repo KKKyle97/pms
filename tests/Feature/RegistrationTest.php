@@ -16,12 +16,22 @@ class RegistrationTest extends TestCase
      *
      * @return void
      */
+
+     /**
+     * @group web
+     *
+     */
     public function testToRegistrationPage()
     {
         $response = $this->get('/register');
         $response->assertSuccessful();
         $response->assertViewIs('auth.register');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testRegisterNewUserAccount()
     {

@@ -19,6 +19,12 @@ class PatientReportModelTest extends TestCase
      *
      * @return void
      */
+
+     /**
+     * @group unit
+     *
+     */
+
     public function testBelongsToPatient()
     {
         $user = factory(User::class)->create();
@@ -36,6 +42,11 @@ class PatientReportModelTest extends TestCase
 
         $this->assertInstanceOf(PatientProfile::class, $reports->patient);
     }
+
+     /**
+     * @group unit
+     *
+     */
 
     public function testBelongsToAccount()
      {

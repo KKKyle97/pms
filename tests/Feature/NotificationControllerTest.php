@@ -19,12 +19,23 @@ class NotificationControllerTest extends TestCase
      *
      * @return void
      */
+
+     /**
+     * @group web
+     *
+     */
     protected function SetUp(): void
     {
         parent::setUp();
         $user = factory(User::class)->create();
         $this->be($user);
     }
+
+    /**
+     * @group web
+     *
+     */
+
     public function testToNotificationListIndex()
     {
         $user = factory(User::class)->create([
@@ -52,6 +63,11 @@ class NotificationControllerTest extends TestCase
 
         $response->assertViewIs('notifications.index');
     }
+
+    /**
+     * @group web
+     *
+     */
     
     public function testShowNotificationDetailInvalidId()
     {
@@ -79,6 +95,11 @@ class NotificationControllerTest extends TestCase
         $response->assertRedirect('/');
     }
 
+    /**
+     * @group web
+     *
+     */
+
     public function testUpdateNotificationDetailValidId()
     {
         $user = factory(User::class)->create([
@@ -105,6 +126,11 @@ class NotificationControllerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testUpdateNotificationDetailInvalidId()
     {

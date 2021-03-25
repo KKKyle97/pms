@@ -21,6 +21,12 @@ class GameUserInfoModelTest extends TestCase
      *
      * @return void
      */
+
+     /**
+     * @group unit
+     *
+     */
+
     public function testBelongsToAvatar()
     {
         $user = factory(User::class)->create();
@@ -38,6 +44,11 @@ class GameUserInfoModelTest extends TestCase
 
         $this->assertInstanceOf(Avatar::class, $gameInfo->avatar);
     }
+
+     /**
+     * @group unit
+     *
+     */
 
     public function testBelongsToAccount()
      {

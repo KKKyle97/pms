@@ -20,6 +20,11 @@ class PatientMessageModelTest extends TestCase
      * @return void
      */
 
+      /**
+     * @group unit
+     *
+     */
+
      public function testBelongsToPatient()
      {
         $user = factory(User::class)->create();
@@ -37,6 +42,11 @@ class PatientMessageModelTest extends TestCase
 
         $this->assertInstanceOf(PatientProfile::class, $messages->patient);
      }
+
+      /**
+     * @group unit
+     *
+     */
 
      public function testBelongsToAccount()
      {

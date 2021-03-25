@@ -22,6 +22,11 @@ class UserControllerTest extends TestCase
         $user = factory(User::class)->create();
         $this->be($user);
     }
+
+    /**
+     * @group web
+     *
+     */
     
     public function testToShowUserProfile()
     {
@@ -36,6 +41,11 @@ class UserControllerTest extends TestCase
         $response->assertViewIs('users.show');
     }
 
+    /**
+     * @group web
+     *
+     */
+
     public function testToShowUserProfileInvalidId()
     {
         
@@ -46,6 +56,11 @@ class UserControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('/');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testToEditUserProfile()
     {
@@ -59,6 +74,11 @@ class UserControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('users.edit');
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testToEditUserProfileInvalidId()
     {
@@ -75,6 +95,11 @@ class UserControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('/users/'.$fakeId);
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testUpdateUserProfileValid()
     {
@@ -96,6 +121,11 @@ class UserControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('/users/'.$profile->id);
     }
+
+    /**
+     * @group web
+     *
+     */
 
     public function testUpdateUserProfileInvalidId()
     {
@@ -119,6 +149,4 @@ class UserControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('/users/'.$fakeId);
     }
-
-    
 }

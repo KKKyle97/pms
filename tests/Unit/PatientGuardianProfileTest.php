@@ -19,6 +19,11 @@ class PatientGuardianProfileTest extends TestCase
      * @return void
      */
 
+      /**
+     * @group unit
+     *
+     */
+
      public function testBelongsToPatient()
      {
         $user = factory(User::class)->create();

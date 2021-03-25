@@ -17,6 +17,11 @@ class UserTest extends TestCase
      * @return void
      */
 
+     /**
+     * @group unit
+     *
+     */
+
      public function testHasOneUserProfile()
      {
         $user = factory(User::class)->create();

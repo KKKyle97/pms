@@ -25,6 +25,11 @@ class BadgeModelTest extends TestCase
      * @return void
      */
 
+      /**
+     * @group unit
+     *
+     */
+
     public function testBelongsToManyAccounts()
     {
         $user = factory(User::class)->create();
