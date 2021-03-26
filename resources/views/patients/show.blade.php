@@ -39,6 +39,9 @@ use App\Common;
                         <p class="m-0 p-0 font-semi">Cancer type</p>
                         <p class="m-0 p-0">{{Common::$cancer[$patient->cancer]}}</p>
                     </div>
+                    <div class="py-3">
+                        <a href="#" class="badge badge-info" onclick="viewGuardianInfo('{{$guardian->first_name}} {{$guardian->last_name}}','{{$guardian->ic_number}}','{{$guardian->contact}}','{{Common::$relation[$guardian->relations]}}','{{$guardian->address_one}}, {{$guardian->address_two}}, {{$guardian->postcode}}, {{Common::$state[$guardian->state]}} {{$guardian->city}}')">View Guardian Info</a>
+                    </div>
                 </div>
             </div>
             
@@ -55,52 +58,60 @@ use App\Common;
         </div>
     </div>
     <div class="col px-3 pb-3">
-        <div class="font-semi font-18">
-            <p class="m-0 p-0">Patients Guardian Info</p>
+        <div class="font-semi font-18 d-flex align-items-center justify-content-between">
+            <p class="m-0 p-0">Basic Analysis</p>
+            <a class="badge badge-info m-0 font-12" href="{{route('patients.analyse',[$patient->id])}}">Detail Analysis</a>
         </div>
         <hr/>
-        <div class="row p-0">
-            <div class="col-sm-7">
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi">Name</p>
-                    <p class="m-0 p-0">{{$guardian->first_name}} {{$guardian->last_name}}</p>
+        <div class="analysis-wrapper p-0 m-0 justify-content-between">
+            {{-- Current Mood --}}
+            <div class="analysis-container d-flex justify-content-between align-items-center left">
+                <div class="d-flex align-items-center">
+                    <span class="material-icons mr-1">
+                        mood
+                    </span>
+                    Current Mood
                 </div>
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi">Relationship</p>
-                    <p class="m-0 p-0">{{Common::$relation[$guardian->relations]}}</p>
-                </div>
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi">Address</p>
-                    <p class="m-0 p-0">
-                        {{$guardian->address_one}}, {{$guardian->address_two}}, {{$guardian->postcode}}, {{Common::$state[$guardian->state]}} 
-                        {{$guardian->city}}</p>
-                </div>
+                <div>{{Common::$mood[$currentMoodAndPainLevel->mood]}}</div>
             </div>
-            <div class="col-sm-5">
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi">IC</p>
-                    <p class="m-0 p-0">{{$guardian->ic_number}}</p>
+            {{-- Highest Number of Pain Location --}}
+            <div class="analysis-container d-flex justify-content-between align-items-center right">
+                <div class="d-flex align-items-center">
+                    <span class="material-icons mr-1">
+                        attribution
+                    </span>
+                    Most Frequent Pain Location
                 </div>
-                <div class="pb-3">
-                    <p class="m-0 p-0 font-semi">Contact number</p>
-                    <p class="m-0 p-0">{{$guardian->contact}}</p>
-                </div>
+                <div>{{$painLocation->body_part}}</div>
             </div>
         </div>
-        
-        
-        
-        
-        
+        <div class="analysis-wrapper p-0 m-0 justify-content-between">
+            {{-- Current Pain Level --}}
+            <div class="analysis-container d-flex justify-content-between align-items-center left">
+                <div class="d-flex align-items-center">
+                    <span class="material-icons mr-1">
+                    bolt
+                    </span>
+                    Current Pain Level
+                </div>
+                <div>{{$currentMoodAndPainLevel->level}}</div>
+            </div>
+            {{-- Average Pain Level --}}
+            <div class="analysis-container d-flex justify-content-between align-items-center right">
+                <div class="d-flex align-items-center">
+                    <span class="material-icons mr-1">
+                    bolt
+                    </span>
+                    Average Pain Level
+                </div>
+                <div>{{$avgPainLevel->count}}</div>
+            </div>
+        </div>
     </div>
 
     <div class="d-flex justify-content-center">
         <div class="pb-3 mr-3">
             <a class="btn btn-normal btn-custom-width" href="{{route('patients.edit',[$patient->id])}}">Update Details</a>
-        </div>
-    
-        <div class="pb-3 mr-3">
-            <a class="btn btn-normal btn-custom-width" href="{{route('patients.analyse',[$patient->id])}}">Analyse</a>
         </div>
     
         <div class="pb-3">
@@ -117,4 +128,22 @@ use App\Common;
 <div class="footer d-flex justify-content-center align-items-center">
     <p class="font-14 m-0 p-0">Copyright 2021</p>
 </div>
+
+<script>
+    function viewGuardianInfo(name, ic, contact, relation, address){
+
+        Swal.fire({
+            title: 'Guardian Profile',
+            html:'<table class="table table-bordered">'
+                    + '<tr><td>Name</td><td>' + name + '</td></tr>'
+                    + '<tr><td>IC Number</td><td>' + ic + '</td></tr>'
+                    + '<tr><td>Contact</td><td>' + contact + '</td></tr>'
+                    + '<tr><td>Relation</td><td>' + relation + '</td></tr>'
+                    + '<tr><td>Address</td><td>' + address + '</td></tr>'
+                + '</table>',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        });
+}
+</script>
 @endsection

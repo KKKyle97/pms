@@ -154,11 +154,34 @@ class PatientController extends Controller
         if($patient != null){
             $guardian = $patient->guardian;
             $account = $patient->account;
+
+            $currentMoodAndPainLevel =  DB::table('patient_reports')
+            ->select('mood','level')
+            ->where('patient_profiles_id',$id)
+            ->orderBy('created_at','desc')
+            ->first();
+
+            $painLocation =  DB::table('patient_reports')
+            ->select(DB::raw('count(body_part) as count'),'body_part')
+            ->where('patient_profiles_id',$id)
+            ->groupBy('body_part')
+            ->orderBy('count', 'desc')
+            ->first();
+
+            $avgPainLevel = DB::table('patient_reports')
+            ->select(DB::raw('avg(level) as count'))
+            ->where('patient_profiles_id',$id)
+            ->first();
+
+            $avgPainLevel->count = intval($avgPainLevel->count);
     
             return view('patients.show',[
                 'patient' => $patient,
                 'guardian' => $guardian,
                 'account' => $account,
+                'currentMoodAndPainLevel' => $currentMoodAndPainLevel,
+                'painLocation' => $painLocation,
+                'avgPainLevel' => $avgPainLevel,
             ]);
         }
         Alert::error('Error', 'Patient Not Found!');

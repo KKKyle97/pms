@@ -542,3 +542,50 @@ p.title {
 .test {
     height: 100px;
 }
+
+.analysis-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.analysis-container {
+    height: 40px;
+    background-image: linear-gradient(
+        to right,
+        #ff5900,
+        #ff3b4e,
+        #ff2a89,
+        #ff42c6,
+        #ff69ff
+    );
+
+    border-radius: 5px;
+    flex: 1;
+    padding-left: 5px;
+    padding-right: 15px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.left {
+    margin-right: 5px;
+}
+
+.right {
+    margin-left: 5px;
+}
+
+@media only screen and (max-width: 800px) {
+    .left {
+        margin-right: 0px;
+    }
+
+    .right {
+        margin-left: 0px;
+    }
+
+    .analysis-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}
