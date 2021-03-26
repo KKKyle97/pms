@@ -173,6 +173,8 @@ class PatientController extends Controller
             ->where('patient_profiles_id',$id)
             ->first();
 
+            $reportCount = PatientReport::where('patient_profiles_id',$id)->count();
+
             $avgPainLevel->count = intval($avgPainLevel->count);
     
             return view('patients.show',[
@@ -182,6 +184,7 @@ class PatientController extends Controller
                 'currentMoodAndPainLevel' => $currentMoodAndPainLevel,
                 'painLocation' => $painLocation,
                 'avgPainLevel' => $avgPainLevel,
+                'reportCount' => $reportCount,
             ]);
         }
         Alert::error('Error', 'Patient Not Found!');

@@ -81,7 +81,7 @@ class BadgeSeeder extends Seeder
             DB::table('badges')->insert([
                 'name' => 'A3',
                 'type' => 3, 
-                'target' => 7,
+                'target' => 6,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);

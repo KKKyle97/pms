@@ -14,7 +14,7 @@ use App\Common;
             <div class="font-semi font-18">
                 <p class="m-0 p-0">Patients Info</p>
             </div>
-            <hr/>
+            <hr />
             <div class="row p-0">
                 <div class="col-sm-5">
                     <div class="pb-3">
@@ -40,17 +40,19 @@ use App\Common;
                         <p class="m-0 p-0">{{Common::$cancer[$patient->cancer]}}</p>
                     </div>
                     <div class="py-3">
-                        <a href="#" class="badge badge-info" onclick="viewGuardianInfo('{{$guardian->first_name}} {{$guardian->last_name}}','{{$guardian->ic_number}}','{{$guardian->contact}}','{{Common::$relation[$guardian->relations]}}','{{$guardian->address_one}}, {{$guardian->address_two}}, {{$guardian->postcode}}, {{Common::$state[$guardian->state]}} {{$guardian->city}}')">View Guardian Info</a>
+                        <a href="#" class="badge badge-info"
+                            onclick="viewGuardianInfo('{{$guardian->first_name}} {{$guardian->last_name}}','{{$guardian->ic_number}}','{{$guardian->contact}}','{{Common::$relation[$guardian->relations]}}','{{$guardian->address_one}}, {{$guardian->address_two}}, {{$guardian->postcode}}, {{Common::$state[$guardian->state]}} {{$guardian->city}}')">View
+                            Guardian Info</a>
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div class="col-md-5 p-3">
             <div class="font-semi font-18">
                 <p class="m-0 p-0">Application Account</p>
             </div>
-            <hr/>
+            <hr />
             <div class="pb-3">
                 <p class="m-0 p-0 font-semi">Username</p>
                 <p class="m-0 p-0">{{$account->username}}</p>
@@ -60,9 +62,13 @@ use App\Common;
     <div class="col px-3 pb-3">
         <div class="font-semi font-18 d-flex align-items-center justify-content-between">
             <p class="m-0 p-0">Basic Analysis</p>
-            <a class="badge badge-info m-0 font-12" href="{{route('patients.analyse',[$patient->id])}}">Detail Analysis</a>
+            <a class="badge badge-info m-0 font-12" href="{{route('patients.analyse',[$patient->id])}}">Detail
+                Analysis</a>
         </div>
-        <hr/>
+        <hr />
+        @if($reportCount == 0 )
+        <p>No Report Sent From Patient Yet</p>
+        @else
         <div class="analysis-wrapper p-0 m-0 justify-content-between">
             {{-- Current Mood --}}
             <div class="analysis-container d-flex justify-content-between align-items-center left">
@@ -90,7 +96,7 @@ use App\Common;
             <div class="analysis-container d-flex justify-content-between align-items-center left">
                 <div class="d-flex align-items-center">
                     <span class="material-icons mr-1">
-                    bolt
+                        bolt
                     </span>
                     Current Pain Level
                 </div>
@@ -100,20 +106,22 @@ use App\Common;
             <div class="analysis-container d-flex justify-content-between align-items-center right">
                 <div class="d-flex align-items-center">
                     <span class="material-icons mr-1">
-                    bolt
+                        bolt
                     </span>
                     Average Pain Level
                 </div>
                 <div>{{$avgPainLevel->count}}</div>
             </div>
         </div>
+        @endif
     </div>
 
     <div class="d-flex justify-content-center">
         <div class="pb-3 mr-3">
-            <a class="btn btn-normal btn-custom-width" href="{{route('patients.edit',[$patient->id])}}">Update Details</a>
+            <a class="btn btn-normal btn-custom-width" href="{{route('patients.edit',[$patient->id])}}">Update
+                Details</a>
         </div>
-    
+
         <div class="pb-3">
             <form action="{{route('patients.destroy',[$patient->id])}}" method="post">
                 @csrf
