@@ -220,6 +220,12 @@ function drawTopPainChart(){
         @endphp
     ]);
 
+    var filterArray = [@php
+
+    echo "'".$highestPainLevel[0]->body_part."',";
+
+    @endphp];
+
      // Create a dashboard.
     var highestPainDashboard = new google.visualization.Dashboard(
             document.getElementById('dashboard3_div'));
@@ -236,7 +242,16 @@ function drawTopPainChart(){
         'controlType': 'CategoryFilter',
         'containerId': 'filter3_1_div',
         'options': {
-        'filterColumnLabel': 'body part'
+        'filterColumnLabel': 'body part',
+        'ui':{
+            label: 'Body Part Selection:',
+            allowMultiple:false,
+            allowTyping:false,
+            }
+        },
+        state: {
+            selectedValues: filterArray,
+        },
         }
     });
     
