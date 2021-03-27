@@ -71,7 +71,8 @@ use App\Common;
     <p class="font-14 m-0 p-0">Copyright 2021</p>
 </div>
 <script>
-function updateMsg(msgId, pFirstName, pLastName, pIc, pAge, score, msg, msgTime, msgIsSolved, msgSolution){
+    function updateMsg(msgId, pFirstName, pLastName, pIc, pAge, score, msg, msgTime, msgIsSolved, msgSolution){
+        console.log(msgIsSolved);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

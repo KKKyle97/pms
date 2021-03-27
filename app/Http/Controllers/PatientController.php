@@ -322,14 +322,14 @@ class PatientController extends Controller
             $highestPainLevel =  DB::table('patient_reports')
             ->select(DB::raw('max(level) as level'),'description','body_part','created_at')
             ->where('patient_profiles_id',$id)
-            ->groupBy('description','body_part')
+            ->groupBy('description','body_part','created_at')
             ->orderBy('created_at')
             ->get();
 
             $durationPerBodyPart = DB::table('patient_reports')
             ->select(DB::raw('max(duration) as duration,avg(duration) as average'),'body_part','created_at')
             ->where('patient_profiles_id',$id)
-            ->groupBy('body_part')
+            ->groupBy('body_part','created_at')
             ->orderBy('created_at')
             ->get();
 
