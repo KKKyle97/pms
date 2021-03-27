@@ -240,7 +240,6 @@ class GameController extends Controller
                     ->where('badge_user.user_id',$id)
                     ->get();
         
-        
         return response()->json([
             'message' => 'success',
             "data" => json_encode($badges)

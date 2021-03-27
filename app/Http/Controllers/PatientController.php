@@ -305,7 +305,6 @@ class PatientController extends Controller
             $reportsCount = PatientProfile::find($id)->reports()->count();
             $reports = PatientProfile::findOrFail($id)->reports()->orderBy('created_at')->get();
             
-
             $bodyPartsCount =  DB::table('patient_reports')
             ->select(DB::raw('count(*) as count'),'body_part')
             ->where('patient_profiles_id',$id)

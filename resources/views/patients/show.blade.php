@@ -62,8 +62,13 @@ use App\Common;
     <div class="col px-3 pb-3">
         <div class="font-semi font-18 d-flex align-items-center justify-content-between">
             <p class="m-0 p-0">Basic Analysis</p>
+            @if(reportCount != 0)
             <a class="badge badge-info m-0 font-12" href="{{route('patients.analyse',[$patient->id])}}">Detail
                 Analysis</a>
+            @else
+            <a class="badge badge-info m-0 font-12" onclick="">Detail
+                Analysis</a>
+            @endif
         </div>
         <hr />
         @if($reportCount == 0 )
@@ -151,6 +156,15 @@ use App\Common;
                 + '</table>',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
+        });
+}
+
+function rejectRequest(){
+    
+    Swal.fire({
+            title: 'No Report Found Yet',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
         });
 }
 </script>
