@@ -56,7 +56,7 @@ use App\Common;
                     <a class="badge badge-info " onclick="updateMsg({{$patient->id}},'{{$patient->first_name}}','{{$patient->last_name}}',
                     '{{$patient->ic_number}}','{{$patient->age}}',
                     '{{$patient->score}}','{{$patient->message}}',
-                    '{{$patient->updated_at}}','{{$patient->is_solved}}','{{$patient->solution}}')">view
+                    '{{$patient->updated_at}}',{{$patient->is_solved}},'{{$patient->solution}}')">view
                         more</a>
                 </td>
             </tr>
@@ -78,7 +78,7 @@ use App\Common;
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    if(msgIsSolved == '0'){
+    if(msgIsSolved == 0 || msgIsSolved == false){
         Swal.fire({
             title: 'Please Help!',
             icon: 'warning',
