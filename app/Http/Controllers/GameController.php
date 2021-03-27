@@ -67,7 +67,7 @@ class GameController extends Controller
 
         return response()->json([
             "message" => "success",
-            "data" => $patient->info
+            "data" => json_encode($patient->info)
         ], 201);
     }
 
