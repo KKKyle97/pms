@@ -18,7 +18,7 @@ class CreatePatientMessagesTable extends Migration
             $table->id();
             $table->unsignedInteger('score');
             $table->string('message',255);
-            $table->boolean('is_solved');
+            $table->tinyInteger('is_solved');
             $table->string('solution',255)->nullable();
             $table->unsignedBigInteger('patient_accounts_id');
             $table->unsignedBigInteger('patient_profiles_id');
