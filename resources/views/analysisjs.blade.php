@@ -252,7 +252,6 @@ function drawTopPainChart(){
         state: {
             selectedValues: filterArray,
         },
-        }
     });
     
     var highestPainBarChart = new google.visualization.ChartWrapper({
