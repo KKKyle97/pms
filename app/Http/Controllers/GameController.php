@@ -56,7 +56,7 @@ class GameController extends Controller
         $patient = PatientAccount::where('username',$request->username)->first();
         $patient->info()->create([
             'name' => $request->name,
-            'coin' => 0,
+            'coin' => 1000,
             'highscore' => 0,
             'is_skipped' => false,
             'avatars_id' => $request->avatarId,
