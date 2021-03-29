@@ -208,7 +208,7 @@ class GameController extends Controller
   
   
         $badges = Badge::whereNotIn('id',function($query) {
-          $query->select('badge_id')->from('badge_user');
+          $query->select('badge_id')->from('badge_user')->where('user_id',$request->accId);
                   })->where('target','<=',$avatarCount)
                   ->where('type',3)
                   ->get();
