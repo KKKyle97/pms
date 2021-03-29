@@ -143,9 +143,11 @@ class GameController extends Controller
     {
         $user = PatientAccount::find($request->accId);
 
+        $id = $request->accId;
 
-        $badges = Badge::whereNotIn('id',function($query) {
-                $query->select('badge_id')->from('badge_user');
+
+        $badges = Badge::whereNotIn('id',function ($query) use ($id) {
+                $query->select('badge_id')->from('badge_user')->where('user_id',$id);
             })->where('target','<=',$request->coin)
             ->where('type',1)
             ->get();
@@ -174,8 +176,10 @@ class GameController extends Controller
         $acc = PatientAccount::find($request->accId);
         $reportCount = $acc->reports()->count();
 
-        $badges = Badge::whereNotIn('id',function($query) {
-            $query->select('badge_id')->from('badge_user');
+        $id = $request->accId;
+
+        $badges = Badge::whereNotIn('id',function ($query) use ($id) {
+            $query->select('badge_id')->from('badge_user')->where('user_id',$id);
                     })->where('target','<=',$reportCount)
                     ->where('type',2)
                     ->get();
