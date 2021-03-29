@@ -7,7 +7,7 @@
             <img src="{{asset('/image/ribbon.png')}}" alt="ribbon" height="40vh" width="50vw" style="display: block">
             <p class="font-weight-bold font-28 p-0 m-0">Child Of Light</p>
         </div>  
-        <p class="font-22 font-weight-bold m-0 p-0">Sign In</p>
+        {{-- <p class="font-22 font-weight-bold m-0 p-0">Sign In</p> --}}
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="form-group font-semi font-18">
+            <div class="form-group font-semi font-18 pb-3">
                 <label for="password" class="col-form-label">{{ __('Password') }}</label>
 
                 <div>
@@ -42,17 +42,6 @@
                 </div>
             </div>
 
-            <div class="form-group row ml-0">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                        {{ old('remember') ? 'checked' : '' }}>
-
-                    <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
-                    </label>
-                </div>
-            </div>
-
             <div class="form-group">
                 <button type="submit" class="btn btn-primary w-100 font-semi">
                     {{ __('Login') }}
@@ -61,9 +50,9 @@
 
             <div class="form-group d-flex justify-content-center">
                 @if (Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">
+                {{-- <a class="btn btn-link" href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
-                </a>
+                </a> --}}
                 @endif
                 @if (Route::has('register'))
                 <a class="btn btn-link" href="{{ route('register') }}">{{ __('New User?') }}</a>
