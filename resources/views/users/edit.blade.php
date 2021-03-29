@@ -3,7 +3,7 @@
 ?>
 
 @extends('layouts.app')
-
+@section('pageTitle', 'Update User Profile')
 @section('content')
 <div class="header d-flex justify-content-center align-items-center">
     <p class="font-22 font-semi m-0 p-0">Update User Profile</p>

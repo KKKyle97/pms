@@ -4,6 +4,7 @@ use App\Common;
 
 @extends('layouts.guest')
 
+@section('pageTitle', 'Register')
 @section('content')
 <div class="container-fluid d-flex justify-content-center">
     <div class="backbone-panel p-3">

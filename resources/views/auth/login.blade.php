@@ -1,5 +1,7 @@
 @extends('layouts.guest')
 
+@section('pageTitle', 'Login')
+
 @section('content')
 <div class="container-fluid d-flex justify-content-center">
     <div class="backbone-panel px-5 pt-5 pb-2">
