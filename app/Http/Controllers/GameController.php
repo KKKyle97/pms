@@ -8,6 +8,7 @@ use App\Avatar;
 use App\Badge;
 use App\GameUserInfo;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 use DB;
 
 class GameController extends Controller
@@ -260,6 +261,8 @@ class GameController extends Controller
             'duration' => $request->duration,
             'mood' => $request->mood,
             'patient_profiles_id' => $acc->patient_profiles_id,
+            'created_at' => Carbon::now('Asia/Singapore')->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now('Asia/Singapore')->format('Y-m-d H:i:s'),
         ]);
 
         return response()->json([
@@ -275,7 +278,9 @@ class GameController extends Controller
             'score' => $request->score,
             'message' => $request->message,
             'is_solved' => 0,
-            'patient_profiles_id' => $patient->patient_profiles_id
+            'patient_profiles_id' => $patient->patient_profiles_id,
+            'created_at' => Carbon::now('Asia/Singapore')->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now('Asia/Singapore')->format('Y-m-d H:i:s'),
         ]);
 
         return response()->json([
