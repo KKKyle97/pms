@@ -21,7 +21,8 @@ use App\Common;
             <div class="row pb-3">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="email" class="col col-form-label">{{ __('E-Mail Address') }}</label>
+                        <label for="email" class="col col-form-label">{{ __('E-Mail Address') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -40,7 +41,8 @@ use App\Common;
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="col col-form-label">{{ __('Password') }}</label>
+                        <label for="password" class="col col-form-label">{{ __('Password') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="password" type="password"
@@ -60,7 +62,8 @@ use App\Common;
                     </div>
 
                     <div class="form-group">
-                        <label for="password-confirm" class="col col-form-label">{{ __('Confirm Password') }}</label>
+                        <label for="password-confirm" class="col col-form-label">{{ __('Confirm Password') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="password-confirm" type="password" class="form-control"
@@ -72,7 +75,8 @@ use App\Common;
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="sq_one_q" class="col col-form-label">{{ __('Security Question One') }}</label>
+                        <label for="sq_one_q" class="col col-form-label">{{ __('Security Question One') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <select id="sq_one_q" class="form-control" name="sq_one_q" required>
@@ -90,7 +94,8 @@ use App\Common;
                     </div>
 
                     <div class="form-group">
-                        <label for="sq_one_a" class="col col-form-label">{{ __('Answer') }}</label>
+                        <label for="sq_one_a" class="col col-form-label">{{ __('Answer') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="sq_one_a" type="text" class="form-control" name="sq_one_a" required
@@ -108,7 +113,8 @@ use App\Common;
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="sq_two_q" class="col col-form-label">{{ __('Security Question Two') }}</label>
+                        <label for="sq_two_q" class="col col-form-label">{{ __('Security Question Two') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <select id="sq_two_q" class="form-control" name="sq_two_q" required>
@@ -126,7 +132,8 @@ use App\Common;
                     </div>
 
                     <div class="form-group">
-                        <label for="sq_two_a" class="col col-form-label">{{ __('Answer') }}</label>
+                        <label for="sq_two_a" class="col col-form-label">{{ __('Answer') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="sq_two_a" type="text" class="form-control" name="sq_two_a" required
@@ -151,7 +158,8 @@ use App\Common;
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="first_name" class="col col-form-label">{{ __('First Name') }}</label>
+                        <label for="first_name" class="col col-form-label">{{ __('First Name') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="first_name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -168,7 +176,8 @@ use App\Common;
                     </div>
 
                     <div class="form-group">
-                        <label for="last_name" class="col col-form-label">{{ __('Last Name') }}</label>
+                        <label for="last_name" class="col col-form-label">{{ __('Last Name') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="last_name" type="text"
@@ -187,7 +196,8 @@ use App\Common;
                     </div>
 
                     <div class="form-group">
-                        <label for="ic_number" class="col col-form-label">{{ __('IC') }}</label>
+                        <label for="ic_number" class="col col-form-label">{{ __('IC') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="ic_number" type="text"
@@ -209,7 +219,8 @@ use App\Common;
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="gender" class="col col-form-label">{{ __('Gender') }}</label>
+                        <label for="gender" class="col col-form-label">{{ __('Gender') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <select id="gender" class="form-control" name="gender" required>
@@ -227,7 +238,8 @@ use App\Common;
                     </div>
 
                     <div class="form-group">
-                        <label for="contact" class="col col-form-label">{{ __('Contact No') }}</label>
+                        <label for="contact" class="col col-form-label">{{ __('Contact No') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="contact" type="text" class="form-control @error('contact') is-invalid @enderror"
@@ -249,7 +261,8 @@ use App\Common;
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="hospital" class="col col-form-label">{{ __('Hospital') }}</label>
+                        <label for="hospital" class="col col-form-label">{{ __('Hospital') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col dropdown">
                             <select id="hospital" class="js-example-basic-single form-control" name="hospital" required>
@@ -391,7 +404,8 @@ use App\Common;
                     </div>
 
                     <div class="form-group">
-                        <label for="role" class="col col-form-label">{{ __('Role') }}</label>
+                        <label for="role" class="col col-form-label">{{ __('Role') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <select id="role" class="form-control" name="role" required>

@@ -21,7 +21,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="first_name" class="col col-form-label">{{ __('First Name') }}</label>
+                        <label for="first_name" class="col col-form-label">{{ __('First Name') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="first_name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -38,7 +39,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="last_name" class="col col-form-label">{{ __('Last Name') }}</label>
+                        <label for="last_name" class="col col-form-label">{{ __('Last Name') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="last_name" type="text"
@@ -56,7 +58,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ic_number" class="col col-form-label">{{ __('IC') }}</label>
+                        <label for="ic_number" class="col col-form-label">{{ __('IC') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="ic_number" type="text"
@@ -76,7 +79,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="gender" class="col col-form-label ">{{ __('Gender') }}</label>
+                        <label for="gender" class="col col-form-label ">{{ __('Gender') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <select id="gender" class="form-control" name="gender" required>
@@ -96,7 +100,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="contact" class="col col-form-label">{{ __('Contact No') }}</label>
+                        <label for="contact" class="col col-form-label">{{ __('Contact No') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <input id="contact" type="text" class="form-control @error('contact') is-invalid @enderror"
@@ -116,7 +121,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="hospital" class="col col-form-label">{{ __('Hospital') }}</label>
+                        <label for="hospital" class="col col-form-label">{{ __('Hospital') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col dropdown">
                             <select id="hospital" style="width:100%" class="form-control js-example-basic-single"
@@ -275,7 +281,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="role" class="col col-form-label ">{{ __('Role') }}</label>
+                        <label for="role" class="col col-form-label ">{{ __('Role') }}<span
+                                class="font-red">*</span></label>
 
                         <div class="col">
                             <select id="role" class="form-control" name="role" required>
