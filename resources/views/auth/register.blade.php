@@ -26,8 +26,7 @@ use App\Common;
 
                         <div class="col">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email"
-                                placeholder="johndoe@gmail.com"
+                                name="email" required autocomplete="email" placeholder="johndoe@gmail.com"
                                 oninput="validateRequiredField('p1','email',2,0); validateEmail()">
 
                             @error('email')
@@ -163,8 +162,8 @@ use App\Common;
 
                         <div class="col">
                             <input id="first_name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name"
-                                autofocus placeholder="John" oninput="validateRequiredField('g1','first_name',2,5)">
+                                name="first_name" required autocomplete="first_name" autofocus placeholder="John"
+                                oninput="validateRequiredField('g1','first_name',2,5)">
 
                             @error('first_name')
                             <span class="invalid-feedback" role="alert">
@@ -181,9 +180,9 @@ use App\Common;
 
                         <div class="col">
                             <input id="last_name" type="text"
-                                class="form-control @error('last_name') is-invalid @enderror" name="last_name"
-                                value="{{ old('last_name') }}" required autocomplete="last_name" autofocus
-                                placeholder="Doe" oninput="validateRequiredField('g2','last_name',2,6)">
+                                class="form-control @error('last_name') is-invalid @enderror" name="last_name" required
+                                autocomplete="last_name" autofocus placeholder="Doe"
+                                oninput="validateRequiredField('g2','last_name',2,6)">
 
                             @error('last_name')
                             <span class="invalid-feedback" role="alert">
@@ -202,9 +201,8 @@ use App\Common;
                         <div class="col">
                             <input id="ic_number" type="text"
                                 class="form-control @error('ic_number') is-invalid @enderror" name="ic_number"
-                                minlength="12" maxlength="12" value="{{ old('ic_number') }}" required
-                                autocomplete="ic_number" placeholder="990201025506"
-                                onkeypress="return isNumberKey(event)" autofocus
+                                minlength="12" maxlength="12" required autocomplete="ic_number"
+                                placeholder="990201025506" onkeypress="return isNumberKey(event)" autofocus
                                 oninput="validateRequiredField('g3','ic_number',2,7); validateDigitNum('g3e2','ic_number','ic',2,7); ">
 
                             @error('ic_number')
@@ -243,9 +241,8 @@ use App\Common;
 
                         <div class="col">
                             <input id="contact" type="text" class="form-control @error('contact') is-invalid @enderror"
-                                name="contact" minlength="10" maxlength="11" value="{{ old('contact') }}" required
-                                autocomplete="contact" onkeypress="return isNumberKey(event)" placeholder="0123456789"
-                                autofocus
+                                name="contact" minlength="10" maxlength="11" required autocomplete="contact"
+                                onkeypress="return isNumberKey(event)" placeholder="0123456789" autofocus
                                 oninput="validateRequiredField('g4','contact',2,8); validateDigitNum('g4e2','contact','contact',2,8); ">
 
                             @error('contact')
